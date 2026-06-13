@@ -1,0 +1,66 @@
+name: SMTP2GO API Rate Limits
+description: Rate limiting rules for the SMTP2GO REST API covering per-endpoint throttles,
+  account-level sending limits, and error handling guidance.
+version: '0.1'
+url: https://developers.smtp2go.com/docs/rate-limiting
+limits:
+  - scope: endpoint
+    endpoint: /v3/activity/search
+    limit: 60
+    period: minute
+    http_status_on_violation: 429
+    description: The activity search endpoint is limited to 60 requests per minute.
+  - scope: endpoint
+    endpoint: /v3/apikeys/add
+    limit: 5
+    period: minute
+    http_status_on_violation: 429
+    description: Creating new API keys is limited to 5 requests per minute.
+  - scope: endpoint
+    endpoint: /v3/subaccounts/add
+    limit: 10
+    period: hour
+    http_status_on_violation: 429
+    description: Adding subaccounts is limited to 10 calls per hour.
+  - scope: api_key
+    limit: configurable
+    period: configurable
+    http_status_on_violation: 429
+    description: Per-API-key sending rate limits can be configured individually in
+      the Sending > API Keys section of the SMTP2GO app. Exceeding the configured
+      limit triggers an "API key ratelimit exceeded" error.
+  - scope: account
+    limit: 1000
+    period: day
+    http_status_on_violation: 429
+    description: New paid accounts have a temporary initial quota of 1,000 emails
+      per day during an initial review period before full activation.
+  - scope: plan
+    plan: Free
+    limit: 1000
+    period: month
+    description: Free plan is capped at 1,000 emails per month.
+  - scope: plan
+    plan: Free
+    limit: 200
+    period: day
+    description: Free plan is limited to 200 emails per day.
+  - scope: plan
+    plan: Free
+    limit: 25
+    period: hour
+    description: Free plan is limited to 25 emails per hour unless a verified sender
+      domain is present, in which case this limit is removed.
+error_handling:
+  too_many_requests:
+    http_status: 429
+    message: Too Many Requests
+    description: Returned when an IP address is timed out due to excessive requests
+      or error responses. Timeout lasts no less than 1 minute.
+  api_key_ratelimit_exceeded:
+    description: Returned when a per-API-key sending rate limit configured in the
+      app is exceeded. Emails that exceed the rate are held in a mail queue and delivered
+      at a reduced rate of up to 25 emails per hour.
+backoff_guidance: Pause requests and progressively lower request rate until 200 OK
+  responses are received. Monitor the 429 response code and avoid retrying immediately
+  to prevent extended IP timeouts.

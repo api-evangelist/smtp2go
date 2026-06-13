@@ -1,0 +1,102 @@
+name: SMTP2GO FinOps Framework
+description: FinOps cost management guidance for SMTP2GO email delivery API usage,
+  covering cost allocation, optimization, and forecasting aligned to the FinOps Foundation
+  FOCUS specification.
+version: '1.0'
+url: https://www.smtp2go.com/pricing/
+framework: FinOps Framework FOCUS 1.0
+currency: USD
+billing_model: subscription_plus_overage
+billing_period: monthly
+cost_categories:
+  - name: Base Subscription
+    description: Fixed monthly fee for the selected SMTP2GO plan tier covering included
+      email volume.
+    type: fixed
+    plans:
+      - plan: Free
+        cost: 0.00
+        included_emails: 1000
+      - plan: Starter
+        cost: 10.00
+        included_emails: 10000
+      - plan: Professional
+        cost: 75.00
+        included_emails: 100000
+      - plan: Premier
+        cost: custom
+        included_emails: 3000000_plus
+  - name: Email Overage
+    description: Per-1,000-email charge applied when monthly included volume is exceeded.
+    type: variable
+    unit: per 1000 emails
+    rates:
+      - plan: Starter
+        rate: 1.00
+      - plan: Professional
+        rate: 0.85
+      - plan: Premier
+        rate: custom
+  - name: Annual Discount
+    description: Savings available by committing to annual billing instead of monthly.
+    type: discount
+    discounts:
+      - plan: Starter
+        monthly_cost: 10.00
+        annual_cost: 100.00
+        annual_savings: 20.00
+        savings_pct: 16.7
+      - plan: Professional
+        monthly_cost: 75.00
+        annual_cost: 750.00
+        annual_savings: 150.00
+        savings_pct: 16.7
+cost_optimization:
+  - recommendation: Use annual billing to save approximately 16.7% on Starter and
+      Professional plans.
+    category: commitment_discount
+  - recommendation: Monitor monthly email volume against plan limits to avoid overage
+      charges; consider upgrading plans when overage regularly exceeds 10-15% of the
+      included allocation.
+    category: right_sizing
+  - recommendation: Use SMTP2GO subaccount management to allocate sending quotas by
+      team, product, or customer to track costs per cost center.
+    category: cost_allocation
+  - recommendation: Leverage suppression lists and bounce management to reduce wasted
+      sends and lower effective cost per delivered email.
+    category: waste_reduction
+  - recommendation: Use API key-level rate limits to prevent runaway send loops or
+      accidental bulk sends that could generate unexpected overage charges.
+    category: cost_controls
+  - recommendation: Review activity reports and email cycle summaries monthly to forecast
+      volume trends and plan upgrades or downgrades proactively.
+    category: forecasting
+cost_allocation:
+  methods:
+    - type: subaccounts
+      description: SMTP2GO subaccounts allow resellers and enterprise customers to
+        segment email sending by client, department, or product line for chargeback
+        or showback reporting.
+    - type: api_keys
+      description: Separate API keys per team or application allow granular tracking
+        of sending volumes by cost center using SMTP2GO activity reports.
+forecasting:
+  signals:
+    - Monthly email cycle report (available via /v3/stats/email/cycle)
+    - Email history breakdown by sender domain (available via /v3/stats/email/history)
+    - Activity search for trend analysis (available via /v3/activity/search)
+  guidance: Track monthly growth rate of email volume to anticipate plan tier transitions
+    and overage charges. Set quota usage notification alerts in the SMTP2GO dashboard
+    to receive warnings before exceeding plan limits.
+unit_economics:
+  - plan: Free
+    cost_per_1k_emails: 0.00
+    note: Limited to 1,000 emails/month total
+  - plan: Starter
+    cost_per_1k_emails: 1.00
+    at_included_volume: 1.00
+    overage_cost_per_1k_emails: 1.00
+  - plan: Professional
+    cost_per_1k_emails: 0.75
+    at_included_volume: 0.75
+    overage_cost_per_1k_emails: 0.85

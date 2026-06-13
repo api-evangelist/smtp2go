@@ -1,0 +1,112 @@
+name: SMTP2GO Plans and Pricing
+description: Pricing plans for SMTP2GO email delivery platform covering free and paid
+  tiers with email volume allowances, feature sets, and overage rates.
+version: '0.1'
+url: https://www.smtp2go.com/pricing/
+plans:
+  - name: Free
+    description: Entry-level plan for low-volume senders with no credit card required.
+    price:
+      amount: 0
+      currency: USD
+      period: month
+    limits:
+      emails_per_month: 1000
+      emails_per_day: 200
+      emails_per_hour: 25
+      team_members: 2
+      reporting_days: 5
+      support_days: 14
+    features:
+      - SMTP relay
+      - Email API access
+      - SPF/DKIM authentication
+      - TLS/SSL encryption
+      - Real-time analytics
+      - Bounce tracking
+      - 5 days of activity logs
+      - 2 weeks phone and live chat support
+    overage:
+      rate: null
+      unit: null
+      note: No overage; free plan is capped at monthly volume
+  - name: Starter
+    description: For growing businesses needing reliable email delivery with full
+      support and 30 days of reporting.
+    price:
+      amount: 10
+      currency: USD
+      period: month
+      annual_amount: 100
+      annual_currency: USD
+      annual_period: year
+    limits:
+      emails_per_month: 10000
+      reporting_days: 30
+    features:
+      - SMTP relay
+      - Email API access
+      - SPF/DKIM authentication
+      - TLS/SSL encryption
+      - Real-time analytics
+      - Bounce tracking
+      - 30 days of email activity reporting
+      - SMS messaging
+      - Subaccount management
+      - Full ticket, chat, and phone support
+    overage:
+      rate: 1.00
+      unit: per 1000 additional emails
+  - name: Professional
+    description: Recommended plan for higher-volume senders needing dedicated IP addresses
+      and email testing tools.
+    price:
+      amount: 75
+      currency: USD
+      period: month
+      annual_amount: 750
+      annual_currency: USD
+      annual_period: year
+    limits:
+      emails_per_month: 100000
+      reporting_days: 30
+    features:
+      - SMTP relay
+      - Email API access
+      - SPF/DKIM authentication
+      - TLS/SSL encryption
+      - Real-time analytics
+      - Bounce tracking
+      - 30 days of email activity reporting
+      - Dedicated IP address
+      - Email testing tools
+      - SMS messaging
+      - Subaccount management
+      - Full ticket, chat, and phone support
+    overage:
+      rate: 0.85
+      unit: per 1000 additional emails
+  - name: Premier
+    description: Enterprise plan for organizations sending over 3 million emails per
+      month with personalized setup and support.
+    price:
+      amount: custom
+      currency: USD
+      period: month
+      note: Contact SMTP2GO sales for custom pricing starting at 3,000,000+ emails/month
+    limits:
+      emails_per_month: 3000000
+      note: Custom volumes available above 3,000,000 emails/month
+    features:
+      - All Professional features
+      - Custom email volumes
+      - Personalized setup
+      - Dedicated account support
+      - Dedicated IP addresses
+      - Email testing tools
+      - SMS messaging
+      - Subaccount management
+    overage:
+      rate: custom
+      unit: per 1000 additional emails
+      note: Custom overage rates negotiated with sales team

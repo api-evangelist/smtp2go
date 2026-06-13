@@ -1,0 +1,79 @@
+name: SMTP2GO
+description: Email delivery platform with a REST API for sending transactional emails,
+  managing SMTP accounts, tracking delivery, viewing email statistics, and suppressing
+  addresses.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+aid: smtp2go
+type: Index
+tags:
+  - Email
+  - Email Delivery
+  - Transactional Email
+  - SMTP
+  - SMS
+  - Email API
+  - Deliverability
+apis:
+  - name: SMTP2GO Email API
+    description: REST API for sending transactional emails and SMS, managing sender
+      domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing
+      delivery reports and activity statistics.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.smtp2go.com/docs/introduction-guide
+    baseURL: https://api.smtp2go.com/v3
+    tags:
+      - Email
+      - SMS
+      - Transactional Email
+      - Deliverability
+      - SMTP
+      - Webhooks
+      - Templates
+    properties:
+      - type: Documentation
+        url: https://developers.smtp2go.com/docs/introduction-guide
+      - type: GettingStarted
+        url: https://developers.smtp2go.com/docs/getting-started
+      - type: Endpoints
+        url: https://developers.smtp2go.com/docs/endpoints
+      - type: RateLimits
+        url: https://developers.smtp2go.com/docs/rate-limiting
+      - type: OpenAPI
+        url: https://developers.smtp2go.com/llms.txt
+    contact:
+      - FN: SMTP2GO Support
+        url: https://support.smtp2go.com/
+common:
+  - type: Website
+    url: https://www.smtp2go.com/
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+  - type: GitHubOrg
+    url: https://github.com/smtp2go-oss
+  - type: Blog
+    url: https://www.smtp2go.com/blog/
+  - type: Pricing
+    url: https://www.smtp2go.com/pricing/
+  - type: StatusPage
+    url: https://smtp2gostatus.com/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/smtp2go
+  - type: X
+    url: https://x.com/smtp2go
+  - type: Support
+    url: https://support.smtp2go.com/
+  - type: Plans
+    url: plans/smtp2go-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/smtp2go-rate-limits.yml
+  - type: FinOps
+    url: finops/smtp2go-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
