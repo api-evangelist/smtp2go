@@ -1,0 +1,288 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "smtp2go": "https://developers.smtp2go.com/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "EmailMessage": "schema:EmailMessage",
+    "SMSMessage": "smtp2go:SMSMessage",
+    "EmailTemplate": "smtp2go:EmailTemplate",
+    "SenderDomain": "smtp2go:SenderDomain",
+    "SmtpUser": "smtp2go:SmtpUser",
+    "ApiKey": "smtp2go:ApiKey",
+    "Webhook": "smtp2go:Webhook",
+    "Suppression": "smtp2go:Suppression",
+    "Subaccount": "smtp2go:Subaccount",
+
+    "sender": {
+      "@id": "schema:sender",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "schema:recipient",
+      "@type": "@id"
+    },
+    "cc": {
+      "@id": "schema:ccRecipient",
+      "@type": "@id"
+    },
+    "bcc": {
+      "@id": "schema:bccRecipient",
+      "@type": "@id"
+    },
+    "subject": {
+      "@id": "schema:about",
+      "@type": "xsd:string"
+    },
+    "html_body": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "text_body": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "email_id": {
+      "@id": "smtp2go:emailId",
+      "@type": "xsd:string"
+    },
+    "request_id": {
+      "@id": "smtp2go:requestId",
+      "@type": "xsd:string"
+    },
+    "schedule_id": {
+      "@id": "smtp2go:scheduleId",
+      "@type": "xsd:string"
+    },
+    "template_id": {
+      "@id": "smtp2go:templateId",
+      "@type": "xsd:string"
+    },
+    "template_data": {
+      "@id": "smtp2go:templateData"
+    },
+    "template_name": {
+      "@id": "smtp2go:templateName",
+      "@type": "xsd:string"
+    },
+    "template_variables": {
+      "@id": "smtp2go:templateVariables"
+    },
+    "fastaccept": {
+      "@id": "smtp2go:fastAccept",
+      "@type": "xsd:boolean"
+    },
+    "schedule": {
+      "@id": "smtp2go:scheduledAt",
+      "@type": "xsd:dateTime"
+    },
+    "succeeded": {
+      "@id": "smtp2go:succeeded",
+      "@type": "xsd:integer"
+    },
+    "failed": {
+      "@id": "smtp2go:failed",
+      "@type": "xsd:integer"
+    },
+    "failures": {
+      "@id": "smtp2go:failures",
+      "@container": "@list"
+    },
+    "attachments": {
+      "@id": "smtp2go:attachments",
+      "@container": "@list"
+    },
+    "inlines": {
+      "@id": "smtp2go:inlineImages",
+      "@container": "@list"
+    },
+    "filename": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "mimetype": {
+      "@id": "schema:encodingFormat",
+      "@type": "xsd:string"
+    },
+    "fileblob": {
+      "@id": "smtp2go:fileBlob",
+      "@type": "xsd:string"
+    },
+
+    "email_address": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "block_description": {
+      "@id": "smtp2go:blockDescription",
+      "@type": "xsd:string"
+    },
+    "suppression_type": {
+      "@id": "smtp2go:suppressionType",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+
+    "domain": {
+      "@id": "smtp2go:domain",
+      "@type": "xsd:string"
+    },
+    "fulldomain": {
+      "@id": "smtp2go:fullDomain",
+      "@type": "xsd:string"
+    },
+    "dkim_verified": {
+      "@id": "smtp2go:dkimVerified",
+      "@type": "xsd:boolean"
+    },
+    "dkim_selector": {
+      "@id": "smtp2go:dkimSelector",
+      "@type": "xsd:string"
+    },
+    "dkim_value": {
+      "@id": "smtp2go:dkimValue",
+      "@type": "xsd:string"
+    },
+    "rpath_verified": {
+      "@id": "smtp2go:returnPathVerified",
+      "@type": "xsd:boolean"
+    },
+    "rpath_selector": {
+      "@id": "smtp2go:returnPathSelector",
+      "@type": "xsd:string"
+    },
+    "rpath_value": {
+      "@id": "smtp2go:returnPathValue",
+      "@type": "xsd:string"
+    },
+
+    "username": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "sending_allowed": {
+      "@id": "smtp2go:sendingAllowed",
+      "@type": "xsd:boolean"
+    },
+    "open_tracking_enabled": {
+      "@id": "smtp2go:openTrackingEnabled",
+      "@type": "xsd:boolean"
+    },
+    "archive_enabled": {
+      "@id": "smtp2go:archiveEnabled",
+      "@type": "xsd:boolean"
+    },
+    "bounce_notifications": {
+      "@id": "smtp2go:bounceNotifications",
+      "@type": "xsd:string"
+    },
+
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "events": {
+      "@id": "smtp2go:events",
+      "@container": "@list"
+    },
+    "sms_events": {
+      "@id": "smtp2go:smsEvents",
+      "@container": "@list"
+    },
+    "output_format": {
+      "@id": "smtp2go:outputFormat",
+      "@type": "xsd:string"
+    },
+    "auth_header_type": {
+      "@id": "smtp2go:authHeaderType",
+      "@type": "xsd:string"
+    },
+
+    "destination": {
+      "@id": "smtp2go:smsDestination",
+      "@container": "@list"
+    },
+    "content": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "message_id": {
+      "@id": "smtp2go:messageId",
+      "@type": "xsd:string"
+    },
+    "total_sent": {
+      "@id": "smtp2go:totalSent",
+      "@type": "xsd:integer"
+    },
+
+    "cycle_start": {
+      "@id": "smtp2go:cycleStart",
+      "@type": "xsd:dateTime"
+    },
+    "cycle_end": {
+      "@id": "smtp2go:cycleEnd",
+      "@type": "xsd:dateTime"
+    },
+    "cycle_used": {
+      "@id": "smtp2go:cycleUsed",
+      "@type": "xsd:integer"
+    },
+    "cycle_remaining": {
+      "@id": "smtp2go:cycleRemaining",
+      "@type": "xsd:integer"
+    },
+    "cycle_max": {
+      "@id": "smtp2go:cycleMax",
+      "@type": "xsd:integer"
+    },
+    "email_count": {
+      "@id": "smtp2go:emailCount",
+      "@type": "xsd:integer"
+    },
+    "bounce_percent": {
+      "@id": "smtp2go:bouncePercent",
+      "@type": "xsd:string"
+    },
+    "spam_percent": {
+      "@id": "smtp2go:spamPercent",
+      "@type": "xsd:string"
+    },
+    "unsubscribes": {
+      "@id": "smtp2go:unsubscribes",
+      "@type": "xsd:integer"
+    },
+    "opens": {
+      "@id": "smtp2go:opens",
+      "@type": "xsd:integer"
+    },
+    "clicks": {
+      "@id": "smtp2go:clicks",
+      "@type": "xsd:integer"
+    },
+
+    "subaccount_id": {
+      "@id": "smtp2go:subaccountId",
+      "@type": "xsd:string"
+    },
+    "continue_token": {
+      "@id": "smtp2go:continueToken",
+      "@type": "xsd:string"
+    },
+    "total_results": {
+      "@id": "smtp2go:totalResults",
+      "@type": "xsd:integer"
+    },
+    "error_code": {
+      "@id": "smtp2go:errorCode",
+      "@type": "xsd:string"
+    },
+    "error": {
+      "@id": "smtp2go:errorMessage",
+      "@type": "xsd:string"
+    }
+  }
+}

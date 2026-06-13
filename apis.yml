@@ -43,7 +43,7 @@ apis:
       - type: RateLimits
         url: https://developers.smtp2go.com/docs/rate-limiting
       - type: OpenAPI
-        url: https://developers.smtp2go.com/llms.txt
+        url: https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/openapi/smtp2go-email-api-openapi.yml
     contact:
       - FN: SMTP2GO Support
         url: https://support.smtp2go.com/

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/smtp2go/main/json-schema/smtp2go-suppression.json",
+  "title": "SMTP2GO Suppression",
+  "description": "Schema for SMTP2GO suppression records",
+  "type": "object",
+  "properties": {
+    "email_address": {
+      "type": "string",
+      "description": "Suppressed email address or domain"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for the suppression"
+    },
+    "block_description": {
+      "type": "string",
+      "description": "Description of why the address is blocked"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "When the suppression was added",
+      "format": "date-time"
+    },
+    "suppression_type": {
+      "type": "string",
+      "description": "Type of suppression",
+      "enum": ["manual", "spam", "unsubscribe", "bounce", "compliance"]
+    },
+    "complaint": {
+      "type": "string",
+      "description": "Complaint details if suppression type is spam"
+    }
+  }
+}

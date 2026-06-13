@@ -1,0 +1,2307 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email API
+  description: >-
+    REST API for sending transactional emails and SMS, managing sender domains,
+    SMTP users, API keys, templates, webhooks, suppressions, and accessing
+    delivery reports and activity statistics. All requests use POST with JSON
+    bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key
+    header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide
+servers:
+  - url: https://api.smtp2go.com/v3
+    description: Global endpoint (auto-routes to nearest region)
+  - url: https://us-api.smtp2go.com/v3
+    description: United States region
+  - url: https://eu-api.smtp2go.com/v3
+    description: European Union region
+  - url: https://au-api.smtp2go.com/v3
+    description: Oceania region
+security:
+  - ApiKeyHeader: []
+  - ApiKeyBody: []
+tags:
+  - name: Email
+    description: Send and manage email messages
+  - name: SMS
+    description: Send and receive SMS messages
+  - name: Stats
+    description: Email delivery statistics and reports
+  - name: Domains
+    description: Sender domain management
+  - name: SMTP Users
+    description: SMTP user account management
+  - name: API Keys
+    description: API key management
+  - name: Templates
+    description: Email template management
+  - name: Webhooks
+    description: Webhook configuration
+  - name: Suppressions
+    description: Suppression list management
+  - name: Subaccounts
+    description: Subaccount management
+  - name: Activity
+    description: Email activity search
+
+paths:
+  /email/send:
+    post:
+      operationId: sendEmail
+      summary: Send a standard email
+      description: Send an email by passing a JSON email object
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailRequest'
+            example:
+              sender: "Sender Name <sender@example.com>"
+              to:
+                - "Recipient <recipient@example.com>"
+              subject: "Hello from SMTP2GO"
+              html_body: "<h1>Hello!</h1><p>This is a test email.</p>"
+              text_body: "Hello! This is a test email."
+      responses:
+        '200':
+          description: Email sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorised - missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /email/mime:
+    post:
+      operationId: sendMimeEmail
+      summary: Send a MIME email
+      description: Send an email by supplying a pre-encoded MIME string
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMimeEmailRequest'
+      responses:
+        '200':
+          description: MIME email sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorised
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /email/batch:
+    post:
+      operationId: sendEmailBatch
+      summary: Send a batch of emails
+      description: Send a batch of emails as an array of email objects
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailBatchRequest'
+      responses:
+        '200':
+          description: Batch emails queued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailBatchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /email/view:
+    post:
+      operationId: viewSentEmails
+      summary: View and search sent emails
+      description: >-
+        Retrieve a list of up to 5,000 sent emails matching the supplied
+        parameters. Deprecated - use /activity/search instead.
+      deprecated: true
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: ISO-8601 start datetime filter
+                end_date:
+                  type: string
+                  description: ISO-8601 end datetime filter
+                filter_query:
+                  type: string
+                  description: Complex filter expression
+      responses:
+        '200':
+          description: Sent emails list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /scheduled/remove:
+    post:
+      operationId: removeScheduledEmail
+      summary: Remove a scheduled email
+      description: Removes a scheduled email by ID
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - schedule_id
+              properties:
+                schedule_id:
+                  type: string
+                  description: ID of the scheduled email to remove
+      responses:
+        '200':
+          description: Scheduled email removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /scheduled/search:
+    post:
+      operationId: searchScheduledEmails
+      summary: Search scheduled emails
+      description: Allows searching of scheduled emails
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schedule_id:
+                  type: string
+                  description: Filter by schedule ID
+      responses:
+        '200':
+          description: Scheduled emails list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /activity/search:
+    post:
+      operationId: searchActivity
+      summary: Search activity
+      description: >-
+        Returns events (such as opens, unsubscribes) which match the filters
+        passed. Rate-limited to 60 requests per minute.
+      tags:
+        - Activity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivitySearchRequest'
+      responses:
+        '200':
+          description: Activity events list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivitySearchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+
+  /sms/send:
+    post:
+      operationId: sendSms
+      summary: Send SMS
+      description: Send an SMS message to one or more numbers, up to a maximum of 100 numbers
+      tags:
+        - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendSmsRequest'
+      responses:
+        '200':
+          description: SMS sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendSmsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /sms/summary:
+    post:
+      operationId: smsSummary
+      summary: SMS summary
+      description: Retrieve a summary of SMS messages within a certain time range
+      tags:
+        - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: ISO-8601 start datetime
+                end_date:
+                  type: string
+                  description: ISO-8601 end datetime
+      responses:
+        '200':
+          description: SMS summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /sms/view:
+    post:
+      operationId: viewSentSms
+      summary: View sent SMS
+      description: View sent SMS messages
+      tags:
+        - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+      responses:
+        '200':
+          description: Sent SMS messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /sms/inbox:
+    post:
+      operationId: viewReceivedSms
+      summary: View received SMS
+      description: View received SMS messages
+      tags:
+        - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+      responses:
+        '200':
+          description: Received SMS messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /stats/email_summary:
+    post:
+      operationId: emailSummary
+      summary: Email summary
+      description: >-
+        Retrieve a combination of email_bounces, email_cycle, email_spam, and
+        email_unsubs calls in one report
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Return statistics for a specific SMTP user
+      responses:
+        '200':
+          description: Email summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailSummaryResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /stats/email_bounces:
+    post:
+      operationId: emailBounces
+      summary: Email bounces
+      description: Retrieve a summary of bounces and rejects for the last 30 days
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Bounce statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /stats/email_cycle:
+    post:
+      operationId: emailCycle
+      summary: Email cycle
+      description: >-
+        Retrieve a summary of your account activity including billing cycle
+        dates and email counts
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Email cycle data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /stats/email_history:
+    post:
+      operationId: emailHistory
+      summary: Email history
+      description: >-
+        Retrieve a summary of activity from a specified date range per sender,
+        SMTP username, domain or subaccount
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: ISO-8601 start datetime (defaults to last 30 days)
+                end_date:
+                  type: string
+                  description: ISO-8601 end datetime
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Email history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /stats/email_spam:
+    post:
+      operationId: emailSpam
+      summary: Email spam
+      description: Retrieve a summary of spam complaints and rejects for the last 30 days
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Spam statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /stats/email_unsubscribes:
+    post:
+      operationId: emailUnsubscribes
+      summary: Email unsubscribes
+      description: Retrieve a summary of unsubscribes and rejects for the last 30 days
+      tags:
+        - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Unsubscribe statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /domain/add:
+    post:
+      operationId: addSenderDomain
+      summary: Add a sender domain
+      description: Add a sender domain to your account
+      tags:
+        - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - domain
+              properties:
+                domain:
+                  type: string
+                  description: Domain name to add
+      responses:
+        '200':
+          description: Sender domain added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /domain/view:
+    post:
+      operationId: viewSenderDomains
+      summary: View sender domains
+      description: Returns a list of sender domains on your account
+      tags:
+        - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Optional specific domain to retrieve
+                subaccount_id:
+                  type: string
+                  description: Make call on behalf of a subaccount
+      responses:
+        '200':
+          description: Sender domains list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewDomainsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /domain/delete:
+    post:
+      operationId: removeSenderDomain
+      summary: Remove a sender domain
+      description: Remove a sender domain from your account
+      tags:
+        - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - domain
+              properties:
+                domain:
+                  type: string
+      responses:
+        '200':
+          description: Sender domain removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /domain/verify:
+    post:
+      operationId: verifySenderDomain
+      summary: Verify a sender domain
+      description: Verify a sender domain on your account
+      tags:
+        - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - domain
+              properties:
+                domain:
+                  type: string
+      responses:
+        '200':
+          description: Domain verification triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /users/smtp/add:
+    post:
+      operationId: addSmtpUser
+      summary: Add an SMTP user
+      description: Add a new SMTP user to your account
+      tags:
+        - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/smtp/edit:
+    post:
+      operationId: editSmtpUser
+      summary: Edit SMTP user details
+      description: Update an SMTP user's details with the parameters passed
+      tags:
+        - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /users/smtp/patch:
+    post:
+      operationId: patchSmtpUser
+      summary: Patch an SMTP user
+      description: Patch an existing SMTP user ignoring missing properties
+      tags:
+        - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /users/smtp/delete:
+    post:
+      operationId: removeSmtpUser
+      summary: Remove an SMTP user
+      description: Remove an SMTP user from your account
+      tags:
+        - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+              properties:
+                username:
+                  type: string
+                  description: SMTP username to remove
+      responses:
+        '200':
+          description: SMTP user removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /users/smtp/view:
+    post:
+      operationId: viewSmtpUsers
+      summary: View SMTP users
+      description: >-
+        Returns a list of all SMTP users managed by this account, or details
+        of a specific user when you include the username
+      tags:
+        - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Optional SMTP username to view specific user
+                subaccount_id:
+                  type: string
+                  description: Make call on behalf of a subaccount
+      responses:
+        '200':
+          description: SMTP users list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSmtpUsersResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /apikeys/add:
+    post:
+      operationId: addApiKey
+      summary: Add a new API key
+      description: Add a new API key to your account. Rate-limited to 5 requests per minute.
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /apikeys/edit:
+    post:
+      operationId: editApiKey
+      summary: Edit an API key
+      description: Edit an existing API key
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /apikeys/patch:
+    post:
+      operationId: patchApiKey
+      summary: Patch an API key
+      description: Patch an existing API key ignoring missing properties
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /apikeys/delete:
+    post:
+      operationId: removeApiKey
+      summary: Remove an API key
+      description: Remove an existing API key
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - api_key_id
+              properties:
+                api_key_id:
+                  type: string
+      responses:
+        '200':
+          description: API key removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /apikeys/view:
+    post:
+      operationId: viewApiKeys
+      summary: View API Keys
+      description: Retrieve a list of API keys on this account
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: API keys list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /apikeys/permissions:
+    post:
+      operationId: viewApiKeyPermissions
+      summary: View Permissions
+      description: Retrieve a list of endpoints this API key can use
+      tags:
+        - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: API key permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /template/add:
+    post:
+      operationId: addEmailTemplate
+      summary: Add an email template
+      description: Adds a new email template that you can use to format your emails
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateRequest'
+      responses:
+        '200':
+          description: Email template added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /template/edit:
+    post:
+      operationId: updateEmailTemplate
+      summary: Update an email template
+      description: Changes details of an existing email template
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateRequest'
+      responses:
+        '200':
+          description: Template updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+
+  /template/delete:
+    post:
+      operationId: removeEmailTemplate
+      summary: Remove an email template
+      description: Deletes the specified email template
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - template_id
+              properties:
+                template_id:
+                  type: string
+      responses:
+        '200':
+          description: Template removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /template/search:
+    post:
+      operationId: searchEmailTemplates
+      summary: View email templates
+      description: Search your collection of email templates
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template_name:
+                  type: string
+                template_id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Templates list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /template/view:
+    post:
+      operationId: viewTemplateDetails
+      summary: View template details
+      description: Returns details of the email template with the specified ID
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - template_id
+              properties:
+                template_id:
+                  type: string
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+
+  /webhook/add:
+    post:
+      operationId: addWebhook
+      summary: Add a new Webhook
+      description: Add a new webhook with the given configuration
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /webhook/edit:
+    post:
+      operationId: editWebhook
+      summary: Edit a specified Webhook
+      description: Make changes to a specific webhook using its unique ID
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+
+  /webhook/delete:
+    post:
+      operationId: removeWebhook
+      summary: Remove a specified Webhook
+      description: Remove a specific webhook using its unique ID
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: integer
+                  description: Webhook ID to remove
+      responses:
+        '200':
+          description: Webhook removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /webhook/view:
+    post:
+      operationId: viewWebhooks
+      summary: View Webhooks
+      description: Returns information for configured webhooks
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: Optional webhook ID to retrieve specific webhook
+      responses:
+        '200':
+          description: Webhooks list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /suppression/add:
+    post:
+      operationId: addSuppression
+      summary: Add a suppression
+      description: Suppresses the specified email address or domain
+      tags:
+        - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSuppressionRequest'
+      responses:
+        '200':
+          description: Suppression added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddSuppressionResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /suppression/delete:
+    post:
+      operationId: removeSuppression
+      summary: Remove a suppression
+      description: Removes the suppression on the specified email address or domain
+      tags:
+        - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email_address
+              properties:
+                email_address:
+                  type: string
+                  description: Email address or domain to unsuppress
+      responses:
+        '200':
+          description: Suppression removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /suppression/view:
+    post:
+      operationId: viewSuppressions
+      summary: View suppressions
+      description: Returns your suppressed email addresses and domains
+      tags:
+        - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewSuppressionsRequest'
+      responses:
+        '200':
+          description: Suppressions list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSuppressionsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /subaccounts/add:
+    post:
+      operationId: addSubaccount
+      summary: Add a subaccount
+      description: Adds a new subaccount on your master account. Rate-limited to 10 calls per hour.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email_address
+              properties:
+                email_address:
+                  type: string
+                  description: Email address for the new subaccount
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                company_name:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /subaccounts/close:
+    post:
+      operationId: closeSubaccount
+      summary: Close a subaccount
+      description: Changes the status of an Active subaccount to Closed
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount closed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /subaccounts/reopen:
+    post:
+      operationId: reopenSubaccount
+      summary: Reopen a closed subaccount
+      description: Changes the status of a Closed subaccount back to Active
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount reopened
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /subaccounts/search:
+    post:
+      operationId: viewSubaccounts
+      summary: View subaccounts
+      description: Returns any subaccounts that match search criteria
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email_address:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                    - active
+                    - closed
+      responses:
+        '200':
+          description: Subaccounts list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /subaccounts/update:
+    post:
+      operationId: updateSubaccount
+      summary: Update a subaccount
+      description: Changes the details on an existing subaccount
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                company_name:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /subaccounts/resend_invite:
+    post:
+      operationId: resendSubaccountInvitation
+      summary: Resend subaccount invitation
+      description: Resend invitation to a subaccount
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Invitation resent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /archive/search:
+    post:
+      operationId: searchArchivedContent
+      summary: Search archived content
+      description: Retrieve a list of up to 5,000 archived emails matching the supplied parameters
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+                sender:
+                  type: string
+                to:
+                  type: string
+                subject:
+                  type: string
+      responses:
+        '200':
+          description: Archived emails list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+  /archive/view:
+    post:
+      operationId: viewArchivedEmail
+      summary: View an archived email
+      description: Fetch an archived email using the email_id
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email_id
+              properties:
+                email_id:
+                  type: string
+      responses:
+        '200':
+          description: Archived email content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: >-
+        API key can also be included in the JSON request body as
+        the "api_key" field
+
+  schemas:
+    SendEmailRequest:
+      type: object
+      required:
+        - sender
+        - to
+      properties:
+        sender:
+          type: string
+          description: "Name and email address to send from, format: Name <name@example.com>"
+          example: "Sender Name <sender@example.com>"
+        to:
+          type: array
+          description: Recipients (up to 100)
+          items:
+            type: string
+          example:
+            - "Recipient <recipient@example.com>"
+        cc:
+          type: array
+          description: Carbon copy recipients (up to 100)
+          items:
+            type: string
+        bcc:
+          type: array
+          description: Blind carbon copy recipients (up to 100)
+          items:
+            type: string
+        subject:
+          type: string
+          description: Email subject line
+        html_body:
+          type: string
+          description: HTML formatted message body
+        text_body:
+          type: string
+          description: Plain text message body
+        custom_headers:
+          type: array
+          description: Custom headers to include
+          items:
+            type: object
+            properties:
+              header:
+                type: string
+              value:
+                type: string
+        attachments:
+          type: array
+          description: File attachments
+          items:
+            $ref: '#/components/schemas/Attachment'
+        inlines:
+          type: array
+          description: Inline images referenced as cid:filename in content
+          items:
+            $ref: '#/components/schemas/Attachment'
+        template_id:
+          type: string
+          description: ID of pre-built template to use
+        template_data:
+          type: string
+          description: JSON string of variables for template substitution
+        schedule:
+          type: string
+          description: Future timestamp for delayed sending (within 3 days)
+          example: "2026-06-14T10:00:00Z"
+        fastaccept:
+          type: boolean
+          description: Enable background processing (default false)
+          default: false
+
+    SendMimeEmailRequest:
+      type: object
+      required:
+        - mime_email
+      properties:
+        mime_email:
+          type: string
+          description: Base64-encoded MIME-formatted email string
+        schedule:
+          type: string
+          description: Future timestamp (within 3 days) to queue for delayed sending
+        fastaccept:
+          type: boolean
+          description: When true, accepts email immediately and processes asynchronously
+          default: false
+
+    SendEmailBatchRequest:
+      type: object
+      required:
+        - emails
+      properties:
+        emails:
+          type: array
+          description: Array of email objects to send
+          items:
+            $ref: '#/components/schemas/BatchEmailItem'
+
+    BatchEmailItem:
+      type: object
+      required:
+        - sender
+        - to
+        - subject
+      properties:
+        sender:
+          type: string
+          description: "Name and email address to send from"
+        to:
+          type: array
+          items:
+            type: string
+          description: Recipients (up to 100)
+        cc:
+          type: array
+          items:
+            type: string
+        bcc:
+          type: array
+          items:
+            type: string
+        subject:
+          type: string
+        html_body:
+          type: string
+        text_body:
+          type: string
+        template_id:
+          type: string
+        template_data:
+          type: object
+          additionalProperties: true
+        custom_headers:
+          type: array
+          items:
+            type: object
+            properties:
+              header:
+                type: string
+              value:
+                type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        inlines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        schedule:
+          type: string
+
+    Attachment:
+      type: object
+      required:
+        - filename
+        - mimetype
+      properties:
+        filename:
+          type: string
+          description: Attachment filename
+        mimetype:
+          type: string
+          description: MIME type of the attachment
+        fileblob:
+          type: string
+          description: Base64-encoded file content
+        url:
+          type: string
+          description: URL to fetch the attachment from
+
+    ActivitySearchRequest:
+      type: object
+      properties:
+        start_date:
+          type: string
+          description: ISO-8601 start datetime
+        end_date:
+          type: string
+          description: ISO-8601 end datetime
+        event:
+          type: string
+          description: Filter by event type
+          enum:
+            - delivered
+            - bounce
+            - spam
+            - unsubscribe
+            - open
+            - click
+            - reject
+        sender:
+          type: string
+        recipient:
+          type: string
+        subject:
+          type: string
+        continue_token:
+          type: string
+          description: Pagination token
+
+    SendSmsRequest:
+      type: object
+      required:
+        - destination
+        - content
+      properties:
+        destination:
+          type: array
+          description: Array of SMS numbers (max 100), with country code
+          items:
+            type: string
+          example:
+            - "+12025550959"
+        content:
+          type: string
+          description: >-
+            SMS message content. Messages over 160 characters will be
+            sent as multiple units.
+        sender:
+          type: string
+          description: Sender number in E.164 format. Leave empty for default.
+
+    SmtpUserRequest:
+      type: object
+      required:
+        - username
+      properties:
+        username:
+          type: string
+          description: SMTP username (email format)
+        email_password:
+          type: string
+          description: SMTP user password
+        sending_allowed:
+          type: boolean
+          description: Whether the user is allowed to send
+        description:
+          type: string
+          description: User description or notes
+        custom_ratelimit:
+          type: boolean
+        custom_ratelimit_value:
+          type: integer
+          description: Max emails per period (if custom rate limit enabled)
+        custom_ratelimit_period:
+          type: string
+          description: Period for custom rate limit
+        open_tracking_enabled:
+          type: boolean
+        archive_enabled:
+          type: boolean
+        bounce_notifications:
+          type: string
+        subaccount_id:
+          type: string
+
+    ApiKeyRequest:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+          description: Key ID (required for edit/patch/delete)
+        description:
+          type: string
+          description: Key description for identification
+        permissions:
+          type: array
+          description: Endpoint-specific permissions
+          items:
+            type: string
+        sending_allowed:
+          type: boolean
+        open_tracking_enabled:
+          type: boolean
+        click_tracking_enabled:
+          type: boolean
+        unsubscribe_footer_enabled:
+          type: boolean
+        archive_enabled:
+          type: boolean
+        sandbox_mode:
+          type: boolean
+
+    EmailTemplateRequest:
+      type: object
+      required:
+        - template_name
+        - id
+        - subject
+        - html_body
+        - text_body
+      properties:
+        template_name:
+          type: string
+          description: Template name (1-64 characters)
+          minLength: 1
+          maxLength: 64
+        id:
+          type: string
+          description: Case-sensitive template ID (5-24 characters)
+          minLength: 5
+          maxLength: 24
+        subject:
+          type: string
+          description: Email subject line
+        html_body:
+          type: string
+          description: HTML email content
+        text_body:
+          type: string
+          description: Plain text email content
+        template_variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Variables to use within this email template
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags to associate with the template
+
+    WebhookRequest:
+      type: object
+      required:
+        - url
+      properties:
+        id:
+          type: integer
+          description: Webhook ID (required for edit/delete)
+        url:
+          type: string
+          description: Webhook destination URL
+          format: uri
+        events:
+          type: array
+          description: Email events to receive
+          items:
+            type: string
+            enum:
+              - delivered
+              - unsubscribe
+              - spam
+              - bounce
+              - processed
+              - reject
+              - click
+              - open
+        sms_events:
+          type: array
+          description: SMS events to receive
+          items:
+            type: string
+            enum:
+              - delivered
+              - failed
+              - rejected
+              - sending
+              - submitted
+        headers:
+          type: array
+          description: Custom headers to include in event data
+          items:
+            type: object
+            properties:
+              header:
+                type: string
+              value:
+                type: string
+        usernames:
+          type: array
+          description: Filter by usernames; all included if unspecified
+          items:
+            type: string
+        output_format:
+          type: string
+          description: Data format for webhook payloads
+          enum:
+            - form
+            - json
+          default: form
+        auth_header_type:
+          type: string
+          description: Authentication type for webhook
+          enum:
+            - bearer
+            - basic
+            - ""
+          default: ""
+        auth_header_value:
+          type: string
+          description: Authentication credentials or token
+        subaccount_id:
+          type: string
+
+    AddSuppressionRequest:
+      type: object
+      required:
+        - email_address
+      properties:
+        email_address:
+          type: string
+          description: Email address or domain to suppress
+        block_description:
+          type: string
+          description: Reason for the suppression
+
+    ViewSuppressionsRequest:
+      type: object
+      properties:
+        continue_token:
+          type: string
+          description: Token for pagination through results
+        email_address:
+          type: string
+          description: Check if specific email or domain is blocked
+        end_date:
+          type: string
+          description: ISO-8601 datetime (defaults to 30 days prior)
+        fuzzy:
+          type: boolean
+          description: Enable fuzzy matching on recipients and reasons
+        reason:
+          type: string
+          description: Search by single reason string
+        reasons:
+          type: array
+          items:
+            type: string
+          description: Search by multiple reason strings
+        recipient:
+          type: string
+        recipients:
+          type: array
+          items:
+            type: string
+        sort:
+          type: string
+          enum:
+            - asc
+            - desc
+        start_date:
+          type: string
+          description: ISO-8601 datetime (defaults to current date)
+        suppression_type:
+          type: string
+          enum:
+            - manual
+            - spam
+            - unsubscribe
+            - bounce
+            - compliance
+        suppression_types:
+          type: array
+          items:
+            type: string
+        wildcard:
+          type: string
+
+    SendEmailResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: Unique request identifier
+        data:
+          type: object
+          properties:
+            email_id:
+              type: string
+              description: Email identifier generated on successful send
+            schedule_id:
+              type: string
+              description: Schedule identifier (if schedule parameter used)
+            succeeded:
+              type: integer
+              description: Count of successfully sent emails
+            failed:
+              type: integer
+              description: Count of failed sends
+            failures:
+              type: array
+              items:
+                type: string
+              description: Error messages encountered
+
+    SendEmailBatchResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: array
+          description: Array of email_id/schedule_id information in same order as payload
+          items:
+            type: object
+            properties:
+              email_id:
+                type: string
+              schedule_id:
+                type: string
+
+    ActivitySearchResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            total_count:
+              type: integer
+            continue_token:
+              type: string
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  event:
+                    type: string
+                  email_id:
+                    type: string
+                  sender:
+                    type: string
+                  recipient:
+                    type: string
+                  subject:
+                    type: string
+                  timestamp:
+                    type: string
+
+    SendSmsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            total_sent:
+              type: integer
+            statuses:
+              type: object
+              properties:
+                queued:
+                  type: integer
+            messages:
+              type: array
+              items:
+                type: object
+                properties:
+                  destination:
+                    type: string
+                  message_id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                      - processing
+                      - enroute
+                      - queued
+                      - submitted
+                      - processed
+                      - delivered
+                      - held
+                      - expired
+                      - cancelled
+                      - failed
+                      - rejected
+
+    EmailSummaryResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            spam_emails:
+              type: integer
+            cycle_start:
+              type: string
+            cycle_end:
+              type: string
+            cycle_used:
+              type: integer
+            cycle_remaining:
+              type: integer
+            cycle_max:
+              type: integer
+            email_count:
+              type: integer
+            softbounces:
+              type: integer
+            hardbounces:
+              type: integer
+            bounce_percent:
+              type: string
+            spam_rejects:
+              type: integer
+              deprecated: true
+            spam_percent:
+              type: string
+            unsubscribes:
+              type: integer
+            unsubscribe_percent:
+              type: string
+            opens:
+              type: integer
+            clicks:
+              type: integer
+            rejects:
+              type: integer
+            bounce_rejects:
+              type: integer
+              deprecated: true
+
+    ViewDomainsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            domains:
+              type: array
+              items:
+                type: object
+                properties:
+                  domain:
+                    type: object
+                    properties:
+                      fulldomain:
+                        type: string
+                      subdomain:
+                        type: string
+                        nullable: true
+                      domain:
+                        type: string
+                      suffix:
+                        type: string
+                      dkim_selector:
+                        type: string
+                      dkim_verified:
+                        type: boolean
+                      dkim_value:
+                        type: string
+                      rpath_selector:
+                        type: string
+                      rpath_verified:
+                        type: boolean
+                      rpath_value:
+                        type: string
+                  trackers:
+                    type: array
+                    items:
+                      type: object
+                  subaccount_access:
+                    type: object
+
+    ViewSmtpUsersResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  email_password:
+                    type: string
+                  sending_allowed:
+                    type: boolean
+                  custom_ratelimit:
+                    type: boolean
+                  custom_ratelimit_value:
+                    type: integer
+                    nullable: true
+                  custom_ratelimit_period:
+                    type: string
+                  description:
+                    type: string
+                  feedback_enabled:
+                    type: boolean
+                  archive_enabled:
+                    type: boolean
+                  open_tracking_enabled:
+                    type: boolean
+                  bounce_notifications:
+                    type: string
+                  status:
+                    type: string
+
+    EmailTemplateResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            template_name:
+              type: string
+            subject:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+            last_updated:
+              type: string
+
+    WebhookResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            url:
+              type: string
+            id:
+              type: integer
+            events:
+              type: array
+              items:
+                type: string
+            sms_events:
+              type: array
+              items:
+                type: string
+            headers:
+              type: array
+              items:
+                type: object
+            usernames:
+              type: array
+              items:
+                type: string
+            output_format:
+              type: string
+            auth_header_type:
+              type: string
+            auth_header_value:
+              type: string
+
+    AddSuppressionResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            added:
+              type: boolean
+            email_address:
+              type: string
+            block_description:
+              type: string
+
+    ViewSuppressionsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            continue_token:
+              type: string
+              nullable: true
+            total_results:
+              type: integer
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  email_address:
+                    type: string
+                  reason:
+                    type: string
+                  block_description:
+                    type: string
+                  timestamp:
+                    type: string
+                  complaint:
+                    type: string
+
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code

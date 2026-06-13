@@ -1,0 +1,44 @@
+{
+  "summary": "Send an SMS message",
+  "description": "Example request for the POST /sms/send endpoint",
+  "request": {
+    "method": "POST",
+    "url": "https://api.smtp2go.com/v3/sms/send",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Smtp2go-Api-Key": "api-key-here"
+    },
+    "body": {
+      "destination": [
+        "+12025550959",
+        "+44700900000"
+      ],
+      "content": "Your verification code is: 123456. Valid for 10 minutes.",
+      "sender": "+12025550100"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request_id": "bb364575-1ce1-578b-c35c-7260ece8cf71",
+      "data": {
+        "total_sent": 2,
+        "statuses": {
+          "queued": 2
+        },
+        "messages": [
+          {
+            "destination": "+12025550959",
+            "message_id": "sms-msg-001",
+            "status": "submitted"
+          },
+          {
+            "destination": "+44700900000",
+            "message_id": "sms-msg-002",
+            "status": "submitted"
+          }
+        ]
+      }
+    }
+  }
+}

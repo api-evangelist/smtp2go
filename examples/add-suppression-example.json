@@ -1,0 +1,27 @@
+{
+  "summary": "Add a suppression for an email address",
+  "description": "Example request for the POST /suppression/add endpoint",
+  "request": {
+    "method": "POST",
+    "url": "https://api.smtp2go.com/v3/suppression/add",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Smtp2go-Api-Key": "api-key-here"
+    },
+    "body": {
+      "email_address": "unsubscribed@example.com",
+      "block_description": "User requested removal from mailing list"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request_id": "cc475686-2df2-689c-d46d-8371fdf9dg82",
+      "data": {
+        "added": true,
+        "email_address": "unsubscribed@example.com",
+        "block_description": "User requested removal from mailing list"
+      }
+    }
+  }
+}

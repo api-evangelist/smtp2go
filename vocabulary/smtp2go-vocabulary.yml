@@ -1,0 +1,213 @@
+vocabulary:
+  name: SMTP2GO API Vocabulary
+  description: >-
+    Domain terms and concepts used in the SMTP2GO Email Delivery API,
+    covering email sending, delivery tracking, suppression management,
+    SMS messaging, and account administration.
+  provider: smtp2go
+  version: "1.0"
+  url: https://developers.smtp2go.com/docs/introduction-guide
+
+terms:
+
+  - term: sender
+    definition: >-
+      The email address and optional display name from which an email is sent,
+      formatted as "Display Name <email@example.com>". Must be a verified sender
+      domain or single sender email on the account.
+    category: email
+    relatedTerms:
+      - sender_domain
+      - single_sender_email
+
+  - term: sender_domain
+    definition: >-
+      A domain that has been added and verified on a SMTP2GO account. Requires
+      DKIM and return-path DNS records to be configured for optimal deliverability.
+      Includes optional tracking subdomain configuration.
+    category: email
+    properties:
+      - dkim_verified
+      - rpath_verified
+      - dkim_selector
+      - rpath_selector
+
+  - term: email_id
+    definition: >-
+      A unique identifier assigned to each email message sent through SMTP2GO.
+      Used for tracking delivery status, accessing archived content, and
+      correlating activity events.
+    category: email
+
+  - term: schedule_id
+    definition: >-
+      A unique identifier assigned to a scheduled email. Generated when the
+      schedule parameter is provided in a send request. Can be used to cancel
+      the scheduled delivery.
+    category: email
+
+  - term: fastaccept
+    definition: >-
+      A boolean parameter that when true causes SMTP2GO to accept the email
+      immediately and process it asynchronously in the background. When true,
+      the response does not include succeeded/failed counts or failures.
+    category: email
+
+  - term: template_id
+    definition: >-
+      A case-sensitive identifier (5-24 characters) for a pre-built email template
+      stored in SMTP2GO. Templates can contain variable placeholders substituted
+      via template_data at send time.
+    category: templates
+
+  - term: template_data
+    definition: >-
+      A JSON object or JSON string containing key-value pairs used to populate
+      variable placeholders within an email template. Keys must match variable
+      names defined in the template.
+    category: templates
+
+  - term: suppression
+    definition: >-
+      An email address or domain that has been blocked from receiving emails
+      through a SMTP2GO account. Suppressions can be manual, or automatic based
+      on spam complaints, bounces, unsubscribes, or compliance reasons.
+    category: deliverability
+    types:
+      - manual
+      - spam
+      - unsubscribe
+      - bounce
+      - compliance
+
+  - term: continue_token
+    definition: >-
+      A pagination token returned in API responses when results exceed the
+      per-request limit. Pass the token in a subsequent request to retrieve
+      the next page of results.
+    category: pagination
+
+  - term: dkim_verified
+    definition: >-
+      A boolean indicating whether DomainKeys Identified Mail (DKIM) has been
+      successfully verified for a sender domain. DKIM authentication improves
+      email deliverability and reduces spam classification.
+    category: deliverability
+
+  - term: api_key
+    definition: >-
+      A credential used to authenticate API requests. Can be sent as the
+      X-Smtp2go-Api-Key HTTP header or included in the JSON request body.
+      Keys can have endpoint-specific permissions and custom rate limits.
+    category: authentication
+
+  - term: webhook
+    definition: >-
+      An HTTP endpoint registered with SMTP2GO to receive real-time event
+      notifications for email and SMS delivery events. Supports filtering
+      by event type, username, and custom authentication headers.
+    category: webhooks
+    emailEvents:
+      - delivered
+      - unsubscribe
+      - spam
+      - bounce
+      - processed
+      - reject
+      - click
+      - open
+    smsEvents:
+      - delivered
+      - failed
+      - rejected
+      - sending
+      - submitted
+
+  - term: subaccount
+    definition: >-
+      A child account that can be managed under a master SMTP2GO account.
+      Subaccounts can have independent sender domains, SMTP users, and sending
+      allowances. The master account can make API calls on behalf of subaccounts
+      using the subaccount_id parameter.
+    category: accounts
+
+  - term: smtp_user
+    definition: >-
+      A user credential for authenticating SMTP relay connections to SMTP2GO.
+      SMTP users can be configured with sending permissions, rate limits, tracking
+      settings, and archive settings.
+    category: smtp
+
+  - term: return_path_subdomain
+    definition: >-
+      A subdomain configured on a sender domain used to handle bounce messages
+      (undeliverable emails). Configuring a return path subdomain improves
+      bounce tracking accuracy.
+    category: deliverability
+
+  - term: tracking_subdomain
+    definition: >-
+      A subdomain configured on a sender domain used to rewrite email links
+      and serve tracking pixels, enabling open and click tracking analytics.
+    category: tracking
+
+  - term: cycle_used
+    definition: >-
+      The number of emails sent during the current billing cycle on a SMTP2GO
+      account. Compared against cycle_max to determine remaining send capacity.
+    category: billing
+
+  - term: cycle_remaining
+    definition: >-
+      The number of emails remaining in the current billing cycle. Calculated
+      as cycle_max minus cycle_used.
+    category: billing
+
+  - term: email_archive
+    definition: >-
+      A feature that stores a searchable copy of sent emails in SMTP2GO.
+      Archived emails can be retrieved by email_id or searched by sender,
+      recipient, subject, or date range. Enabled per SMTP user or API key.
+    category: archiving
+
+  - term: allowed_recipients
+    definition: >-
+      A configurable list of email addresses and domain names that restricts
+      which addresses your account can send to. Useful for testing environments
+      to prevent accidental sends to real users.
+    category: sending
+
+  - term: allowed_senders
+    definition: >-
+      A configurable list of email addresses and domain names used with the
+      Restrict Senders feature. Can function as a whitelist or blacklist
+      depending on the mode setting.
+    category: sending
+
+  - term: mime_email
+    definition: >-
+      A Base64-encoded MIME-formatted email string. The /email/mime endpoint
+      accepts a pre-formed MIME message, useful when migrating from existing
+      email systems or when full MIME control is required.
+    category: email
+
+  - term: request_id
+    definition: >-
+      A unique identifier returned in every SMTP2GO API response. Used for
+      correlating requests with support tickets and for deduplication in
+      retry scenarios.
+    category: api
+
+  - term: error_code
+    definition: >-
+      A machine-readable code returned in 400 error responses from the SMTP2GO API
+      that identifies the specific error condition. Used alongside the human-readable
+      error message for programmatic error handling.
+    category: api
+
+  - term: dedicated_ip
+    definition: >-
+      A dedicated IP address assigned exclusively to a SMTP2GO account for
+      sending email. Provides reputation isolation from other senders and
+      is required for high-volume senders who need maximum deliverability control.
+    category: deliverability

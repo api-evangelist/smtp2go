@@ -1,0 +1,35 @@
+{
+  "summary": "Send a standard transactional email",
+  "description": "Example request for the POST /email/send endpoint",
+  "request": {
+    "method": "POST",
+    "url": "https://api.smtp2go.com/v3/email/send",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Smtp2go-Api-Key": "api-key-here"
+    },
+    "body": {
+      "sender": "Your App <no-reply@yourdomain.com>",
+      "to": [
+        "Customer Name <customer@example.com>"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "Your Order Confirmation #12345",
+      "html_body": "<h1>Thank you for your order!</h1><p>Your order #12345 has been confirmed.</p>",
+      "text_body": "Thank you for your order! Your order #12345 has been confirmed."
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request_id": "aa253464-0bd0-467a-b24b-6159dcd7be60",
+      "data": {
+        "succeeded": 1,
+        "failed": 0,
+        "failures": [],
+        "email_id": "1m4n8l-8jg3j1-7r"
+      }
+    }
+  }
+}

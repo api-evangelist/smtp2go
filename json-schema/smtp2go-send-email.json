@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/smtp2go/main/json-schema/smtp2go-send-email.json",
+  "title": "SMTP2GO Send Email Request",
+  "description": "Schema for the SMTP2GO /email/send API endpoint request body",
+  "type": "object",
+  "required": ["sender", "to"],
+  "properties": {
+    "api_key": {
+      "type": "string",
+      "description": "API key for authentication (alternative to X-Smtp2go-Api-Key header)"
+    },
+    "sender": {
+      "type": "string",
+      "description": "Name and email address to send from, format: Name <name@example.com>",
+      "example": "Sender Name <sender@example.com>"
+    },
+    "to": {
+      "type": "array",
+      "description": "Recipients (up to 100), format: Name <name@example.com>",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1
+    },
+    "cc": {
+      "type": "array",
+      "description": "Carbon copy recipients (up to 100)",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 100
+    },
+    "bcc": {
+      "type": "array",
+      "description": "Blind carbon copy recipients (up to 100)",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 100
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "html_body": {
+      "type": "string",
+      "description": "HTML formatted message body"
+    },
+    "text_body": {
+      "type": "string",
+      "description": "Plain text message body"
+    },
+    "custom_headers": {
+      "type": "array",
+      "description": "Custom headers to include in the email",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["header", "value"]
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "description": "File attachments",
+      "items": {
+        "$ref": "#/definitions/Attachment"
+      }
+    },
+    "inlines": {
+      "type": "array",
+      "description": "Inline images referenced as cid:filename in content",
+      "items": {
+        "$ref": "#/definitions/Attachment"
+      }
+    },
+    "template_id": {
+      "type": "string",
+      "description": "ID of a pre-built template to use"
+    },
+    "template_data": {
+      "type": "string",
+      "description": "JSON string of variables for template substitution"
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Future timestamp for delayed sending (within 3 days)",
+      "format": "date-time"
+    },
+    "fastaccept": {
+      "type": "boolean",
+      "description": "Enable background processing (default: false)",
+      "default": false
+    }
+  },
+  "definitions": {
+    "Attachment": {
+      "type": "object",
+      "required": ["filename", "mimetype"],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "description": "Attachment filename"
+        },
+        "mimetype": {
+          "type": "string",
+          "description": "MIME type of the file"
+        },
+        "fileblob": {
+          "type": "string",
+          "description": "Base64-encoded file content"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to retrieve the file from",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
