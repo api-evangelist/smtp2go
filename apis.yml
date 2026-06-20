@@ -2,7 +2,7 @@ name: SMTP2GO
 description: Email delivery platform with a REST API for sending transactional emails,
   managing SMTP accounts, tracking delivery, viewing email statistics, and suppressing
   addresses.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -22,7 +22,7 @@ apis:
     description: REST API for sending transactional emails and SMS, managing sender
       domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing
       delivery reports and activity statistics.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.smtp2go.com/docs/introduction-guide
     baseURL: https://api.smtp2go.com/v3
     tags:
