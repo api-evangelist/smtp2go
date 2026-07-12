@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/smtp2go-email-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-Smtp2go-Api-Key
+  description: API key passed as an HTTP header
+  sources:
+  - openapi/smtp2go-email-api-openapi.yml
+- name: ApiKeyBody
+  type: apiKey
+  in: header
+  parameter: api_key
+  description: API key can also be included in the JSON request body as the "api_key" field
+  sources:
+  - openapi/smtp2go-email-api-openapi.yml
