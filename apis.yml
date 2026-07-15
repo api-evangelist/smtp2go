@@ -48,6 +48,8 @@ apis:
       - FN: SMTP2GO Support
         url: https://support.smtp2go.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/smtp2go-agentic-access.yml
   - type: DomainSecurity
     url: security/smtp2go-domain-security.yml
   - type: Authentication
