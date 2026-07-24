@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Subaccounts API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Subaccounts
+  description: Subaccount management
+paths:
+  /subaccounts/add:
+    post:
+      operationId: addSubaccount
+      summary: Add a subaccount
+      description: Adds a new subaccount on your master account. Rate-limited to 10 calls per hour.
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email_address
+              properties:
+                email_address:
+                  type: string
+                  description: Email address for the new subaccount
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                company_name:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /subaccounts/close:
+    post:
+      operationId: closeSubaccount
+      summary: Close a subaccount
+      description: Changes the status of an Active subaccount to Closed
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount closed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /subaccounts/reopen:
+    post:
+      operationId: reopenSubaccount
+      summary: Reopen a closed subaccount
+      description: Changes the status of a Closed subaccount back to Active
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount reopened
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /subaccounts/search:
+    post:
+      operationId: viewSubaccounts
+      summary: View subaccounts
+      description: Returns any subaccounts that match search criteria
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email_address:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - closed
+      responses:
+        '200':
+          description: Subaccounts list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /subaccounts/update:
+    post:
+      operationId: updateSubaccount
+      summary: Update a subaccount
+      description: Changes the details on an existing subaccount
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                company_name:
+                  type: string
+      responses:
+        '200':
+          description: Subaccount updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /subaccounts/resend_invite:
+    post:
+      operationId: resendSubaccountInvitation
+      summary: Resend subaccount invitation
+      description: Resend invitation to a subaccount
+      tags:
+      - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - subaccount_id
+              properties:
+                subaccount_id:
+                  type: string
+      responses:
+        '200':
+          description: Invitation resent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

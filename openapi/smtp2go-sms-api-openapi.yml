@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity SMS API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: SMS
+  description: Send and receive SMS messages
+paths:
+  /sms/send:
+    post:
+      operationId: sendSms
+      summary: Send SMS
+      description: Send an SMS message to one or more numbers, up to a maximum of 100 numbers
+      tags:
+      - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendSmsRequest'
+      responses:
+        '200':
+          description: SMS sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendSmsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /sms/summary:
+    post:
+      operationId: smsSummary
+      summary: SMS summary
+      description: Retrieve a summary of SMS messages within a certain time range
+      tags:
+      - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: ISO-8601 start datetime
+                end_date:
+                  type: string
+                  description: ISO-8601 end datetime
+      responses:
+        '200':
+          description: SMS summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sms/view:
+    post:
+      operationId: viewSentSms
+      summary: View sent SMS
+      description: View sent SMS messages
+      tags:
+      - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+      responses:
+        '200':
+          description: Sent SMS messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /sms/inbox:
+    post:
+      operationId: viewReceivedSms
+      summary: View received SMS
+      description: View received SMS messages
+      tags:
+      - SMS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+      responses:
+        '200':
+          description: Received SMS messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    SendSmsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            total_sent:
+              type: integer
+            statuses:
+              type: object
+              properties:
+                queued:
+                  type: integer
+            messages:
+              type: array
+              items:
+                type: object
+                properties:
+                  destination:
+                    type: string
+                  message_id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - processing
+                    - enroute
+                    - queued
+                    - submitted
+                    - processed
+                    - delivered
+                    - held
+                    - expired
+                    - cancelled
+                    - failed
+                    - rejected
+    SendSmsRequest:
+      type: object
+      required:
+      - destination
+      - content
+      properties:
+        destination:
+          type: array
+          description: Array of SMS numbers (max 100), with country code
+          items:
+            type: string
+          example:
+          - '+12025550959'
+        content:
+          type: string
+          description: SMS message content. Messages over 160 characters will be sent as multiple units.
+        sender:
+          type: string
+          description: Sender number in E.164 format. Leave empty for default.
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Activity
+  description: Email activity search
+paths:
+  /activity/search:
+    post:
+      operationId: searchActivity
+      summary: Search activity
+      description: Returns events (such as opens, unsubscribes) which match the filters passed. Rate-limited to 60 requests per minute.
+      tags:
+      - Activity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivitySearchRequest'
+      responses:
+        '200':
+          description: Activity events list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivitySearchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    ActivitySearchRequest:
+      type: object
+      properties:
+        start_date:
+          type: string
+          description: ISO-8601 start datetime
+        end_date:
+          type: string
+          description: ISO-8601 end datetime
+        event:
+          type: string
+          description: Filter by event type
+          enum:
+          - delivered
+          - bounce
+          - spam
+          - unsubscribe
+          - open
+          - click
+          - reject
+        sender:
+          type: string
+        recipient:
+          type: string
+        subject:
+          type: string
+        continue_token:
+          type: string
+          description: Pagination token
+    ActivitySearchResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            total_count:
+              type: integer
+            continue_token:
+              type: string
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  event:
+                    type: string
+                  email_id:
+                    type: string
+                  sender:
+                    type: string
+                  recipient:
+                    type: string
+                  subject:
+                    type: string
+                  timestamp:
+                    type: string
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

@@ -1,0 +1,247 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Suppressions API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Suppressions
+  description: Suppression list management
+paths:
+  /suppression/add:
+    post:
+      operationId: addSuppression
+      summary: Add a suppression
+      description: Suppresses the specified email address or domain
+      tags:
+      - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSuppressionRequest'
+      responses:
+        '200':
+          description: Suppression added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddSuppressionResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /suppression/delete:
+    post:
+      operationId: removeSuppression
+      summary: Remove a suppression
+      description: Removes the suppression on the specified email address or domain
+      tags:
+      - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email_address
+              properties:
+                email_address:
+                  type: string
+                  description: Email address or domain to unsuppress
+      responses:
+        '200':
+          description: Suppression removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /suppression/view:
+    post:
+      operationId: viewSuppressions
+      summary: View suppressions
+      description: Returns your suppressed email addresses and domains
+      tags:
+      - Suppressions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewSuppressionsRequest'
+      responses:
+        '200':
+          description: Suppressions list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSuppressionsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ViewSuppressionsRequest:
+      type: object
+      properties:
+        continue_token:
+          type: string
+          description: Token for pagination through results
+        email_address:
+          type: string
+          description: Check if specific email or domain is blocked
+        end_date:
+          type: string
+          description: ISO-8601 datetime (defaults to 30 days prior)
+        fuzzy:
+          type: boolean
+          description: Enable fuzzy matching on recipients and reasons
+        reason:
+          type: string
+          description: Search by single reason string
+        reasons:
+          type: array
+          items:
+            type: string
+          description: Search by multiple reason strings
+        recipient:
+          type: string
+        recipients:
+          type: array
+          items:
+            type: string
+        sort:
+          type: string
+          enum:
+          - asc
+          - desc
+        start_date:
+          type: string
+          description: ISO-8601 datetime (defaults to current date)
+        suppression_type:
+          type: string
+          enum:
+          - manual
+          - spam
+          - unsubscribe
+          - bounce
+          - compliance
+        suppression_types:
+          type: array
+          items:
+            type: string
+        wildcard:
+          type: string
+    AddSuppressionRequest:
+      type: object
+      required:
+      - email_address
+      properties:
+        email_address:
+          type: string
+          description: Email address or domain to suppress
+        block_description:
+          type: string
+          description: Reason for the suppression
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    ViewSuppressionsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            continue_token:
+              type: string
+              nullable: true
+            total_results:
+              type: integer
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  email_address:
+                    type: string
+                  reason:
+                    type: string
+                  block_description:
+                    type: string
+                  timestamp:
+                    type: string
+                  complaint:
+                    type: string
+    AddSuppressionResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            added:
+              type: boolean
+            email_address:
+              type: string
+            block_description:
+              type: string
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

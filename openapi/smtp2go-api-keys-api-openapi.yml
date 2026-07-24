@@ -1,0 +1,202 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity API Keys API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: API Keys
+  description: API key management
+paths:
+  /apikeys/add:
+    post:
+      operationId: addApiKey
+      summary: Add a new API key
+      description: Add a new API key to your account. Rate-limited to 5 requests per minute.
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /apikeys/edit:
+    post:
+      operationId: editApiKey
+      summary: Edit an API key
+      description: Edit an existing API key
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /apikeys/patch:
+    post:
+      operationId: patchApiKey
+      summary: Patch an API key
+      description: Patch an existing API key ignoring missing properties
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRequest'
+      responses:
+        '200':
+          description: API key patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /apikeys/delete:
+    post:
+      operationId: removeApiKey
+      summary: Remove an API key
+      description: Remove an existing API key
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - api_key_id
+              properties:
+                api_key_id:
+                  type: string
+      responses:
+        '200':
+          description: API key removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /apikeys/view:
+    post:
+      operationId: viewApiKeys
+      summary: View API Keys
+      description: Retrieve a list of API keys on this account
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: API keys list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /apikeys/permissions:
+    post:
+      operationId: viewApiKeyPermissions
+      summary: View Permissions
+      description: Retrieve a list of endpoints this API key can use
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: API key permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    ApiKeyRequest:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+          description: Key ID (required for edit/patch/delete)
+        description:
+          type: string
+          description: Key description for identification
+        permissions:
+          type: array
+          description: Endpoint-specific permissions
+          items:
+            type: string
+        sending_allowed:
+          type: boolean
+        open_tracking_enabled:
+          type: boolean
+        click_tracking_enabled:
+          type: boolean
+        unsubscribe_footer_enabled:
+          type: boolean
+        archive_enabled:
+          type: boolean
+        sandbox_mode:
+          type: boolean
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

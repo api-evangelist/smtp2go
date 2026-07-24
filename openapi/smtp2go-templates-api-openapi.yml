@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Templates API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Templates
+  description: Email template management
+paths:
+  /template/add:
+    post:
+      operationId: addEmailTemplate
+      summary: Add an email template
+      description: Adds a new email template that you can use to format your emails
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateRequest'
+      responses:
+        '200':
+          description: Email template added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /template/edit:
+    post:
+      operationId: updateEmailTemplate
+      summary: Update an email template
+      description: Changes details of an existing email template
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateRequest'
+      responses:
+        '200':
+          description: Template updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+  /template/delete:
+    post:
+      operationId: removeEmailTemplate
+      summary: Remove an email template
+      description: Deletes the specified email template
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - template_id
+              properties:
+                template_id:
+                  type: string
+      responses:
+        '200':
+          description: Template removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /template/search:
+    post:
+      operationId: searchEmailTemplates
+      summary: View email templates
+      description: Search your collection of email templates
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template_name:
+                  type: string
+                template_id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Templates list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /template/view:
+    post:
+      operationId: viewTemplateDetails
+      summary: View template details
+      description: Returns details of the email template with the specified ID
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - template_id
+              properties:
+                template_id:
+                  type: string
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    EmailTemplateRequest:
+      type: object
+      required:
+      - template_name
+      - id
+      - subject
+      - html_body
+      - text_body
+      properties:
+        template_name:
+          type: string
+          description: Template name (1-64 characters)
+          minLength: 1
+          maxLength: 64
+        id:
+          type: string
+          description: Case-sensitive template ID (5-24 characters)
+          minLength: 5
+          maxLength: 24
+        subject:
+          type: string
+          description: Email subject line
+        html_body:
+          type: string
+          description: HTML email content
+        text_body:
+          type: string
+          description: Plain text email content
+        template_variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Variables to use within this email template
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags to associate with the template
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+    EmailTemplateResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            template_name:
+              type: string
+            subject:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+            last_updated:
+              type: string
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

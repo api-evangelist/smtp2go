@@ -1,0 +1,267 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Webhooks API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Webhooks
+  description: Webhook configuration
+paths:
+  /webhook/add:
+    post:
+      operationId: addWebhook
+      summary: Add a new Webhook
+      description: Add a new webhook with the given configuration
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /webhook/edit:
+    post:
+      operationId: editWebhook
+      summary: Edit a specified Webhook
+      description: Make changes to a specific webhook using its unique ID
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+  /webhook/delete:
+    post:
+      operationId: removeWebhook
+      summary: Remove a specified Webhook
+      description: Remove a specific webhook using its unique ID
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: integer
+                  description: Webhook ID to remove
+      responses:
+        '200':
+          description: Webhook removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /webhook/view:
+    post:
+      operationId: viewWebhooks
+      summary: View Webhooks
+      description: Returns information for configured webhooks
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: Optional webhook ID to retrieve specific webhook
+      responses:
+        '200':
+          description: Webhooks list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    WebhookResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            url:
+              type: string
+            id:
+              type: integer
+            events:
+              type: array
+              items:
+                type: string
+            sms_events:
+              type: array
+              items:
+                type: string
+            headers:
+              type: array
+              items:
+                type: object
+            usernames:
+              type: array
+              items:
+                type: string
+            output_format:
+              type: string
+            auth_header_type:
+              type: string
+            auth_header_value:
+              type: string
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    WebhookRequest:
+      type: object
+      required:
+      - url
+      properties:
+        id:
+          type: integer
+          description: Webhook ID (required for edit/delete)
+        url:
+          type: string
+          description: Webhook destination URL
+          format: uri
+        events:
+          type: array
+          description: Email events to receive
+          items:
+            type: string
+            enum:
+            - delivered
+            - unsubscribe
+            - spam
+            - bounce
+            - processed
+            - reject
+            - click
+            - open
+        sms_events:
+          type: array
+          description: SMS events to receive
+          items:
+            type: string
+            enum:
+            - delivered
+            - failed
+            - rejected
+            - sending
+            - submitted
+        headers:
+          type: array
+          description: Custom headers to include in event data
+          items:
+            type: object
+            properties:
+              header:
+                type: string
+              value:
+                type: string
+        usernames:
+          type: array
+          description: Filter by usernames; all included if unspecified
+          items:
+            type: string
+        output_format:
+          type: string
+          description: Data format for webhook payloads
+          enum:
+          - form
+          - json
+          default: form
+        auth_header_type:
+          type: string
+          description: Authentication type for webhook
+          enum:
+          - bearer
+          - basic
+          - ''
+          default: ''
+        auth_header_value:
+          type: string
+          description: Authentication credentials or token
+        subaccount_id:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

@@ -1,0 +1,256 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Stats API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Stats
+  description: Email delivery statistics and reports
+paths:
+  /stats/email_summary:
+    post:
+      operationId: emailSummary
+      summary: Email summary
+      description: Retrieve a combination of email_bounces, email_cycle, email_spam, and email_unsubs calls in one report
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Return statistics for a specific SMTP user
+      responses:
+        '200':
+          description: Email summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailSummaryResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /stats/email_bounces:
+    post:
+      operationId: emailBounces
+      summary: Email bounces
+      description: Retrieve a summary of bounces and rejects for the last 30 days
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Bounce statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /stats/email_cycle:
+    post:
+      operationId: emailCycle
+      summary: Email cycle
+      description: Retrieve a summary of your account activity including billing cycle dates and email counts
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Email cycle data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /stats/email_history:
+    post:
+      operationId: emailHistory
+      summary: Email history
+      description: Retrieve a summary of activity from a specified date range per sender, SMTP username, domain or subaccount
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: ISO-8601 start datetime (defaults to last 30 days)
+                end_date:
+                  type: string
+                  description: ISO-8601 end datetime
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Email history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /stats/email_spam:
+    post:
+      operationId: emailSpam
+      summary: Email spam
+      description: Retrieve a summary of spam complaints and rejects for the last 30 days
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Spam statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /stats/email_unsubscribes:
+    post:
+      operationId: emailUnsubscribes
+      summary: Email unsubscribes
+      description: Retrieve a summary of unsubscribes and rejects for the last 30 days
+      tags:
+      - Stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Unsubscribe statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+    EmailSummaryResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            spam_emails:
+              type: integer
+            cycle_start:
+              type: string
+            cycle_end:
+              type: string
+            cycle_used:
+              type: integer
+            cycle_remaining:
+              type: integer
+            cycle_max:
+              type: integer
+            email_count:
+              type: integer
+            softbounces:
+              type: integer
+            hardbounces:
+              type: integer
+            bounce_percent:
+              type: string
+            spam_rejects:
+              type: integer
+              deprecated: true
+            spam_percent:
+              type: string
+            unsubscribes:
+              type: integer
+            unsubscribe_percent:
+              type: string
+            opens:
+              type: integer
+            clicks:
+              type: integer
+            rejects:
+              type: integer
+            bounce_rejects:
+              type: integer
+              deprecated: true
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

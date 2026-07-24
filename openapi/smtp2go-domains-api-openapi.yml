@@ -1,0 +1,223 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity Domains API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: Domains
+  description: Sender domain management
+paths:
+  /domain/add:
+    post:
+      operationId: addSenderDomain
+      summary: Add a sender domain
+      description: Add a sender domain to your account
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - domain
+              properties:
+                domain:
+                  type: string
+                  description: Domain name to add
+      responses:
+        '200':
+          description: Sender domain added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /domain/view:
+    post:
+      operationId: viewSenderDomains
+      summary: View sender domains
+      description: Returns a list of sender domains on your account
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Optional specific domain to retrieve
+                subaccount_id:
+                  type: string
+                  description: Make call on behalf of a subaccount
+      responses:
+        '200':
+          description: Sender domains list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewDomainsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /domain/delete:
+    post:
+      operationId: removeSenderDomain
+      summary: Remove a sender domain
+      description: Remove a sender domain from your account
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - domain
+              properties:
+                domain:
+                  type: string
+      responses:
+        '200':
+          description: Sender domain removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /domain/verify:
+    post:
+      operationId: verifySenderDomain
+      summary: Verify a sender domain
+      description: Verify a sender domain on your account
+      tags:
+      - Domains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - domain
+              properties:
+                domain:
+                  type: string
+      responses:
+        '200':
+          description: Domain verification triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    ViewDomainsResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            domains:
+              type: array
+              items:
+                type: object
+                properties:
+                  domain:
+                    type: object
+                    properties:
+                      fulldomain:
+                        type: string
+                      subdomain:
+                        type: string
+                        nullable: true
+                      domain:
+                        type: string
+                      suffix:
+                        type: string
+                      dkim_selector:
+                        type: string
+                      dkim_verified:
+                        type: boolean
+                      dkim_value:
+                        type: string
+                      rpath_selector:
+                        type: string
+                      rpath_verified:
+                        type: boolean
+                      rpath_value:
+                        type: string
+                  trackers:
+                    type: array
+                    items:
+                      type: object
+                  subaccount_access:
+                    type: object
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide

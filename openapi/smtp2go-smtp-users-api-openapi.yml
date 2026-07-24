@@ -1,0 +1,261 @@
+openapi: 3.0.3
+info:
+  title: SMTP2GO Email Activity SMTP Users API
+  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  version: 3.0.4
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  license:
+    name: Proprietary
+    url: https://www.smtp2go.com/terms/
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Global endpoint (auto-routes to nearest region)
+- url: https://us-api.smtp2go.com/v3
+  description: United States region
+- url: https://eu-api.smtp2go.com/v3
+  description: European Union region
+- url: https://au-api.smtp2go.com/v3
+  description: Oceania region
+security:
+- ApiKeyHeader: []
+- ApiKeyBody: []
+tags:
+- name: SMTP Users
+  description: SMTP user account management
+paths:
+  /users/smtp/add:
+    post:
+      operationId: addSmtpUser
+      summary: Add an SMTP user
+      description: Add a new SMTP user to your account
+      tags:
+      - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /users/smtp/edit:
+    post:
+      operationId: editSmtpUser
+      summary: Edit SMTP user details
+      description: Update an SMTP user's details with the parameters passed
+      tags:
+      - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /users/smtp/patch:
+    post:
+      operationId: patchSmtpUser
+      summary: Patch an SMTP user
+      description: Patch an existing SMTP user ignoring missing properties
+      tags:
+      - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmtpUserRequest'
+      responses:
+        '200':
+          description: SMTP user patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /users/smtp/delete:
+    post:
+      operationId: removeSmtpUser
+      summary: Remove an SMTP user
+      description: Remove an SMTP user from your account
+      tags:
+      - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              properties:
+                username:
+                  type: string
+                  description: SMTP username to remove
+      responses:
+        '200':
+          description: SMTP user removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+  /users/smtp/view:
+    post:
+      operationId: viewSmtpUsers
+      summary: View SMTP users
+      description: Returns a list of all SMTP users managed by this account, or details of a specific user when you include the username
+      tags:
+      - SMTP Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Optional SMTP username to view specific user
+                subaccount_id:
+                  type: string
+                  description: Make call on behalf of a subaccount
+      responses:
+        '200':
+          description: SMTP users list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSmtpUsersResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    ViewSmtpUsersResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  email_password:
+                    type: string
+                  sending_allowed:
+                    type: boolean
+                  custom_ratelimit:
+                    type: boolean
+                  custom_ratelimit_value:
+                    type: integer
+                    nullable: true
+                  custom_ratelimit_period:
+                    type: string
+                  description:
+                    type: string
+                  feedback_enabled:
+                    type: boolean
+                  archive_enabled:
+                    type: boolean
+                  open_tracking_enabled:
+                    type: boolean
+                  bounce_notifications:
+                    type: string
+                  status:
+                    type: string
+    SmtpUserRequest:
+      type: object
+      required:
+      - username
+      properties:
+        username:
+          type: string
+          description: SMTP username (email format)
+        email_password:
+          type: string
+          description: SMTP user password
+        sending_allowed:
+          type: boolean
+          description: Whether the user is allowed to send
+        description:
+          type: string
+          description: User description or notes
+        custom_ratelimit:
+          type: boolean
+        custom_ratelimit_value:
+          type: integer
+          description: Max emails per period (if custom rate limit enabled)
+        custom_ratelimit_period:
+          type: string
+          description: Period for custom rate limit
+        open_tracking_enabled:
+          type: boolean
+        archive_enabled:
+          type: boolean
+        bounce_notifications:
+          type: string
+        subaccount_id:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      description: API key passed as an HTTP header
+    ApiKeyBody:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key can also be included in the JSON request body as the "api_key" field
+externalDocs:
+  description: SMTP2GO Developer Documentation
+  url: https://developers.smtp2go.com/docs/introduction-guide
