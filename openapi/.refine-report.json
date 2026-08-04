@@ -1,0 +1,34 @@
+{
+  "provider": "smtp2go",
+  "sources": [
+    "smtp2go-activity-api-openapi.yml",
+    "smtp2go-api-keys-api-openapi.yml",
+    "smtp2go-domains-api-openapi.yml",
+    "smtp2go-email-api-openapi.yml",
+    "smtp2go-sms-api-openapi.yml",
+    "smtp2go-smtp-users-api-openapi.yml",
+    "smtp2go-stats-api-openapi.yml",
+    "smtp2go-subaccounts-api-openapi.yml",
+    "smtp2go-suppressions-api-openapi.yml",
+    "smtp2go-templates-api-openapi.yml",
+    "smtp2go-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "smtp2go-activity-api-openapi.yml",
+    "smtp2go-api-keys-api-openapi.yml",
+    "smtp2go-domains-api-openapi.yml",
+    "smtp2go-email-api-openapi.yml",
+    "smtp2go-sms-api-openapi.yml",
+    "smtp2go-smtp-users-api-openapi.yml",
+    "smtp2go-stats-api-openapi.yml",
+    "smtp2go-subaccounts-api-openapi.yml",
+    "smtp2go-suppressions-api-openapi.yml",
+    "smtp2go-templates-api-openapi.yml",
+    "smtp2go-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
