@@ -1,7 +1,14 @@
 name: SMTP2GO
-description: Email delivery platform with a REST API for sending transactional emails,
-  managing SMTP accounts, tracking delivery, viewing email statistics, and suppressing
-  addresses.
+description: >-
+  SMTP2GO is a New Zealand-founded email and SMS delivery platform, running since
+  2006, that sends and tracks transactional and marketing messages over SMTP relay
+  or a JSON REST API from data centres in the United States, the European Union and
+  Australia. The v3 API covers sending standard, MIME, batch and scheduled email,
+  sending and receiving SMS, verifying sender domains and single sender addresses,
+  managing SMTP users, API keys, IP allow lists and IP authentication, templates,
+  webhooks, suppressions, subaccounts, dedicated IPs and the email archive, plus
+  activity search and delivery statistics. It also ships a remote MCP server and a
+  published Agent Skill for AI agents.
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -18,7 +25,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/smtp2go.png
 url: https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 aid: smtp2go
 type: Index
@@ -30,6 +37,11 @@ tags:
   - SMS
   - Email API
   - Deliverability
+  - Webhooks
+  - Messaging
+  - Communications
+  - MCP
+  - Agent Skills
 apis:
 - name: SMTP2GO Email API
   description: >-
@@ -58,6 +70,11 @@ apis:
   - type: OpenAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/openapi/smtp2go-email-api-openapi.yml
+  - type: OpenAPI
+    name: SMTP2GO v3 API (provider-harvested, 73 operations)
+    url: openapi/_original/smtp2go-openapi-original.yml
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
   contact:
   - FN: SMTP2GO Support
     url: https://support.smtp2go.com/
@@ -194,6 +211,67 @@ common:
     url: rate-limits/smtp2go-rate-limits.yml
   - type: FinOps
     url: finops/smtp2go-finops.yml
+  - type: Packages
+    name: SMTP2GO client libraries
+    url: packages/smtp2go-packages.yml
+  - type: SDKs
+    name: SMTP2GO official SDKs
+    url: packages/smtp2go-packages.yml
+  - type: MCPServer
+    name: SMTP2GO remote MCP server
+    url: mcp/smtp2go-mcp.yml
+  - type: ToolCrosswalk
+    name: SMTP2GO MCP tool to REST operation crosswalk
+    url: mcp/smtp2go-tool-crosswalk.yml
+  - type: AgentSkill
+    name: SMTP2GO Agent Skills
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/smtp2go-llms.txt
+  - type: Overlay
+    url: overlays/smtp2go-api-overlay.yaml
+  - type: Conventions
+    url: conventions/smtp2go-conventions.yml
+  - type: ErrorCatalog
+    url: errors/smtp2go-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/smtp2go-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/smtp2go-changelog.yml
+  - type: ChangeLog
+    name: SMTP2GO API changelog
+    url: https://developers.smtp2go.com/reference/changelog
+  - type: Conformance
+    url: conformance/smtp2go-conformance.yml
+  - type: Compliance
+    name: Security and Privacy at SMTP2GO
+    url: https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/
+  - type: Webhooks
+    name: SMTP2GO webhook event surface
+    url: asyncapi/smtp2go-webhooks.yml
+  - type: Sandbox
+    name: SMTP2GO Sandbox Mode
+    url: sandbox/smtp2go-sandbox.yml
+  - type: DataModel
+    url: data-model/smtp2go-data-model.yml
+  - type: DeveloperPortal
+    url: https://developers.smtp2go.com/
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: SignUp
+    url: https://www.smtp2go.com/pricing/signup/
+  - type: Login
+    url: https://app.smtp2go.com/login/
+  - type: TermsOfService
+    url: https://www.smtp2go.com/terms/
+  - type: PrivacyPolicy
+    url: https://www.smtp2go.com/privacy/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
