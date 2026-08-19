@@ -1,0 +1,629 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/smtp2go-mcp.yml + openapi/_original/smtp2go-openapi-original.yml
+note: 'SMTP2GO''s MCP server is gateway-shaped, not capability-shaped: five generic tools front the entire
+  73-operation v3 REST surface rather than one tool per operation. The binding below is therefore one-to-many
+  by design, and every REST operation is reachable through execute-request. Confidence is high because
+  the same server that exposes the tools also returned the OpenAPI fragment for every path (get-endpoint),
+  so tool and contract come from one source.'
+surfaces:
+  openapi:
+    authoritative: openapi/_original/smtp2go-openapi-original.yml
+    refined: openapi/*.yml
+    operations: 73
+    gated: false
+    note: No single fetchable OpenAPI URL is published; the ReadMe registry path answers 429 to non-browser
+      clients. The document in openapi/_original/ was assembled from 73 provider-served get-endpoint fragments.
+  mcp:
+    url: https://developers.smtp2go.com/mcp
+    transport: streamable-http
+    tools: 5
+    gated: false
+    note: tools/list is anonymous; execute-request needs X-Smtp2go-Api-Key.
+  graphql: null
+  a2a: null
+crosswalk:
+- tool: list-endpoints
+  category: discovery
+  rest: []
+  binding: catalog
+  confidence: high
+  note: Returns the provider path/method/summary index for all 71 paths. No backing REST operation; it
+    reads the OpenAPI, it does not call the API.
+- tool: search-endpoints
+  category: discovery
+  rest: []
+  binding: catalog
+  confidence: high
+  note: Full-text search over paths, operations and parameters in the same OpenAPI. No backing REST operation.
+- tool: get-endpoint
+  category: discovery
+  rest: []
+  binding: catalog
+  confidence: high
+  note: Returns a complete OpenAPI 3.1.0 fragment (servers, securitySchemes, requestBody schema, responses)
+    for one path+method. This is the real inputSchema source for anything execute-request sends.
+- tool: get-server-variables
+  category: discovery
+  rest: []
+  binding: catalog
+  confidence: high
+  note: Returns the four regional servers[] entries (regionless, US, EU, AU). No backing REST operation.
+- tool: execute-request
+  category: execution
+  rest:
+  - add-a-single-sender-email
+  - add-a-suppression
+  - add-allowed-recipients
+  - add-allowed-senders
+  - add-an-email-template
+  - add-an-smtp-user
+  - add-api-key
+  - add-ip-allowlist
+  - add-sender-domain
+  - add-subaccount
+  - add-webhook
+  - close-a-subaccount
+  - edit-an-smtp-user
+  - edit-api-key
+  - edit-ip-allowlist
+  - edit-return-path-domain
+  - edit-subaccount-access
+  - edit-tracking-domain
+  - edit-webhook
+  - email-bounces
+  - email-cycle
+  - email-history
+  - email-spam
+  - email-summary
+  - email-unsubscribes
+  - ip-allowlist
+  - patch-api-key
+  - patch-ip-auth
+  - patch-smtp-user
+  - remove-a-single-sender-email
+  - remove-a-suppression
+  - remove-allowed-recipients
+  - remove-allowed-senders
+  - remove-an-email-template
+  - remove-an-smtp-user
+  - remove-api-key
+  - remove-ip-allowlist
+  - remove-ip-auth
+  - remove-scheduled-email
+  - remove-sender-domain
+  - remove-webhook
+  - reopen-a-closed-subaccount
+  - search-activity
+  - search-archived-pages
+  - search-email-templates
+  - search-scheduled-emails
+  - search-subaccounts
+  - send-email-batch
+  - send-mime-email
+  - send-sms
+  - send-standard-email
+  - sms-summary
+  - update-a-subaccount
+  - update-allowed-recipients
+  - update-allowed-senders
+  - update-an-email-template
+  - verify-a-sender-domain
+  - view-all-single-sender-emails
+  - view-allowed-recipients
+  - view-allowed-senders
+  - view-an-archived-email
+  - view-api-key-permissions
+  - view-api-keys
+  - view-dedicated-ips
+  - view-ip-allowlist
+  - view-ip-auth
+  - view-received-sms
+  - view-sender-domains
+  - view-sent-sms
+  - view-smtp-users
+  - view-suppressions
+  - view-template-details
+  - view-webhook
+  binding: rest-passthrough
+  confidence: high
+  note: Single generic executor taking a HAR request object; it can invoke any of the 73 v3 operations,
+    including sending real email. Its effective inputSchema per capability is that operation requestBody
+    in openapi/_original/smtp2go-openapi-original.yml.
+mcp_only: []
+rest_only:
+- reason: No dedicated MCP tool exists for any individual operation; all 73 are reached only through the
+    generic execute-request passthrough.
+  operations_by_tag:
+    ACTIVITY:
+    - search-activity
+    ALLOWED RECIPIENTS:
+    - add-allowed-recipients
+    - remove-allowed-recipients
+    - update-allowed-recipients
+    - view-allowed-recipients
+    ALLOWED SENDERS:
+    - add-allowed-senders
+    - remove-allowed-senders
+    - update-allowed-senders
+    - view-allowed-senders
+    API KEYS:
+    - add-api-key
+    - edit-api-key
+    - patch-api-key
+    - remove-api-key
+    - view-api-key-permissions
+    - view-api-keys
+    DEDICATED IPS:
+    - view-dedicated-ips
+    EMAIL ARCHIVE:
+    - search-archived-pages
+    - view-an-archived-email
+    EMAILS:
+    - remove-scheduled-email
+    - search-scheduled-emails
+    - send-email-batch
+    - send-mime-email
+    - send-standard-email
+    IP AUTH:
+    - patch-ip-auth
+    - remove-ip-auth
+    - view-ip-auth
+    IP Allow List:
+    - add-ip-allowlist
+    - edit-ip-allowlist
+    - ip-allowlist
+    - remove-ip-allowlist
+    - view-ip-allowlist
+    SENDER DOMAINS:
+    - add-sender-domain
+    - edit-return-path-domain
+    - edit-subaccount-access
+    - edit-tracking-domain
+    - remove-sender-domain
+    - verify-a-sender-domain
+    - view-sender-domains
+    SINGLE SENDER EMAILS:
+    - add-a-single-sender-email
+    - remove-a-single-sender-email
+    - view-all-single-sender-emails
+    SMS:
+    - send-sms
+    - sms-summary
+    - view-received-sms
+    - view-sent-sms
+    SMTP USERS:
+    - add-an-smtp-user
+    - edit-an-smtp-user
+    - patch-smtp-user
+    - remove-an-smtp-user
+    - view-smtp-users
+    STATISTICS:
+    - email-bounces
+    - email-cycle
+    - email-history
+    - email-spam
+    - email-summary
+    - email-unsubscribes
+    SUBACCOUNTS:
+    - add-subaccount
+    - close-a-subaccount
+    - reopen-a-closed-subaccount
+    - search-subaccounts
+    - update-a-subaccount
+    SUPPRESSIONS:
+    - add-a-suppression
+    - remove-a-suppression
+    - view-suppressions
+    TEMPLATES:
+    - add-an-email-template
+    - remove-an-email-template
+    - search-email-templates
+    - update-an-email-template
+    - view-template-details
+    WEBHOOKS:
+    - add-webhook
+    - edit-webhook
+    - remove-webhook
+    - view-webhook
+coverage:
+  tools_named: 5
+  tools_bound: 1
+  discovery_tools: 4
+  mcp_only: 0
+  rest_operations_total: 73
+  rest_operations_reachable_via_mcp: 73
+  rest_operations_with_a_dedicated_tool: 0
+divergence:
+  note: The 11 refined specs already in openapi/ were built before the provider contract was harvested
+    and do not match it. Recorded here as measured fact so a follow-up re-refine can be run from openapi/_original/smtp2go-openapi-original.yml.
+    Nothing in this repo was deleted on the strength of this finding.
+  provider_operations: 73
+  repo_refined_operations: 52
+  repo_paths_absent_from_provider_spec:
+  - path: /apikeys/add
+    method: post
+    repo_operation_id: addApiKey
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /apikeys/delete
+    method: post
+    repo_operation_id: removeApiKey
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /apikeys/edit
+    method: post
+    repo_operation_id: editApiKey
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /apikeys/patch
+    method: post
+    repo_operation_id: patchApiKey
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /apikeys/permissions
+    method: post
+    repo_operation_id: viewApiKeyPermissions
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /apikeys/view
+    method: post
+    repo_operation_id: viewApiKeys
+    file: smtp2go-api-keys-api-openapi.yml
+  - path: /archive/view
+    method: post
+    repo_operation_id: viewArchivedEmail
+    file: smtp2go-email-api-openapi.yml
+  - path: /domain/delete
+    method: post
+    repo_operation_id: removeSenderDomain
+    file: smtp2go-domains-api-openapi.yml
+  - path: /email/view
+    method: post
+    repo_operation_id: viewSentEmails
+    file: smtp2go-email-api-openapi.yml
+  - path: /scheduled/remove
+    method: post
+    repo_operation_id: removeScheduledEmail
+    file: smtp2go-email-api-openapi.yml
+  - path: /scheduled/search
+    method: post
+    repo_operation_id: searchScheduledEmails
+    file: smtp2go-email-api-openapi.yml
+  - path: /sms/inbox
+    method: post
+    repo_operation_id: viewReceivedSms
+    file: smtp2go-sms-api-openapi.yml
+  - path: /sms/view
+    method: post
+    repo_operation_id: viewSentSms
+    file: smtp2go-sms-api-openapi.yml
+  - path: /stats/email_unsubscribes
+    method: post
+    repo_operation_id: emailUnsubscribes
+    file: smtp2go-stats-api-openapi.yml
+  - path: /subaccounts/add
+    method: post
+    repo_operation_id: addSubaccount
+    file: smtp2go-subaccounts-api-openapi.yml
+  - path: /subaccounts/close
+    method: post
+    repo_operation_id: closeSubaccount
+    file: smtp2go-subaccounts-api-openapi.yml
+  - path: /subaccounts/reopen
+    method: post
+    repo_operation_id: reopenSubaccount
+    file: smtp2go-subaccounts-api-openapi.yml
+  - path: /subaccounts/resend_invite
+    method: post
+    repo_operation_id: resendSubaccountInvitation
+    file: smtp2go-subaccounts-api-openapi.yml
+  - path: /subaccounts/update
+    method: post
+    repo_operation_id: updateSubaccount
+    file: smtp2go-subaccounts-api-openapi.yml
+  - path: /suppression/delete
+    method: post
+    repo_operation_id: removeSuppression
+    file: smtp2go-suppressions-api-openapi.yml
+  - path: /users/smtp/delete
+    method: post
+    repo_operation_id: removeSmtpUser
+    file: smtp2go-smtp-users-api-openapi.yml
+  - path: /users/smtp/patch
+    method: post
+    repo_operation_id: patchSmtpUser
+    file: smtp2go-smtp-users-api-openapi.yml
+  - path: /webhook/delete
+    method: post
+    repo_operation_id: removeWebhook
+    file: smtp2go-webhooks-api-openapi.yml
+  provider_operations_absent_from_repo_specs:
+  - path: /allowed_recipients/add
+    method: post
+    operation_id: add-allowed-recipients
+    tag: ALLOWED RECIPIENTS
+  - path: /allowed_recipients/remove
+    method: post
+    operation_id: remove-allowed-recipients
+    tag: ALLOWED RECIPIENTS
+  - path: /allowed_recipients/update
+    method: post
+    operation_id: update-allowed-recipients
+    tag: ALLOWED RECIPIENTS
+  - path: /allowed_recipients/view
+    method: post
+    operation_id: view-allowed-recipients
+    tag: ALLOWED RECIPIENTS
+  - path: /allowed_senders/add
+    method: post
+    operation_id: add-allowed-senders
+    tag: ALLOWED SENDERS
+  - path: /allowed_senders/remove
+    method: post
+    operation_id: remove-allowed-senders
+    tag: ALLOWED SENDERS
+  - path: /allowed_senders/update
+    method: post
+    operation_id: update-allowed-senders
+    tag: ALLOWED SENDERS
+  - path: /allowed_senders/view
+    method: post
+    operation_id: view-allowed-senders
+    tag: ALLOWED SENDERS
+  - path: /api_keys/add
+    method: post
+    operation_id: add-api-key
+    tag: API KEYS
+  - path: /api_keys/edit
+    method: patch
+    operation_id: patch-api-key
+    tag: API KEYS
+  - path: /api_keys/edit
+    method: post
+    operation_id: edit-api-key
+    tag: API KEYS
+  - path: /api_keys/permissions
+    method: post
+    operation_id: view-api-key-permissions
+    tag: API KEYS
+  - path: /api_keys/remove
+    method: post
+    operation_id: remove-api-key
+    tag: API KEYS
+  - path: /api_keys/view
+    method: post
+    operation_id: view-api-keys
+    tag: API KEYS
+  - path: /archive/email
+    method: post
+    operation_id: view-an-archived-email
+    tag: EMAIL ARCHIVE
+  - path: /dedicated_ips/view
+    method: post
+    operation_id: view-dedicated-ips
+    tag: DEDICATED IPS
+  - path: /domain/remove
+    method: post
+    operation_id: remove-sender-domain
+    tag: SENDER DOMAINS
+  - path: /domain/returnpath
+    method: post
+    operation_id: edit-return-path-domain
+    tag: SENDER DOMAINS
+  - path: /domain/subaccount_access
+    method: post
+    operation_id: edit-subaccount-access
+    tag: SENDER DOMAINS
+  - path: /domain/tracking
+    method: post
+    operation_id: edit-tracking-domain
+    tag: SENDER DOMAINS
+  - path: /email/scheduled/remove
+    method: post
+    operation_id: remove-scheduled-email
+    tag: EMAILS
+  - path: /email/scheduled/search
+    method: post
+    operation_id: search-scheduled-emails
+    tag: EMAILS
+  - path: /ip_allow_list
+    method: post
+    operation_id: ip-allowlist
+    tag: IP Allow List
+  - path: /ip_allow_list/add
+    method: post
+    operation_id: add-ip-allowlist
+    tag: IP Allow List
+  - path: /ip_allow_list/edit
+    method: post
+    operation_id: edit-ip-allowlist
+    tag: IP Allow List
+  - path: /ip_allow_list/remove
+    method: post
+    operation_id: remove-ip-allowlist
+    tag: IP Allow List
+  - path: /ip_allow_list/view
+    method: post
+    operation_id: view-ip-allowlist
+    tag: IP Allow List
+  - path: /ip_auth/edit
+    method: patch
+    operation_id: patch-ip-auth
+    tag: IP AUTH
+  - path: /ip_auth/remove
+    method: post
+    operation_id: remove-ip-auth
+    tag: IP AUTH
+  - path: /ip_auth/view
+    method: post
+    operation_id: view-ip-auth
+    tag: IP AUTH
+  - path: /single_sender_emails/add
+    method: post
+    operation_id: add-a-single-sender-email
+    tag: SINGLE SENDER EMAILS
+  - path: /single_sender_emails/remove
+    method: post
+    operation_id: remove-a-single-sender-email
+    tag: SINGLE SENDER EMAILS
+  - path: /single_sender_emails/view
+    method: post
+    operation_id: view-all-single-sender-emails
+    tag: SINGLE SENDER EMAILS
+  - path: /sms/view-received
+    method: post
+    operation_id: view-received-sms
+    tag: SMS
+  - path: /sms/view-sent
+    method: post
+    operation_id: view-sent-sms
+    tag: SMS
+  - path: /stats/email_unsubs
+    method: post
+    operation_id: email-unsubscribes
+    tag: STATISTICS
+  - path: /subaccount/add
+    method: post
+    operation_id: add-subaccount
+    tag: SUBACCOUNTS
+  - path: /subaccount/close
+    method: post
+    operation_id: close-a-subaccount
+    tag: SUBACCOUNTS
+  - path: /subaccount/edit
+    method: post
+    operation_id: update-a-subaccount
+    tag: SUBACCOUNTS
+  - path: /subaccount/reopen
+    method: post
+    operation_id: reopen-a-closed-subaccount
+    tag: SUBACCOUNTS
+  - path: /suppression/remove
+    method: post
+    operation_id: remove-a-suppression
+    tag: SUPPRESSIONS
+  - path: /users/smtp/edit
+    method: patch
+    operation_id: patch-smtp-user
+    tag: SMTP USERS
+  - path: /users/smtp/remove
+    method: post
+    operation_id: remove-an-smtp-user
+    tag: SMTP USERS
+  - path: /webhook/remove
+    method: post
+    operation_id: remove-webhook
+    tag: WEBHOOKS
+  operation_id_mismatches:
+  - path: /activity/search
+    method: post
+    provider: search-activity
+    repo: searchActivity
+  - path: /archive/search
+    method: post
+    provider: search-archived-pages
+    repo: searchArchivedContent
+  - path: /domain/add
+    method: post
+    provider: add-sender-domain
+    repo: addSenderDomain
+  - path: /domain/verify
+    method: post
+    provider: verify-a-sender-domain
+    repo: verifySenderDomain
+  - path: /domain/view
+    method: post
+    provider: view-sender-domains
+    repo: viewSenderDomains
+  - path: /email/batch
+    method: post
+    provider: send-email-batch
+    repo: sendEmailBatch
+  - path: /email/mime
+    method: post
+    provider: send-mime-email
+    repo: sendMimeEmail
+  - path: /email/send
+    method: post
+    provider: send-standard-email
+    repo: sendEmail
+  - path: /sms/send
+    method: post
+    provider: send-sms
+    repo: sendSms
+  - path: /sms/summary
+    method: post
+    provider: sms-summary
+    repo: smsSummary
+  - path: /stats/email_bounces
+    method: post
+    provider: email-bounces
+    repo: emailBounces
+  - path: /stats/email_cycle
+    method: post
+    provider: email-cycle
+    repo: emailCycle
+  - path: /stats/email_history
+    method: post
+    provider: email-history
+    repo: emailHistory
+  - path: /stats/email_spam
+    method: post
+    provider: email-spam
+    repo: emailSpam
+  - path: /stats/email_summary
+    method: post
+    provider: email-summary
+    repo: emailSummary
+  - path: /subaccounts/search
+    method: post
+    provider: search-subaccounts
+    repo: viewSubaccounts
+  - path: /suppression/add
+    method: post
+    provider: add-a-suppression
+    repo: addSuppression
+  - path: /suppression/view
+    method: post
+    provider: view-suppressions
+    repo: viewSuppressions
+  - path: /template/add
+    method: post
+    provider: add-an-email-template
+    repo: addEmailTemplate
+  - path: /template/delete
+    method: post
+    provider: remove-an-email-template
+    repo: removeEmailTemplate
+  - path: /template/edit
+    method: post
+    provider: update-an-email-template
+    repo: updateEmailTemplate
+  - path: /template/search
+    method: post
+    provider: search-email-templates
+    repo: searchEmailTemplates
+  - path: /template/view
+    method: post
+    provider: view-template-details
+    repo: viewTemplateDetails
+  - path: /users/smtp/add
+    method: post
+    provider: add-an-smtp-user
+    repo: addSmtpUser
+  - path: /users/smtp/edit
+    method: post
+    provider: edit-an-smtp-user
+    repo: editSmtpUser
+  - path: /users/smtp/view
+    method: post
+    provider: view-smtp-users
+    repo: viewSmtpUsers
+  - path: /webhook/add
+    method: post
+    provider: add-webhook
+    repo: addWebhook
+  - path: /webhook/edit
+    method: post
+    provider: edit-webhook
+    repo: editWebhook
+  - path: /webhook/view
+    method: post
+    provider: view-webhook
+    repo: viewWebhooks

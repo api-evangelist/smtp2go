@@ -1,0 +1,117 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/docs/webhooks-overview
+spec_type: none
+asyncapi_published: false
+note: >-
+  SMTP2GO publishes no AsyncAPI document — /asyncapi.yaml, /asyncapi.json and the
+  GitHub org were all checked and none exists. It does publish a complete,
+  documented webhook event surface, captured verbatim below and wired as
+  type: Webhooks. Webhooks are created and managed through the REST API
+  (/webhook/add, /webhook/edit, /webhook/view, /webhook/remove) or the app under
+  Settings > Webhooks, and can be scoped to selected SMTP users, API keys or
+  authenticated IPs.
+transport:
+  protocol: HTTP or HTTPS
+  method: POST
+  payload_formats: [JSON, form-encoded]
+  payload_format_note: Chosen per webhook in its settings.
+  signature: null
+  signature_note: >-
+    SMTP2GO does not sign webhook deliveries. The documented ways to protect an
+    endpoint are HTTP basic credentials embedded in the URL, a secret in the
+    query string or path, or allow-listing the A record of
+    webhooks.smtp2go.com. A consumer cannot cryptographically verify origin.
+delivery:
+  timeout_seconds: 10
+  timeout_note: A timeout occurs if no response headers are received in that window.
+  retry_window_hours: 48
+  max_attempts: 35
+  retry_schedule:
+    - 5 times in the first 30 minutes
+    - Every hour for the next 24 hours
+    - Every 6 hours for the next 24 hours
+    - Every 12 hours for the next 24 hours
+    - One final attempt after 24 hours
+  failure_console: Settings > Webhooks > Failed Notifications (view, retry, cancel)
+limits:
+  webhooks_per_account: {free: 1, paid: 10}
+subaccounts:
+  supported: true
+  note: 'All webhook endpoints accept subaccount_id since 2025-07-01.'
+channels:
+  - channel: email-events
+    description: Email delivery lifecycle events
+    events:
+      - {event: processed, description: 'The email was received by the incoming servers and is being processed for delivery; it stays in Processed while delivery attempts are pending.'}
+      - {event: delivered, description: 'Delivered to the recipient, confirmed by a 250 response from the recipient server.'}
+      - {event: open, description: 'The recipient opened the email; can fire on each open.'}
+      - {event: click, description: 'The recipient clicked a tracked link; can fire on each click.'}
+      - {event: bounce, description: 'The recipient server bounced the message; classified soft or hard.'}
+      - {event: spam, description: 'The recipient marked the email as spam; the address is added to Suppressions indefinitely.'}
+      - {event: unsubscribe, description: 'The recipient unsubscribed via the Unsubscribe Footer; the address is added to Suppressions indefinitely.'}
+      - {event: resubscribe, description: The recipient resubscribed or was removed from Suppressions.}
+      - {event: reject, description: 'Rejected because the address is suppressed, the sender is unverified, or the SMTP user / authenticated IP / API key is sandboxed.'}
+    payload_fields:
+      - {name: event, description: 'One of processed, delivered, open, click, bounce, spam, unsubscribe, resubscribe, reject.'}
+      - {name: time, description: UTC timestamp of when the event happened.}
+      - {name: sendtime, description: UTC timestamp of when the email was sent to the SMTP2GO server.}
+      - {name: sender, description: The envelope-from email address.}
+      - {name: from, description: Display name (where available) and email address the email was sent from.}
+      - {name: from_address, description: The email address the email was sent from.}
+      - {name: from_name, description: The display name accompanying the address, where available.}
+      - {name: rcpt, description: The email address the email was addressed to.}
+      - {name: recipients, description: The email addresses the email was sent to.}
+      - {name: auth, description: 'The SMTP username, API key or IP address used to send.'}
+      - {name: host, description: The recipient server that bounced the message (bounce only).}
+      - {name: message, description: 'The error message received, where available.'}
+      - {name: context, description: 'Additional information on the event, where available.'}
+      - {name: email_id, description: Identifier uniquely identifying the email; used to retrieve delivery detail.}
+      - {name: id, description: The unique id for the webhook.}
+      - {name: message-id, description: The unique id from the sender.}
+      - {name: bounce, description: 'hard or soft, on bounce events.'}
+      - {name: subject, description: The subject of the email.}
+      - {name: user-agent, description: User-Agent header of the device that opened the email, where applicable.}
+      - {name: read-secs, description: 'Seconds the email was open, in five-second increments up to 30, where applicable.'}
+      - {name: client, description: Reported client that clicked/opened the link, based on the User-Agent.}
+      - {name: client-device, description: Reported device type of the User-Agent, where available.}
+      - {name: client-os, description: Reported operating system of the User-Agent, where available.}
+      - {name: geoip-continent, description: Two-character continent code from a geoip lookup, where available.}
+      - {name: geoip-country, description: Two-character country code from a geoip lookup, where available.}
+      - {name: geoip-city, description: City name from a geoip lookup, where available.}
+      - {name: srchost, description: 'End-user IP for open/click events, or the submitting IP for processed events.'}
+      - {name: any_custom_header, description: Any custom header configured on the webhook and present in the sent email.}
+  - channel: sms-events
+    description: SMS delivery lifecycle events
+    events:
+      - {event: sms_sending, description: The SMS is currently being processed.}
+      - {event: sms_submitted, description: 'Submitted to the downstream provider; often delivered but unconfirmed.'}
+      - {event: sms_delivered, description: Sent and delivery confirmed by the downstream provider.}
+      - {event: sms_failed, description: 'Failed to deliver — validity check failure, gateway failure, dropped or duplicate.'}
+      - {event: sms_rejected, description: 'Blocked by the SMS network, e.g. the destination has blocked the sender.'}
+      - {event: opt-out, description: The recipient has opted out of further communications.}
+    payload_fields:
+      - {name: event, description: 'One of sms_submitted, sms_delivered, sms_rejected, sms_sending, sms_failed.'}
+      - {name: destination_number, description: The number the SMS is being sent to.}
+      - {name: email_subject, description: The subject of the email (email-to-SMS only).}
+      - {name: id, description: The unique id for the webhook.}
+      - {name: message_content, description: The body content of the SMS message.}
+      - {name: message_id, description: The unique id for the SMS.}
+      - {name: received_timestamp, description: UTC timestamp of the event.}
+      - {name: region, description: The destination region based on the number country code.}
+      - {name: retry_count, description: Number of attempts to send the SMS.}
+      - {name: sender_email, description: The From email address.}
+      - {name: source_number, description: The pool/number the SMS was delivered from.}
+      - {name: status_code, description: The status code of the SMS.}
+      - {name: submitted_timestamp, description: UTC timestamp of submission to the downstream provider.}
+management_operations:
+  - {operation: add-webhook, path: /webhook/add}
+  - {operation: edit-webhook, path: /webhook/edit}
+  - {operation: view-webhook, path: /webhook/view}
+  - {operation: remove-webhook, path: /webhook/remove}
+alternatives:
+  polling: /activity/search (rate-limited to 60 requests per minute; webhooks are the documented realtime path)
+  slack: https://developers.smtp2go.com/docs/slack-app
+docs:
+  - https://developers.smtp2go.com/docs/webhooks-overview
+  - https://developers.smtp2go.com/docs/setup-a-webhook

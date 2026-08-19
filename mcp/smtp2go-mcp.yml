@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://developers.smtp2go.com/docs/mcp
+deployment:
+  mode: remote
+  endpoint: https://developers.smtp2go.com/mcp
+  install: null
+  package: null
+  auth: api-key
+  verified: probed
+  note: >-
+    Verified by POSTing initialize and tools/list to the endpoint anonymously on
+    2026-08-13; both returned HTTP 200 over text/event-stream. Discovery tools
+    answer without credentials. execute-request requires an SMTP2GO API key in
+    the X-Smtp2go-Api-Key request header — the same key the REST API uses, not
+    OAuth. Claude Desktop is documented as connecting through the npx
+    mcp-remote bridge, but that is a client-side shim for header support, not a
+    provider-published stdio package, so the mode is remote, not both.
+server:
+  name: SMTP2GO-API-Docs
+  version: 3.0.4
+  transport: streamable-http
+  url: https://developers.smtp2go.com/mcp
+  protocol_version: '2025-06-18'
+  capabilities:
+    tools:
+      listChanged: false
+  authentication:
+    scheme: apiKey
+    in: header
+    name: X-Smtp2go-Api-Key
+    obtain: https://app.smtp2go.com/sending/apikeys/
+    recommended_permissions:
+      - /email/send
+      - /allowed_senders/view
+      - /domain/view
+documented_clients:
+  - {client: Codex App / Codex CLI, transport: streamable-http, native: true}
+  - {client: Claude Code, transport: streamable-http, native: true}
+  - {client: Gemini CLI, transport: streamable-http, native: true}
+  - {client: Cursor, transport: streamable-http, native: true}
+  - {client: Claude Desktop, transport: stdio-bridge, native: false, via: npx -y mcp-remote@latest}
+  - {client: Lovable, transport: streamable-http, native: true}
+tools:
+  - name: list-endpoints
+    description: >-
+      Lists all API paths and their HTTP methods with summaries, organized by
+      path. Results can be passed directly into 'get-endpoint'.
+    input_schema_properties: []
+  - name: get-endpoint
+    description: >-
+      Gets detailed information about a specific API endpoint, including
+      security schemes and servers.
+    input_schema_properties: [path, method]
+  - name: search-endpoints
+    description: >-
+      Performs a deep search through paths, operations, and parameters to
+      discover relevant API endpoints.
+    input_schema_properties: [pattern]
+  - name: execute-request
+    description: Executes an API request with a given HAR request object.
+    input_schema_properties: [harRequest]
+  - name: get-server-variables
+    description: Gets the server variables for each server within a specific OpenAPI spec.
+    input_schema_properties: []
+tools_list_file: smtp2go-mcp-tools-list.json
+x-evidence:
+  fetched: '2026-08-13'
+  initialize:
+    url: https://developers.smtp2go.com/mcp
+    http_status: 200
+    content_type: text/event-stream
+    server_info: {name: SMTP2GO-API-Docs, version: 3.0.4}
+  tools_list:
+    url: https://developers.smtp2go.com/mcp
+    http_status: 200
+    tool_count: 5
+    authenticated: false
+note: >-
+  This is a documentation/gateway-shaped MCP server, not one tool per API
+  capability: five generic tools sit in front of the whole 73-operation v3 REST
+  surface, and the agent reaches a specific capability by discovering it with
+  search-endpoints/get-endpoint and then calling execute-request with a HAR
+  request object. get-endpoint returns the provider's authoritative OpenAPI
+  3.1.0 fragment for each path, which is how
+  openapi/_original/smtp2go-openapi-original.yml was harvested. See
+  mcp/smtp2go-tool-crosswalk.yml for the tool-to-operation binding.

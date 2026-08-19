@@ -1,0 +1,113 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/docs/response-codes
+derived_from: openapi/_original/smtp2go-openapi-original.yml
+format: vendor-json
+rfc9457: false
+note: >-
+  SMTP2GO does not use RFC 9457 problem+json. Errors come back as
+  application/json with an `error` string and an `error_code` string of the form
+  `E_ApiResponseCodes.<NAME>`; field-level failures add a
+  `field_validation_errors` object. Every one of the 73 operations in the
+  provider spec declares a 200 and a 400; five declare a 429. HTTP status alone
+  is not sufficient to branch on — read `error_code`.
+envelope:
+  content_type: application/json
+  shape: '{"request_id": "...", "data": {"error": "...", "error_code": "..."}}'
+  note: >-
+    Two shapes are published and they differ. The provider's OpenAPI declares the
+    400 body as the standard success envelope with the failure nested under
+    `data` (request_id + data.error + data.error_code). The Response Codes docs
+    page shows `error` and `error_code` at the top level. Handle both: read
+    error_code at `data.error_code` first, then fall back to the root.
+  fields:
+    - {name: request_id, type: string, description: 'Correlation id present on both success and failure responses; quote it to support.'}
+    - {name: data.error, type: string, description: Human-readable failure message.}
+    - {name: data.error_code, type: string, description: 'Machine-readable code, prefixed E_ApiResponseCodes.'}
+    - {name: field_validation_errors, type: object, description: 'Present on payload validation failures; carries fieldname and message.', optional: true}
+  example_from_spec:
+    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+    data:
+      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+      error: You do not have permission to access this API endpoint
+  example_from_docs:
+    error: >-
+      Failed to remove the single sender email - An error occurred deleting
+      sender email asdfa@asdf.com or it doesn't exist
+    error_code: E_ApiResponseCodes.API_EXCEPTION
+  validation_example:
+    error: >-
+      An error occurred processing the json data you sent with the request,
+      please make sure the data conforms to the specification for this call and
+      try again. Don't forget to set Content-Type to 'application/json'.
+    error_code: E_ApiResponseCodes.NON_VALIDATING_IN_PAYLOAD
+    field_validation_errors:
+      fieldname: sender
+      message: >-
+        The field 'sender' was expecting a valid RFC-822 formatted email field
+        but found 'robs_invalid.com', Please correct your JSON payload and try
+        again.
+problems:
+  - status: 200
+    title: OK
+    description: Everything worked as expected. A 200 is returned for successful calls; check the response body for per-recipient failures on send operations.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 400
+    title: Bad Request
+    description: The request was unacceptable, often due to missing a required parameter.
+    remediation: Read field_validation_errors for the offending field, correct the JSON body, and retry. Ensure Content-Type is application/json.
+    declared_on_operations: 73
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 401
+    title: Unauthorized
+    description: No valid API key was provided, or the key is invalid or disabled.
+    remediation: Supply a live key in the X-Smtp2go-Api-Key header or the api_key body field. Keys are 32 characters with an "api-" prefix and are managed at https://app.smtp2go.com/sending/apikeys/.
+    source: https://developers.smtp2go.com/reference/authentication
+  - status: 402
+    title: Request Failed
+    description: The parameters were valid but the request failed.
+    remediation: Retry is unlikely to help without changing the request; check account state (plan quota, verified sender, suppression list).
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 403
+    title: Forbidden
+    description: The API key does not have permission to perform the request.
+    remediation: SMTP2GO API keys carry per-endpoint permissions. Add the endpoint to the key's permission list in Sending > API Keys, or use /api_keys/permissions to inspect what the key may call.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 404
+    title: Not Found
+    description: The requested resource doesn't exist.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 429
+    title: Too Many Requests
+    description: Too many requests hit the API too quickly, or an API-key rate limit was exceeded ("API key ratelimit exceeded"). The originating IP may be timed out for no less than one minute.
+    remediation: Back off exponentially. Pause and lower the request rate until 200s return. See rate-limits/smtp2go-rate-limits.yml.
+    declared_on_operations: 5
+    source: https://developers.smtp2go.com/docs/rate-limiting
+  - status: 500
+    title: Internal Server Error
+    description: Something went wrong on SMTP2GO's end. Documented as rare.
+    remediation: Contact support with the request_id.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 502
+    title: Bad Gateway
+    description: Server-side error on SMTP2GO's infrastructure.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 503
+    title: Service Unavailable
+    description: Server-side error on SMTP2GO's infrastructure.
+    source: https://developers.smtp2go.com/docs/response-codes
+  - status: 504
+    title: Gateway Timeout
+    description: Server-side error on SMTP2GO's infrastructure.
+    source: https://developers.smtp2go.com/docs/response-codes
+error_codes:
+  note: >-
+    SMTP2GO publishes the error_code prefix and examples but not a complete
+    enumerated registry in the developer docs. Only codes observed verbatim in
+    the published documentation are listed; the sending-error catalogue lives in
+    the support knowledge base.
+  codes:
+    - {code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED, meaning: 'The API key is not permitted to call this endpoint. Returned with HTTP 400, not 403.', action: 'Add the endpoint to the key permission list in Sending > API Keys, or inspect the key with /api_keys/permissions.', source: 'openapi/_original/smtp2go-openapi-original.yml — the 400 example on all 73 operations'}
+    - {code: E_ApiResponseCodes.API_EXCEPTION, meaning: Generic API failure carrying a descriptive error string., source: 'https://developers.smtp2go.com/docs/response-codes'}
+    - {code: E_ApiResponseCodes.NON_VALIDATING_IN_PAYLOAD, meaning: The JSON body failed schema validation; field_validation_errors names the field., source: 'https://developers.smtp2go.com/docs/response-codes'}
+  reference: https://support.smtp2go.com/hc/en-gb/articles/13990494697369-Common-Sending-Errors

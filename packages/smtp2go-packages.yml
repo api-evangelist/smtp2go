@@ -1,0 +1,143 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/docs/official-libraries
+docs: https://developers.smtp2go.com/docs/official-libraries
+repository: https://github.com/smtp2go-oss
+note: >-
+  Every entry below was read from the named registry's own metadata endpoint on
+  2026-08-13 (registry.npmjs.org, pypi.org/pypi, rubygems.org/api, crates.io/api,
+  api.nuget.org, packagist.org, proxy.golang.org, api.wordpress.org). The
+  official-libraries docs page lists .NET, Go, Python, Node.js, PHP, Ruby/Rails,
+  Rust, Django and the WordPress plugin; all of them are published under the
+  provider-controlled github.com/smtp2go-oss organisation.
+packages:
+  - language: javascript
+    registry: npm
+    name: smtp2go-nodejs
+    url: https://www.npmjs.com/package/smtp2go-nodejs
+    install: npm install smtp2go-nodejs
+    repository: https://github.com/smtp2go-oss/nodejs
+    official: true
+    version: 1.0.0
+    published: '2026-06-04'
+  - language: php
+    registry: packagist
+    name: smtp2go-oss/smtp2go-php
+    url: https://packagist.org/packages/smtp2go-oss/smtp2go-php
+    install: composer require smtp2go-oss/smtp2go-php
+    repository: https://github.com/smtp2go-oss/smtp2go-php
+    official: true
+    version: 1.2.0
+    published: '2026-05-21'
+  - language: php
+    framework: laravel
+    registry: packagist
+    name: smtp2go-oss/smtp2go-laravel
+    url: https://packagist.org/packages/smtp2go-oss/smtp2go-laravel
+    install: composer require smtp2go-oss/smtp2go-laravel
+    repository: https://github.com/smtp2go-oss/smtp2go-laravel
+    official: true
+    version: 1.0.1
+    published: '2025-08-04'
+  - language: php
+    framework: symfony
+    registry: packagist
+    name: smtp2go-oss/smtp2go-symfony-laravel-transport
+    url: https://packagist.org/packages/smtp2go-oss/smtp2go-symfony-laravel-transport
+    install: composer require smtp2go-oss/smtp2go-symfony-laravel-transport
+    repository: https://github.com/2050nz/smtp2go-transport
+    official: true
+    version: null
+    published: null
+    note: >-
+      Published under the smtp2go-oss Packagist vendor namespace but Packagist
+      lists no tagged (non-dev) release, so there is no version or date to
+      record. Consumers can only install a dev branch.
+  - language: ruby
+    registry: rubygems
+    name: smtp2go
+    url: https://rubygems.org/gems/smtp2go
+    install: gem install smtp2go
+    repository: https://github.com/smtp2go-oss/smtp2go-ruby
+    official: true
+    version: 1.0.1
+    published: '2026-06-24'
+  - language: python
+    registry: pypi
+    name: smtp2go
+    url: https://pypi.org/project/smtp2go/
+    install: pip install smtp2go
+    repository: https://github.com/smtp2go-oss/smtp2go-python
+    official: true
+    version: 2.3.1
+    published: '2022-07-29'
+    note: >-
+      Latest PyPI release predates the v3 API changes recorded in
+      changelog/smtp2go-changelog.yml (scheduled sends, PATCH api_keys/edit,
+      ip_auth and ip_allow_list endpoints all shipped after 2025-04). The GitHub
+      repository was last pushed 2025-09-10.
+  - language: python
+    framework: django
+    registry: pypi
+    name: smtp2go-django
+    url: https://pypi.org/project/smtp2go-django/
+    install: pip install smtp2go-django
+    repository: https://github.com/smtp2go-oss/smtp2go-django
+    official: true
+    version: 2.0.0
+    published: '2017-04-06'
+    note: >-
+      Nine years since the last PyPI release; the GitHub repository was last
+      pushed 2023-05-22. Strongest abandonment signal in this set.
+  - language: rust
+    registry: crates.io
+    name: smtp2go
+    url: https://crates.io/crates/smtp2go
+    install: cargo add smtp2go
+    repository: https://github.com/smtp2go-oss/smtp2go-rust
+    official: true
+    version: 0.1.8
+    published: '2025-10-12'
+  - language: go
+    registry: go-modules
+    name: github.com/smtp2go-oss/smtp2go-go
+    url: https://pkg.go.dev/github.com/smtp2go-oss/smtp2go-go
+    install: go get github.com/smtp2go-oss/smtp2go-go
+    repository: https://github.com/smtp2go-oss/smtp2go-go
+    official: true
+    version: v1.0.4
+    published: '2025-07-09'
+  - language: csharp
+    registry: nuget
+    name: Smtp2Go.ApiClient
+    url: https://www.nuget.org/packages/Smtp2Go.ApiClient/
+    install: dotnet add package Smtp2Go.ApiClient
+    repository: https://github.com/smtp2go-oss/smtp2go-dotnet
+    official: true
+    version: 0.0.5
+    published: '2025-03-11'
+  - language: php
+    framework: wordpress
+    registry: wordpress.org
+    name: smtp2go
+    url: https://wordpress.org/plugins/smtp2go/
+    install: Install "SMTP2GO - Email Made Easy" from the WordPress plugin directory
+    repository: https://github.com/smtp2go-oss/wordpress-plugin
+    official: true
+    version: 1.17.0
+    published: '2026-05-25'
+not_official:
+  - name: motomedialab/smtp2go
+    registry: packagist
+    url: https://packagist.org/packages/motomedialab/smtp2go
+    note: Community Laravel package, not published by SMTP2GO.
+  - name: smtp2go
+    registry: npm
+    url: https://www.npmjs.com/package/smtp2go
+    note: >-
+      npm name "smtp2go" is an npm security-holder placeholder (0.0.1-security,
+      2024-11-29), not a library. The real Node.js client is smtp2go-nodejs.
+summary:
+  official_count: 11
+  languages: [javascript, php, ruby, python, rust, go, csharp]
+  registries: [npm, packagist, rubygems, pypi, crates.io, go-modules, nuget, wordpress.org]

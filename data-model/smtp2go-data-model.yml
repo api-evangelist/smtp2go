@@ -1,0 +1,113 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/smtp2go-openapi-original.yml
+note: >-
+  Derived from the provider's own OpenAPI 3.1.0 by walking every request and
+  response schema for id-reference fields and grouping operations by tag. The
+  contract inlines every schema — components.schemas is empty and there is not a
+  single $ref in the document — so entities are inferred from the operation
+  groups and the id fields that cross them, not from named component schemas.
+  Relationships marked inferred: true are read from id-field co-occurrence, not
+  from a declared reference.
+identifiers:
+  - {field: request_id, type: uuid, scope: every response, meaning: 'Per-request correlation id; not an entity key.'}
+  - {field: email_id, type: opaque string, example: 1u0SwL-B9zBpi9ffUq-JAB2, entity: Email}
+  - {field: schedule_id, type: uuid, entity: ScheduledEmail}
+  - {field: template_id, type: integer/string, entity: Template}
+  - {field: subaccount_id, type: string, entity: Subaccount, meaning: 'Master-account impersonation parameter accepted on 9 of the 18 resource groups.'}
+  - {field: message_id, type: string, entity: SmsMessage}
+entities:
+  - name: Account
+    root: true
+    description: The billing and sending account. Every other entity hangs off it. No API operation addresses it directly.
+  - name: Subaccount
+    operations: [add-subaccount, update-a-subaccount, search-subaccounts, close-a-subaccount, reopen-a-closed-subaccount]
+    key: id
+    description: A child account under a master account. Its id is passed as subaccount_id to operate on child resources with a master key.
+  - name: ApiKey
+    operations: [add-api-key, edit-api-key, patch-api-key, remove-api-key, view-api-keys, view-api-key-permissions]
+    key: id
+    description: A credential carrying an explicit endpoint permission list, an optional rate limit, and sandbox / tracking / archiving toggles.
+  - name: SmtpUser
+    operations: [add-an-smtp-user, edit-an-smtp-user, patch-smtp-user, remove-an-smtp-user, view-smtp-users]
+    description: An SMTP relay credential, the non-API way to send.
+  - name: IpAuth
+    operations: [view-ip-auth, patch-ip-auth, remove-ip-auth]
+    description: An IP-authenticated sending identity.
+  - name: IpAllowListEntry
+    operations: [ip-allowlist, add-ip-allowlist, edit-ip-allowlist, remove-ip-allowlist, view-ip-allowlist]
+    description: Account-level IP allow list; since 2026-07-30 a `type` parameter selects the SMTP or the API list.
+  - name: DedicatedIp
+    operations: [view-dedicated-ips]
+    key: id
+    description: A dedicated sending IP attached to the account. Read-only over the API.
+  - name: SenderDomain
+    operations: [add-sender-domain, verify-a-sender-domain, view-sender-domains, remove-sender-domain, edit-tracking-domain, edit-return-path-domain, edit-subaccount-access]
+    description: A verified sending domain with tracking and return-path subdomains and optional subaccount delegation.
+  - name: SingleSenderEmail
+    operations: [add-a-single-sender-email, view-all-single-sender-emails, remove-a-single-sender-email]
+    description: An individually verified From address, the alternative to verifying a whole domain.
+  - name: AllowedSender
+    operations: [add-allowed-senders, update-allowed-senders, view-allowed-senders, remove-allowed-senders]
+    description: The allowed/restricted senders list; its interpretation depends on the account `mode`.
+  - name: AllowedRecipient
+    operations: [add-allowed-recipients, update-allowed-recipients, view-allowed-recipients, remove-allowed-recipients]
+    description: The allowed recipients list.
+  - name: Email
+    operations: [send-standard-email, send-mime-email, send-email-batch]
+    key: email_id
+    description: A sent message. Returned counts (succeeded/failed/failures) are suppressed when fastaccept is set.
+  - name: ScheduledEmail
+    operations: [search-scheduled-emails, remove-scheduled-email]
+    key: schedule_id
+    description: An email queued for future send, up to 3 days ahead, max 10,000 queued at once.
+  - name: ArchivedEmail
+    operations: [search-archived-pages, view-an-archived-email]
+    key: email_id
+    description: Retained message content, when archiving is enabled on the key.
+  - name: Template
+    operations: [add-an-email-template, update-an-email-template, remove-an-email-template, search-email-templates, view-template-details]
+    key: id
+    description: A reusable email body; referenced from a send by template_id and filled from template_data.
+  - name: Suppression
+    operations: [add-a-suppression, view-suppressions, remove-a-suppression]
+    description: A blocked recipient address. Spam complaints and unsubscribes add entries indefinitely; sends to a suppressed address are rejected.
+  - name: Webhook
+    operations: [add-webhook, edit-webhook, view-webhook, remove-webhook]
+    key: id
+    description: An HTTP callback registration scoped to selected SMTP users, API keys or authenticated IPs.
+  - name: ActivityEvent
+    operations: [search-activity]
+    description: The queryable event stream (opens, clicks, bounces, unsubscribes). Capped at 1,000 returned items with a total count that may exceed it.
+  - name: Statistic
+    operations: [email-summary, email-bounces, email-cycle, email-history, email-spam, email-unsubscribes]
+    description: Aggregated delivery reporting, not an addressable record.
+  - name: SmsMessage
+    operations: [send-sms, view-sent-sms, view-received-sms, sms-summary]
+    key: message_id
+    description: An SMS send or receipt.
+relationships:
+  - {from: Account, to: Subaccount, type: has_many, via: subaccount_id}
+  - {from: Account, to: ApiKey, type: has_many}
+  - {from: Account, to: SmtpUser, type: has_many}
+  - {from: Account, to: SenderDomain, type: has_many}
+  - {from: Account, to: SingleSenderEmail, type: has_many}
+  - {from: Account, to: DedicatedIp, type: has_many}
+  - {from: Account, to: Suppression, type: has_many}
+  - {from: Account, to: Webhook, type: has_many, note: '1 on the free plan, up to 10 on paid plans.'}
+  - {from: Account, to: Template, type: has_many}
+  - {from: Email, to: Template, type: belongs_to, via: template_id, inferred: true}
+  - {from: Email, to: SenderDomain, type: belongs_to, via: sender, inferred: true, note: 'Enforced at send time — the sender must resolve to a verified SenderDomain or SingleSenderEmail.'}
+  - {from: Email, to: SingleSenderEmail, type: belongs_to, via: sender, inferred: true}
+  - {from: ScheduledEmail, to: Email, type: has_one, via: schedule_id, inferred: true}
+  - {from: ArchivedEmail, to: Email, type: has_one, via: email_id, inferred: true}
+  - {from: ActivityEvent, to: Email, type: belongs_to, via: email_id, inferred: true}
+  - {from: Webhook, to: ApiKey, type: belongs_to, inferred: true, note: 'A webhook can be scoped to selected API keys, SMTP users or authenticated IPs.'}
+  - {from: Webhook, to: SmtpUser, type: belongs_to, inferred: true}
+  - {from: Webhook, to: IpAuth, type: belongs_to, inferred: true}
+  - {from: SenderDomain, to: Subaccount, type: has_many, via: subaccount_access, note: 'Delegated domains appear in /domain/view with from_master indicating ownership vs delegation.'}
+  - {from: ApiKey, to: Email, type: has_many, note: 'The key used to send appears as `auth` on every webhook event.'}
+subaccount_scoped_groups:
+  note: 'These resource groups accept subaccount_id so a master key can act on a child account.'
+  groups: [SUPPRESSIONS, SENDER DOMAINS, SINGLE SENDER EMAILS, SMTP USERS, API KEYS, WEBHOOKS, SMS, ALLOWED SENDERS, ALLOWED RECIPIENTS, IP AUTH]
+render: null

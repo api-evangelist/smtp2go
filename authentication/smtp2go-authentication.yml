@@ -1,23 +1,87 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/smtp2go-email-api-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/_original/smtp2go-openapi-original.yml
+docs: https://developers.smtp2go.com/reference/authentication
+docs_secondary: https://developers.smtp2go.com/docs/getting-started
 summary:
   types:
   - apiKey
   api_key_in:
   - header
+  - body
+  oauth2_flows: []
+  openid_connect: false
+  mutual_tls: false
 schemes:
-- name: ApiKeyHeader
+- name: sec0
   type: apiKey
   in: header
   parameter: X-Smtp2go-Api-Key
-  description: API key passed as an HTTP header
+  description: >-
+    The provider's own contract declares exactly one security scheme, applied
+    globally to all 73 operations. The docs show a ${SMTP2GO_API_KEY}
+    environment-variable default.
   sources:
-  - openapi/smtp2go-email-api-openapi.yml
+  - openapi/_original/smtp2go-openapi-original.yml
+  applied_to_operations: 73
 - name: ApiKeyBody
   type: apiKey
-  in: header
+  in: body
   parameter: api_key
-  description: API key can also be included in the JSON request body as the "api_key" field
+  description: >-
+    Documented alternate: the same key may be supplied as an api_key field
+    inside the JSON request body instead of the header. Not declared as a
+    securityScheme in the OpenAPI — only the header form is machine-readable.
   sources:
-  - openapi/smtp2go-email-api-openapi.yml
+  - https://developers.smtp2go.com/reference/authentication
+key:
+  format: '"api-" prefix followed by 32 generated characters'
+  management_url: https://app.smtp2go.com/sending/apikeys/
+  console_path: Sending > API Keys
+  rotation: 'Keys are added, edited, patched and removed over the API itself (/api_keys/*); the value is masked on edit/view responses since 2026-06-22.'
+  per_key_settings:
+    - Description / friendly identifier
+    - Rate limit (defaults to unlimited)
+    - Endpoint permission list — which endpoints this key may call
+    - Unsubscribe footer toggle
+    - Open tracking toggle
+    - Click tracking toggle
+    - Disable, or set to Sandbox Mode
+    - Email archiving toggle
+    - BCC address for email auditing
+    - Bounce notifications toggle
+authorization:
+  model: per-key endpoint permissions
+  introspection:
+    operation: view-api-key-permissions
+    path: /api_keys/permissions
+    note: Returns the endpoint list the calling key may use; callable by every key.
+  failure:
+    http_status: 400
+    error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+    note: A permission failure is a 400 carrying an error_code, not a 403.
+  escalation_rule: >-
+    Since 2026-05-29, adding or removing endpoints on a key without the
+    appropriate permissions on the authenticating key, or beyond the target
+    key's existing permission set, is refused.
+  scopes: null
+  scopes_note: >-
+    There is no OAuth scope surface. Authorization is an explicit per-key list of
+    API endpoints, so scopes/ is intentionally not emitted for this provider.
+missing_auth:
+  http_status: 401
+  note: 'Failure to supply a key, or supplying an invalid or disabled key, returns 401 Unauthorized.'
+other_credentials:
+  - {kind: SMTP user, note: 'Username/password for the SMTP relay, managed via /users/smtp/*. Separate from API keys.'}
+  - {kind: IP authentication, note: 'Send without a credential from an authenticated IP, managed via /ip_auth/*.'}
+  - {kind: IP allow list, note: 'Account-level restriction of where SMTP or API traffic may originate, managed via /ip_allow_list/*; a type parameter selects the SMTP or API list.'}
+oauth:
+  supported: false
+  evidence:
+    - {url: 'https://api.smtp2go.com/.well-known/oauth-authorization-server', status: 404}
+    - {url: 'https://developers.smtp2go.com/.well-known/oauth-authorization-server', status: 404}
+    - {url: 'https://api.smtp2go.com/.well-known/openid-configuration', status: 404}
+mcp_authentication:
+  endpoint: https://developers.smtp2go.com/mcp
+  scheme: 'Same X-Smtp2go-Api-Key header; no OAuth challenge, no /.well-known/oauth-protected-resource.'
+  anonymous_surface: 'Documentation discovery tools (list-endpoints, search-endpoints, get-endpoint, get-server-variables) answer without a key; execute-request requires one.'

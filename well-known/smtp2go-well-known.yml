@@ -1,0 +1,60 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every SMTP2GO host in apis.yml and openapi servers[]
+result: none
+note: >-
+  Every /.well-known/ path was probed on all four SMTP2GO hosts on 2026-08-13 and
+  every one returned 404. api.smtp2go.com answers with a bare text/plain
+  "404 page not found"; www.smtp2go.com, app.smtp2go.com and
+  developers.smtp2go.com answer 404 with their normal HTML not-found page. No
+  document was served, so NO WellKnown or SecurityTxt pointer is emitted in
+  apis.yml — this file records a verified absence, not a presence.
+hosts:
+  - host: https://api.smtp2go.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://www.smtp2go.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404, note: HTML 404 page}
+      - {path: /.well-known/oauth-authorization-server, status: 404, note: HTML 404 page}
+      - {path: /.well-known/oauth-protected-resource, status: 404, note: HTML 404 page}
+      - {path: /.well-known/api-catalog, status: 404, note: HTML 404 page}
+      - {path: /.well-known/ai-plugin.json, status: 404, note: HTML 404 page}
+      - {path: /.well-known/agent-card.json, status: 404, note: HTML 404 page}
+      - {path: /.well-known/agent.json, status: 404, note: HTML 404 page}
+  - host: https://developers.smtp2go.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, note: ReadMe HTML 404 page}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404, note: ReadMe HTML 404 page}
+      - {path: /.well-known/agent-card.json, status: 404, note: ReadMe HTML 404 page}
+      - {path: /.well-known/agent.json, status: 404, note: ReadMe HTML 404 page}
+  - host: https://app.smtp2go.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+observations:
+  - >-
+    The SMTP2GO remote MCP server at https://developers.smtp2go.com/mcp does not
+    advertise OAuth: /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource both 404 on that host. The server
+    authenticates API execution with the same X-Smtp2go-Api-Key header the REST
+    API uses, so there is no OAuth metadata document to harvest.
+  - >-
+    Both /llms.txt files that SMTP2GO does publish are served from the site root,
+    not /.well-known/ — see llms/.

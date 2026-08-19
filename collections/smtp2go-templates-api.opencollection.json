@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Email Activity Templates API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add an email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/template/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new email template that you can use to format your emails"
+        },
+        {
+          "info": {
+            "name": "Update an email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/template/edit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes details of an existing email template"
+        },
+        {
+          "info": {
+            "name": "Remove an email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/template/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes the specified email template"
+        },
+        {
+          "info": {
+            "name": "View email templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/template/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search your collection of email templates"
+        },
+        {
+          "info": {
+            "name": "View template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/template/view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns details of the email template with the specified ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

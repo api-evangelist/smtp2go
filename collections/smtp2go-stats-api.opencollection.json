@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Email Activity Stats API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Email summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_summary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a combination of email_bounces, email_cycle, email_spam, and email_unsubs calls in one report"
+        },
+        {
+          "info": {
+            "name": "Email bounces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_bounces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a summary of bounces and rejects for the last 30 days"
+        },
+        {
+          "info": {
+            "name": "Email cycle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_cycle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a summary of your account activity including billing cycle dates and email counts"
+        },
+        {
+          "info": {
+            "name": "Email history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_history",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a summary of activity from a specified date range per sender, SMTP username, domain or subaccount"
+        },
+        {
+          "info": {
+            "name": "Email spam",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_spam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a summary of spam complaints and rejects for the last 30 days"
+        },
+        {
+          "info": {
+            "name": "Email unsubscribes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/stats/email_unsubscribes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a summary of unsubscribes and rejects for the last 30 days"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

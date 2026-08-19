@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Email Activity API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/activity/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns events (such as opens, unsubscribes) which match the filters passed. Rate-limited to 60 requests per minute."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

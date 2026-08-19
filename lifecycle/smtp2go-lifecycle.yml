@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/reference/changelog
+versioning:
+  scheme: uri-path
+  current: v3
+  spec_version: 3.0.4
+  docs: https://developers.smtp2go.com/docs/endpoints
+  note: >-
+    The version is carried in the base path (https://api.smtp2go.com/v3/). The
+    provider's OpenAPI reports info-level version 3.0.4 and the ReadMe docs
+    branch is named 3.0.4. No version header, no date-pinned version train.
+regions:
+  note: Region selection is a base-URL choice, not a version. The regionless host auto-routes.
+  hosts:
+    - {region: global, url: 'https://api.smtp2go.com/v3/', description: Auto-routes to the closest of US/EU/AU}
+    - {region: us, url: 'https://us-api.smtp2go.com/v3/'}
+    - {region: eu, url: 'https://eu-api.smtp2go.com/v3/'}
+    - {region: au, url: 'https://au-api.smtp2go.com/v3/'}
+deprecation:
+  policy_url: https://developers.smtp2go.com/reference/changelog
+  sunset_header: false
+  deprecation_header: false
+  practice: >-
+    Deprecations are announced in the dated changelog and marked in the endpoint
+    description in the API reference, in prose. SMTP2GO does not publish a
+    formal deprecation window, and the API does not emit RFC 8594 Sunset or
+    Deprecation response headers — an agent cannot detect a deprecation at
+    runtime, only by reading the docs.
+  observed:
+    - item: GET/POST /email/view ("View and search sent emails")
+      status: deprecated
+      replacement: /activity/search
+      evidence: >-
+        Reference description states "This endpoint is deprecated and will not
+        be accessible in future API versions. Please use the Activity Search
+        endpoint instead." It is still listed in the docs index but is no longer
+        present in the endpoint set the provider's own MCP server enumerates.
+      source: https://developers.smtp2go.com/reference/view-sent-emails
+    - item: stats fields spam_rejects and bounce_rejects
+      status: deprecated
+      replacement: rejects
+      date: '2025-06-12'
+      evidence: 'Changelog: "Marked spam_rejects and bounce_rejects as deprecated (these fields will continue to be returned however); Added a rejects property".'
+      source: https://developers.smtp2go.com/reference/changelog
+    - item: feedback_domain on /users/smtp/*
+      status: removed
+      date: '2025-04-03'
+      evidence: 'Changelog: "Removed feedback_domain from the /users/smtp* endpoints as it''s no longer required."'
+      source: https://developers.smtp2go.com/reference/changelog
+deprecated_operations: []
+deprecated_operations_note: >-
+  Every operation in openapi/_original/smtp2go-openapi-original.yml carries
+  deprecated: false. The deprecations SMTP2GO has announced are described in
+  prose or apply to response fields, so none surface as a spec-level flag.
+status_page:
+  url: https://smtp2gostatus.com/
+  status: 200
+  probed: '2026-08-13'
+  note: Separate domain from smtp2go.com; carries real-time uptime and historical performance.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA document was found. The pricing page and terms do not publish
+    an uptime commitment; enterprise (Premier) terms are quoted individually.
+changelog:
+  url: https://developers.smtp2go.com/reference/changelog
+  artifact: changelog/smtp2go-changelog.yml
+support:
+  url: https://support.smtp2go.com/
+  contact: https://www.smtp2go.com/contact/

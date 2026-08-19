@@ -1,0 +1,670 @@
+{
+  "item": [
+    {
+      "id": "dee3be3b-f114-4168-bfa0-29fa0b9070aa",
+      "name": "SMTP Users",
+      "description": {
+        "content": "SMTP user account management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "601c0427-350b-48eb-ae41-e25e82d9dfe5",
+          "name": "Add an SMTP user",
+          "request": {
+            "name": "Add an SMTP user",
+            "description": {
+              "content": "Add a new SMTP user to your account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "smtp",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d10024d6-33f1-4094-b0c2-779957a653b0",
+              "name": "SMTP user added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50016e79-681e-45a3-ad09-f5494031938a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b310eb1-0b66-489b-bb97-c7d3bda4b084",
+          "name": "Edit SMTP user details",
+          "request": {
+            "name": "Edit SMTP user details",
+            "description": {
+              "content": "Update an SMTP user's details with the parameters passed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "smtp",
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "afb63594-d0d7-46b6-b7ec-95124a19579c",
+              "name": "SMTP user updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42883a05-9699-4116-8c65-cedfe66deda1",
+          "name": "Patch an SMTP user",
+          "request": {
+            "name": "Patch an SMTP user",
+            "description": {
+              "content": "Patch an existing SMTP user ignoring missing properties",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "smtp",
+                "patch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8d8f75f-ea70-463d-bcc6-5d1bebc11b77",
+              "name": "SMTP user patched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "patch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8750885-a863-4fbc-8801-ad7af5ae06d7",
+          "name": "Remove an SMTP user",
+          "request": {
+            "name": "Remove an SMTP user",
+            "description": {
+              "content": "Remove an SMTP user from your account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "smtp",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81ca217a-dc31-4bad-876a-fcf7e8413ea7",
+              "name": "SMTP user removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbb8dbf7-5193-4f89-b007-8152cb3b0405",
+          "name": "View SMTP users",
+          "request": {
+            "name": "View SMTP users",
+            "description": {
+              "content": "Returns a list of all SMTP users managed by this account, or details of a specific user when you include the username",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "smtp",
+                "view"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72dce937-d6af-41fc-8a60-61405d3e250e",
+              "name": "SMTP users list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"string\",\n        \"email_password\": \"string\",\n        \"sending_allowed\": false,\n        \"custom_ratelimit\": true,\n        \"custom_ratelimit_value\": 8819,\n        \"custom_ratelimit_period\": \"string\",\n        \"description\": \"string\",\n        \"feedback_enabled\": false,\n        \"archive_enabled\": false,\n        \"open_tracking_enabled\": true,\n        \"bounce_notifications\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"username\": \"string\",\n        \"email_password\": \"string\",\n        \"sending_allowed\": false,\n        \"custom_ratelimit\": true,\n        \"custom_ratelimit_value\": 5263,\n        \"custom_ratelimit_period\": \"string\",\n        \"description\": \"string\",\n        \"feedback_enabled\": false,\n        \"archive_enabled\": false,\n        \"open_tracking_enabled\": true,\n        \"bounce_notifications\": \"string\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa7ed9f9-fe77-45a9-bdf8-b8adee393a16",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "smtp",
+                    "view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Smtp2go-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.smtp2go.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e3d8fe8-bf84-46c8-878a-c5d611c4e4af",
+    "name": "SMTP2GO Email Activity SMTP Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
+      "type": "text/plain"
+    }
+  }
+}

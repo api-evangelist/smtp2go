@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Email Activity API Keys API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a new API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new API key to your account. Rate-limited to 5 requests per minute."
+        },
+        {
+          "info": {
+            "name": "Edit an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/edit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit an existing API key"
+        },
+        {
+          "info": {
+            "name": "Patch an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/patch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an existing API key ignoring missing properties"
+        },
+        {
+          "info": {
+            "name": "Remove an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an existing API key"
+        },
+        {
+          "info": {
+            "name": "View API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of API keys on this account"
+        },
+        {
+          "info": {
+            "name": "View Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/apikeys/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of endpoints this API key can use"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

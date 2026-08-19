@@ -1,0 +1,101 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/reference/changelog
+scheme: dated-entries
+current_version: 3.0.4
+version_scheme: uri-path (v3); the docs branch and OpenAPI info.version both read 3.0.4
+note: >-
+  SMTP2GO publishes a single dated changelog page inside the API reference.
+  Entries are prose bullets with no version numbers and no explicit
+  breaking/non-breaking labelling; the breaking flags below are read from the
+  wording of each entry. Recent window captured; the live page is the source of
+  truth. The 2026-07-30 heading is misspelled "Juky 30th 2026" on the provider
+  page.
+entries:
+  - date: '2026-07-30'
+    breaking: false
+    additions:
+      - Added a `type` parameter to the existing ip_allow_list endpoints to allow editing the SMTP or API allow lists.
+  - date: '2026-06-29'
+    breaking: false
+    additions:
+      - Allow `subaccount_id` to be passed to the `suppression/*` endpoints so master-account API keys can operate on subaccount suppressions.
+  - date: '2026-06-22'
+    breaking: true
+    highlights:
+      - Masked the `api_key` return property on the `api_keys/edit` and `api_keys/view` endpoints.
+    note: Response-shape change; integrations that read back the key value from these endpoints stop working.
+  - date: '2026-06-19'
+    breaking: false
+    additions:
+      - Allow `subaccount_id` to be passed to the SMS reporting endpoints.
+  - date: '2026-06-11'
+    breaking: true
+    highlights:
+      - Enforced strict request body sizes — 1 MB for non-email calls and 50 MB for /v3/email* endpoints.
+  - date: '2026-05-29'
+    breaking: true
+    additions:
+      - Domains delegated to a subaccount are now visible in /domain/view.
+      - Added a `from_master` boolean flag indicating whether a domain is owned or delegated.
+    highlights:
+      - Stricter permission rules on adding/editing API keys — adding or removing endpoints without the appropriate permissions from the authenticating key, or from the target key's existing permission set, no longer succeeds.
+  - date: '2026-05-25'
+    breaking: false
+    additions:
+      - Added the AI/MCP section to the developer docs.
+  - date: '2025-09-15'
+    breaking: false
+    additions:
+      - Added `email_password` to the PATCH /users/smtp/edit endpoint.
+  - date: '2025-09-14'
+    breaking: false
+    additions:
+      - Added /ip_auth/view, /ip_auth/patch and /ip_auth/remove to manipulate existing IP Auth entries.
+  - date: '2025-09-13'
+    breaking: false
+    additions:
+      - Added an optional `schedule` timestamp to the /email/* endpoints, allowing sends to be scheduled up to 3 days ahead; a maximum of 10,000 queued emails at a time.
+  - date: '2025-08-15'
+    breaking: false
+    additions:
+      - Added PATCH /api_keys/edit, which edits an API key ignoring missing properties instead of defaulting them.
+  - date: '2025-08-01'
+    breaking: false
+    highlights:
+      - Keep-Alives enabled by default to speed up TLS handshakes on subsequent requests; pass `Connection: close` to opt out.
+  - date: '2025-07-01'
+    breaking: false
+    additions:
+      - All webhook endpoints can now operate on subaccounts by passing `subaccount_id`.
+  - date: '2025-06-12'
+    breaking: false
+    deprecations:
+      - Marked `spam_rejects` and `bounce_rejects` as deprecated (still returned).
+    additions:
+      - Added a `rejects` property consolidating the two.
+  - date: '2025-05-28'
+    breaking: false
+    highlights:
+      - Reverted a /email/send validation change that was rejecting payloads whose `text_body` was only spaces.
+  - date: '2025-04-07'
+    breaking: false
+    additions:
+      - Added `default_ratelimit_value` and `default_ratelimit_period` to /api_keys and /users/smtp responses.
+  - date: '2025-04-03'
+    breaking: true
+    additions:
+      - Added `description` to /stats/email_history and removed it from the `username` field data.
+    removals:
+      - Removed `feedback_domain` from the /users/smtp* endpoints.
+    highlights:
+      - Fixed /api_keys/edit so omitting `endpoints` no longer overwrites the list with the default ["/email/send"].
+      - Aligned `custom_ratelimit_period` on /users/smtp/(add|edit|view) with the /api_keys equivalents.
+      - Password validation now accepts 64-bit-or-greater entropy; generated passwords use 128-bit or more.
+  - date: '2024-01-23'
+    breaking: false
+    additions:
+      - Added `custom_headers` to /activity/search for parsing headers out of the raw email into a usable structure.
+      - Added `sender_full` to /activity/search exposing the full sender string where present.
+    highlights:
+      - Corrected the `url` description on /archive/search.

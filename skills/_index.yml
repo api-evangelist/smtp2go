@@ -1,0 +1,45 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/smtp2go-oss/skills
+note: >-
+  SMTP2GO publishes its own Agent Skills catalog at github.com/smtp2go-oss/skills
+  and documents it at https://developers.smtp2go.com/docs/skills. The first entry
+  below is the provider's own SKILL.md saved verbatim — do not edit it. The
+  remaining entries are API Evangelist skills generated from the provider's
+  OpenAPI; every operationId in them was grepped out of
+  openapi/_original/smtp2go-openapi-original.yml.
+provider_catalog:
+  repository: https://github.com/smtp2go-oss/skills
+  docs: https://developers.smtp2go.com/docs/skills
+  install: npx skills add smtp2go-oss/skills --skill smtp2go-send-email --global --agent codex
+  registry: 'None — installs directly from GitHub; not yet published to a skill registry.'
+  license: See repository LICENSE
+skills:
+  - file: smtp2go-send-email.md
+    name: smtp2go-send-email
+    method: searched
+    source: https://raw.githubusercontent.com/smtp2go-oss/skills/main/smtp2go-send-email/SKILL.md
+    provider_published: true
+    description: >-
+      Sends transactional, test, scheduled, template, HTML, or plain text email
+      through SMTP2GO using the direct API with an SMTP2GO_API_KEY environment
+      variable.
+    api: openapi/_original/smtp2go-openapi-original.yml
+    operations: [send-standard-email, view-allowed-senders, view-all-single-sender-emails]
+    note: Saved verbatim from the provider repository. Ships an agents/openai.yaml and a Claude plugin manifest alongside it upstream.
+  - file: smtp2go-verify-sender-domain.md
+    name: smtp2go-verify-sender-domain
+    method: generated
+    source: openapi/_original/smtp2go-openapi-original.yml
+    provider_published: false
+    description: Add a sender domain, publish its DNS records, verify it, and confirm the account can send from it.
+    api: openapi/_original/smtp2go-openapi-original.yml
+    operations: [add-sender-domain, view-sender-domains, verify-a-sender-domain, edit-tracking-domain, add-a-single-sender-email, view-all-single-sender-emails]
+  - file: smtp2go-webhook-and-reconcile.md
+    name: smtp2go-webhook-and-reconcile
+    method: generated
+    source: openapi/_original/smtp2go-openapi-original.yml
+    provider_published: false
+    description: Register an event webhook, then reconcile delivery outcomes from activity search and the suppression list.
+    api: openapi/_original/smtp2go-openapi-original.yml
+    operations: [add-webhook, view-webhook, edit-webhook, search-activity, view-suppressions, add-a-suppression, email-bounces, email-summary]

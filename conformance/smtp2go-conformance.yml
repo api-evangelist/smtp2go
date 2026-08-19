@@ -1,0 +1,92 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/
+derived_from: openapi/_original/smtp2go-openapi-original.yml
+note: >-
+  Two kinds of claim are separated below. `standards` is what the API contract
+  itself conforms to, derived from the provider's own OpenAPI. `compliance` is
+  what SMTP2GO publishes about its organisation and data centres, read from its
+  own security-and-privacy page. SMTP2GO does not operate a trust portal, so the
+  security-and-privacy page is the compliance surface of record.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: 'Provider-served contract declares openapi: 3.1.0 across all 73 operations.'
+  - id: api-key-auth
+    conforms: true
+    evidence: 'components.securitySchemes.sec0 is apiKey in header X-Smtp2go-Api-Key; an api_key body field is the documented alternate.'
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme in the contract; /.well-known/oauth-authorization-server 404s on every host.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration 404s on every host.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'Errors are application/json with a vendor error/error_code envelope, not application/problem+json.'
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: 'No Sunset or Deprecation response headers are documented or declared; deprecations are announced in prose in the changelog.'
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt 404s on all four hosts (see well-known/smtp2go-well-known.yml).
+  - id: ratelimit-headers
+    conforms: false
+    evidence: 'No RateLimit-*, X-RateLimit-* or Retry-After headers documented; exhaustion is signalled by a bare 429.'
+  - id: idempotency-key
+    conforms: false
+    evidence: No idempotency key or dedupe window anywhere in the contract or docs.
+  - id: json-api
+    conforms: false
+    evidence: 'Vendor envelope {request_id, data}, not JSON:API.'
+  - id: rest-uniform-interface
+    conforms: false
+    evidence: 'RPC-over-POST: all 71 paths take POST (three also PATCH); no GETs, no path or query parameters.'
+  - id: llms-txt
+    conforms: true
+    evidence: 'Served at https://www.smtp2go.com/llms.txt (200) and https://developers.smtp2go.com/llms.txt (200).'
+  - id: mcp-2025-06-18
+    conforms: true
+    evidence: 'https://developers.smtp2go.com/mcp initialized with protocolVersion 2025-06-18 and returned five tools anonymously on 2026-08-13.'
+  - id: agent-skills
+    conforms: true
+    evidence: 'Provider publishes a packaged Agent Skill at github.com/smtp2go-oss/skills (smtp2go-send-email).'
+  - id: a2a
+    conforms: false
+    evidence: '/.well-known/agent-card.json and /.well-known/agent.json 404 on all four hosts.'
+  - id: spf-dkim-dmarc
+    conforms: true
+    evidence: 'Sender authentication is a core product function; smtp2go.com itself publishes SPF and a DMARC record with p=reject (security/smtp2go-domain-security.yml).'
+compliance:
+  published: true
+  page: https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/
+  trust_center: null
+  certifications:
+    - {name: ISO 27001, scope: SMTP2GO organisation, evidence: 'https://www.smtp2go.com/blog/smtp2go-achieves-iso27001-and-iso9001-certification/'}
+    - {name: ISO 9001, scope: SMTP2GO organisation, evidence: 'https://www.smtp2go.com/blog/smtp2go-achieves-iso27001-and-iso9001-certification/'}
+    - {name: GDPR, scope: 'Company-wide; privacy policy at https://www.smtp2go.com/privacy/', evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: ISO 27001, scope: 'US data centres (Chicago, Washington DC)', evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: SOC 1 Type 2, scope: 'US data centres; EU data centre (Amsterdam)', evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: SOC 2 Type 2, scope: 'US data centres; EU data centre (Amsterdam)', evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: PCI DSS, scope: US data centres, evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: ISAE 3402, scope: EU data centre (Amsterdam), evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+    - {name: 'ISO/IEC 27001:2013', scope: AU data centre (Sydney), evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+  memberships:
+    - {name: M3AAWG, description: Messaging Malware Mobile Anti-Abuse Working Group, evidence: 'https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/'}
+  caveat: >-
+    Data-centre certifications (SOC 1/2, PCI DSS, ISAE 3402, and the per-region
+    ISO 27001 statements) are certifications held by the facility operators, not
+    by SMTP2GO. The certifications SMTP2GO holds in its own name are ISO 27001
+    and ISO 9001.
+vulnerability_disclosure:
+  published: false
+  evidence:
+    - {url: 'https://www.smtp2go.com/security/', status: 404}
+    - {url: 'https://www.smtp2go.com/responsible-disclosure/', status: 404}
+    - {url: 'https://www.smtp2go.com/.well-known/security.txt', status: 404}
+    - {url: 'https://api.smtp2go.com/.well-known/security.txt', status: 404}
+  note: >-
+    No security.txt, no bug-bounty program (HackerOne/Bugcrowd/Intigriti), no
+    responsible-disclosure page and no security@ address were found. The
+    security-and-privacy page names certifications but no disclosure route. No
+    Security or VulnerabilityDisclosure pointer is emitted — recording the gap.

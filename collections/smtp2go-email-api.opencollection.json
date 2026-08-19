@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Activity Email API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a standard email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/email/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an email by passing a JSON email object"
+        },
+        {
+          "info": {
+            "name": "Send a MIME email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/email/mime",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an email by supplying a pre-encoded MIME string"
+        },
+        {
+          "info": {
+            "name": "Send a batch of emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/email/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a batch of emails as an array of email objects"
+        },
+        {
+          "info": {
+            "name": "View and search sent emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/email/view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of up to 5,000 sent emails matching the supplied parameters. Deprecated - use /activity/search instead."
+        },
+        {
+          "info": {
+            "name": "Remove a scheduled email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/scheduled/remove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a scheduled email by ID"
+        },
+        {
+          "info": {
+            "name": "Search scheduled emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/scheduled/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows searching of scheduled emails"
+        },
+        {
+          "info": {
+            "name": "Search archived content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/archive/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of up to 5,000 archived emails matching the supplied parameters"
+        },
+        {
+          "info": {
+            "name": "View an archived email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/archive/view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch an archived email using the email_id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

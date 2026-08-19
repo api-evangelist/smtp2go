@@ -1,0 +1,87 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for SMTP2GO
+  version: 1.0.0
+extends: openapi/_original/smtp2go-openapi-original.yml
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/_original/smtp2go-openapi-original.yml
+  note: >-
+    Captures API Evangelist's additions on top of the provider's harvested
+    contract without mutating it. Every statement here is sourced from an
+    artifact in this repo; nothing asserts behaviour the provider has not
+    published.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apis.io/provider/smtp2go/
+      x-apievangelist-artifacts:
+        conventions: conventions/smtp2go-conventions.yml
+        errors: errors/smtp2go-problem-types.yml
+        authentication: authentication/smtp2go-authentication.yml
+        rate_limits: rate-limits/smtp2go-rate-limits.yml
+        lifecycle: lifecycle/smtp2go-lifecycle.yml
+        webhooks: asyncapi/smtp2go-webhooks.yml
+        sandbox: sandbox/smtp2go-sandbox.yml
+        data_model: data-model/smtp2go-data-model.yml
+        mcp: mcp/smtp2go-mcp.yml
+        packages: packages/smtp2go-packages.yml
+        skills: skills/_index.yml
+      x-agent-notes:
+        rpc-over-post: >-
+          Every path takes POST, including read operations. HTTP verb carries no
+          safety signal here — POST /domain/view is a read, POST /email/send
+          sends real mail. Classify by operation, not by method.
+        no-idempotency: >-
+          No idempotency key exists. A retried send is a second send. See
+          conventions/smtp2go-conventions.yml.
+        no-rate-limit-headers: >-
+          Exhaustion is a bare 429 with no RateLimit-*/Retry-After headers.
+        error-envelope: >-
+          Failures return HTTP 400 with data.error_code prefixed
+          E_ApiResponseCodes. Permission failures are 400, not 403.
+        preconditions: >-
+          Sends require a verified sender and a non-suppressed recipient, and the
+          API key must list the endpoint in its permissions.
+  - target: $.info
+    update:
+      x-agentic-access: agentic-access/smtp2go-agentic-access.yml
+  - target: $.paths['/email/send'].post
+    update:
+      x-consequence: physical
+      x-agent-guidance: >-
+        Irreversible external side effect. Preview the message and get explicit
+        approval before calling. There is no idempotency key, so never retry
+        blind on a timeout — reconcile with /activity/search using the returned
+        email_id.
+  - target: $.paths['/email/batch'].post
+    update:
+      x-consequence: physical
+      x-agent-guidance: Same irreversibility as /email/send, multiplied across the batch.
+  - target: $.paths['/email/mime'].post
+    update:
+      x-consequence: physical
+      x-agent-guidance: Same irreversibility as /email/send; the caller supplies a pre-encoded MIME string.
+  - target: $.paths['/sms/send'].post
+    update:
+      x-consequence: physical
+      x-agent-guidance: >-
+        Irreversible and metered per message, up to 100 destination numbers per
+        call. Confirm recipients before sending.
+  - target: $.paths['/suppression/add'].post
+    update:
+      x-consequence: write
+      x-agent-guidance: >-
+        Suppressing an address blocks all future mail to it indefinitely. Only
+        call on explicit user instruction.
+  - target: $.paths['/activity/search'].post
+    update:
+      x-rate-limit: 60 requests per minute
+      x-agent-guidance: 'Read-only. Returns at most 1,000 items with a total that may exceed it; narrow the filter rather than paging.'
+  - target: $.paths['/api_keys/add'].post
+    update:
+      x-rate-limit: 5 requests per minute
+  - target: $.paths['/subaccount/add'].post
+    update:
+      x-rate-limit: 50 calls per hour

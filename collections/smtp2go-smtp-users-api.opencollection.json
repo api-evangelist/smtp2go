@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMTP2GO Email Activity SMTP Users API",
+    "version": "3.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Smtp2go-Api-Key",
+      "value": "{{X-Smtp2go-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMTP Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add an SMTP user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/users/smtp/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new SMTP user to your account"
+        },
+        {
+          "info": {
+            "name": "Edit SMTP user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/users/smtp/edit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an SMTP user's details with the parameters passed"
+        },
+        {
+          "info": {
+            "name": "Patch an SMTP user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/users/smtp/patch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an existing SMTP user ignoring missing properties"
+        },
+        {
+          "info": {
+            "name": "Remove an SMTP user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/users/smtp/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an SMTP user from your account"
+        },
+        {
+          "info": {
+            "name": "View SMTP users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.smtp2go.com/v3/users/smtp/view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of all SMTP users managed by this account, or details of a specific user when you include the username"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

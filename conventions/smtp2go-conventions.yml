@@ -1,0 +1,124 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/docs/getting-started
+derived_from: openapi/_original/smtp2go-openapi-original.yml
+docs:
+  - https://developers.smtp2go.com/docs/getting-started
+  - https://developers.smtp2go.com/docs/endpoints
+  - https://developers.smtp2go.com/docs/response-codes
+  - https://developers.smtp2go.com/docs/rate-limiting
+  - https://developers.smtp2go.com/reference/authentication
+request_style:
+  protocol: https
+  transport: JSON over HTTP
+  methods_used: [POST, PATCH]
+  note: >-
+    SMTP2GO's v3 API is RPC-over-POST, not REST-over-verbs. All 71 published
+    paths take POST (two also accept PATCH: /api_keys/edit and /users/smtp/edit,
+    plus PATCH-only /ip_auth/edit). Read operations are POSTs with a filter body
+    — there are no GET endpoints, no path parameters and no query parameters
+    anywhere in the contract. Agents that infer safety from the HTTP verb will
+    misread this API: POST /email/send sends real mail, POST /domain/view does
+    not.
+  content_type: application/json
+  accept: application/json
+authentication:
+  style: api-key
+  primary:
+    in: header
+    name: X-Smtp2go-Api-Key
+  alternate:
+    in: body
+    field: api_key
+  key_format: 'Prefix "api-" followed by 32 generated characters (32 characters total per the docs).'
+  per_key_permissions: >-
+    Each API key carries an explicit list of endpoints it may call, plus an
+    optional per-key rate limit, sandbox toggle, unsubscribe footer, open/click
+    tracking, archiving and BCC auditing. /api_keys/permissions returns the
+    endpoint list for the calling key and is callable by every key.
+  oauth: false
+  artifact: authentication/smtp2go-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    SMTP2GO publishes no idempotency key, no request-deduplication window, and
+    no Idempotency-Key parameter appears anywhere in the provider's OpenAPI. A
+    retried /email/send is a second send. The only near-equivalent is the
+    `schedule` field, which queues rather than deduplicates. No Idempotency
+    pointer is emitted in apis.yml — recording the absence, not inventing a
+    contract.
+pagination:
+  style: limit-offset
+  note: >-
+    Search-shaped operations take a `limit` in the request body and cap the
+    result set server-side rather than returning a cursor. /activity/search
+    returns at most 1,000 items and includes a total count of matching events
+    that may exceed what is returned; /email/view and /archive/search return at
+    most 5,000. There is no next-page token, no Link header and no cursor field
+    — a caller narrows the filter rather than paging.
+  parameters: [limit, start_date, end_date, and per-endpoint filter fields]
+  response_fields: [data, total (where published)]
+response_envelope:
+  shape: '{"request_id": "...", "data": {...}}'
+  success_signal: HTTP 200
+  note: >-
+    Successful calls return a JSON object with a request_id and a data object;
+    the docs state every call returns "a result string and any data that was
+    returned". Per-recipient failures on a send are reported inside a 200 body,
+    not as an HTTP error.
+  error_envelope: errors/smtp2go-problem-types.yml
+request_tracing:
+  field: request_id
+  location: response body
+  header: null
+  note: >-
+    Correlation is a body field, not a response header. /email/send also returns
+    email_id and, for scheduled sends, schedule_id.
+versioning:
+  style: uri-path
+  current: v3
+  artifact: lifecycle/smtp2go-lifecycle.yml
+rate_limit_signaling:
+  status_on_exhaustion: 429
+  headers: []
+  note: >-
+    No RateLimit-* / X-RateLimit-* / Retry-After headers are documented or
+    declared in the provider's OpenAPI. An agent learns it is throttled only
+    from a 429 and the docs' guidance to back off exponentially. See
+    rate-limits/smtp2go-rate-limits.yml.
+  artifact: rate-limits/smtp2go-rate-limits.yml
+metadata:
+  custom_headers: >-
+    Emails accept a `custom_headers` array; matching headers can be echoed back
+    on webhook events and parsed out of raw mail by /activity/search.
+  expansion: null
+  sparse_fields: null
+limits:
+  max_email_size_mb: 50
+  max_non_email_body_size_mb: 1
+  max_recipients_per_field: 100
+  max_recipients_note: To, CC and BCC each accept up to 100; every recipient counts against the plan quota.
+  max_sms_numbers_per_send: 100
+  scheduled_send_horizon_days: 3
+  max_queued_scheduled_emails: 10000
+  webhooks_per_account: {free: 1, paid: 10}
+connection:
+  keep_alive: true
+  note: 'Keep-Alives are on by default since 2025-08-01; send `Connection: close` to opt out.'
+preconditions:
+  sender_verification: >-
+    Sending from a verified sender is mandatory. Verify either a sender domain
+    (recommended, gives SPF/DKIM alignment) via /domain/add + /domain/verify, or
+    an individual From address via /single_sender_emails/add. Sends from an
+    unverified sender are rejected.
+  suppression: >-
+    Delivery to an address on the account suppression list is rejected. Manage
+    with /suppression/add, /suppression/view, /suppression/remove.
+cross_links:
+  authentication: authentication/smtp2go-authentication.yml
+  errors: errors/smtp2go-problem-types.yml
+  lifecycle: lifecycle/smtp2go-lifecycle.yml
+  rate_limits: rate-limits/smtp2go-rate-limits.yml
+  webhooks: asyncapi/smtp2go-webhooks.yml
+  sandbox: sandbox/smtp2go-sandbox.yml

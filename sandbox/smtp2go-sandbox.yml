@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.smtp2go.com/reference/authentication
+note: >-
+  SMTP2GO's test surface is a per-credential MODE, not a separate test
+  environment: there is no sandbox host, no test-mode key prefix and no test
+  data set. The same api- key on the same https://api.smtp2go.com/v3 base is
+  switched into Sandbox Mode, after which sends are accepted and reported but
+  not delivered. Nothing below is invented — only what the provider documents is
+  recorded, and where a value is not published that is stated as null.
+separation:
+  model: per-credential mode toggle
+  test_host: null
+  live_host: https://api.smtp2go.com/v3
+  key_prefix_test: null
+  key_prefix_live: 'api-'
+  key_format: '"api-" followed by 32 generated characters'
+  note: >-
+    Test and live share one base URL and one key format. An agent cannot tell
+    from a key or a URL whether a send will actually deliver — the only signal is
+    the account-side Sandbox Mode setting on that credential, and a `reject`
+    webhook event when a sandboxed credential sends.
+sandbox_mode:
+  supported: true
+  applies_to: [API key, SMTP user, authenticated IP]
+  enabled_via: 'SMTP2GO app — Sending > API Keys (or SMTP Users / IP Auth), per credential'
+  effect: >-
+    A send from a sandboxed credential is rejected rather than delivered. The
+    webhooks documentation lists this explicitly as a cause of the `reject`
+    event: "An email will be rejected if ... the SMTP User/Authenticated
+    IP/API Key status is set to Sandboxed."
+  docs: https://support.smtp2go.com/hc/en-gb/articles/29736421853337-Sandbox-Mode
+  docs_status: 403
+  docs_note: >-
+    The support knowledge base returned HTTP 403 to non-browser clients on
+    2026-08-13, so the article body could not be captured. The behaviour recorded
+    above is taken from the two developer-docs pages that reference it
+    (reference/authentication and docs/webhooks-overview), not from the support
+    article.
+test_values:
+  cards: null
+  bank_accounts: null
+  magic_addresses: null
+  note: >-
+    SMTP2GO publishes no magic test recipients, no reserved test addresses and no
+    simulated bounce/spam triggers. Bounce and spam handling is exercised against
+    real mailboxes or by sandboxing the credential.
+test_clock: null
+fixtures: null
+related_free_tier:
+  note: >-
+    The free plan (1,000 emails/month, 200/day, 25/hour without a verified sender
+    domain, no credit card) is the practical way to exercise the live API before
+    committing. See plans/smtp2go-plans-pricing.yml.
+preconditions_for_any_send:
+  - Sender must be verified — a verified sender domain (/domain/add, /domain/verify) or a verified single sender email (/single_sender_emails/add). Unverified senders are rejected.
+  - Recipient must not be on the account suppression list, or the send is rejected.
+  - The API key must carry /email/send in its endpoint permission list.
+webhook_testing:
+  note: The webhooks docs recommend a locally deployed RequestBin or Beeceptor to inspect delivered payloads.
+  docs: https://developers.smtp2go.com/docs/webhooks-overview
