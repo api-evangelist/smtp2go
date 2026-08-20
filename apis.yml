@@ -37,6 +37,19 @@ tags:
   - SMS
   - Email API
   - Deliverability
+  - Webhook
+  - Messaging
+  - Communications
+  - MCP
+  - Agent Skills
+tags_raw:
+  - Email
+  - Email Delivery
+  - Transactional Email
+  - SMTP
+  - SMS
+  - Email API
+  - Deliverability
   - Webhooks
   - Messaging
   - Communications
@@ -51,6 +64,14 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - Email
+  - SMS
+  - Transactional Email
+  - Deliverability
+  - SMTP
+  - Webhook
+  - Templates
+  tags_raw:
   - Email
   - SMS
   - Transactional Email
@@ -94,6 +115,8 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -174,6 +197,8 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
