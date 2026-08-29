@@ -68,49 +68,6 @@ tags_raw:
   - MCP
   - Agent Skills
 apis:
-- name: SMTP2GO Email API
-  description: >-
-    REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys,
-    templates, webhooks, suppressions, and accessing delivery reports and activity statistics.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.smtp2go.com/docs/introduction-guide
-  baseURL: https://api.smtp2go.com/v3
-  tags:
-  - Email
-  - SMS
-  - Transactional Email
-  - Deliverability
-  - SMTP
-  - Webhook
-  - Templates
-  tags_raw:
-  - Email
-  - SMS
-  - Transactional Email
-  - Deliverability
-  - SMTP
-  - Webhooks
-  - Templates
-  properties:
-  - type: Documentation
-    url: https://developers.smtp2go.com/docs/introduction-guide
-  - type: GettingStarted
-    url: https://developers.smtp2go.com/docs/getting-started
-  - type: Endpoints
-    url: https://developers.smtp2go.com/docs/endpoints
-  - type: RateLimits
-    url: https://developers.smtp2go.com/docs/rate-limiting
-  - type: OpenAPI
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/smtp2go/refs/heads/main/openapi/smtp2go-email-api-openapi.yml
-  - type: OpenAPI
-    name: SMTP2GO v3 API (provider-harvested, 73 operations)
-    url: openapi/_original/smtp2go-openapi-original.yml
-  - type: APIReference
-    url: https://developers.smtp2go.com/reference/general-api-resources
-  contact:
-  - FN: SMTP2GO Support
-    url: https://support.smtp2go.com/
 - aid: smtp2go:smtp2go-activity-api
   name: SMTP2GO Activity API
   description: Email activity search
@@ -133,16 +90,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smtp2go-api-keys-api-openapi.yml
-- aid: smtp2go:smtp2go-domains-api
-  name: SMTP2GO Domains API
-  description: Sender domain management
-  humanURL: https://developers.smtp2go.com/docs/introduction-guide
-  baseURL: https://api.smtp2go.com/v3
-  tags:
-  - Domains
-  properties:
-  - type: OpenAPI
-    url: openapi/smtp2go-domains-api-openapi.yml
 - aid: smtp2go:smtp2go-sms-api
   name: SMTP2GO SMS API
   description: Send and receive SMS messages
@@ -163,16 +110,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smtp2go-smtp-users-api-openapi.yml
-- aid: smtp2go:smtp2go-stats-api
-  name: SMTP2GO Stats API
-  description: Email delivery statistics and reports
-  humanURL: https://developers.smtp2go.com/docs/introduction-guide
-  baseURL: https://api.smtp2go.com/v3
-  tags:
-  - Stats
-  properties:
-  - type: OpenAPI
-    url: openapi/smtp2go-stats-api-openapi.yml
 - aid: smtp2go:smtp2go-subaccounts-api
   name: SMTP2GO Subaccounts API
   description: Subaccount management
@@ -215,6 +152,206 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smtp2go-webhooks-api-openapi.yml
+- aid: smtp2go:smtp2go-allowed-recipients-api
+  name: SMTP2GO ALLOWED RECIPIENTS API
+  description: Manage the allowed recipients list
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - ALLOWED RECIPIENTS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-allowed-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-allowed-senders-api
+  name: SMTP2GO ALLOWED SENDERS API
+  description: Manage the allowed/restricted senders list
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - ALLOWED SENDERS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-allowed-senders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-dedicated-ips-api
+  name: SMTP2GO DEDICATED IPS API
+  description: View dedicated IP addresses on the account
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - DEDICATED IPS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-dedicated-ips-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-email-archive-api
+  name: SMTP2GO EMAIL ARCHIVE API
+  description: Search and retrieve archived email content
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - EMAIL ARCHIVE
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-email-archive-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-emails-api
+  name: SMTP2GO EMAILS API
+  description: Send standard, MIME and batch email; manage scheduled sends
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - EMAILS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-emails-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-ip-allow-list-api
+  name: SMTP2GO IP Allow List API
+  description: Manage the account IP allow list for SMTP and API access
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - IP Allow List
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-ip-allow-list-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-ip-auth-api
+  name: SMTP2GO IP AUTH API
+  description: Manage IP-authenticated sending entries
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - IP AUTH
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-ip-auth-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-sender-domains-api
+  name: SMTP2GO SENDER DOMAINS API
+  description: Add, verify and manage sender domains, tracking and return-path subdomains
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - SENDER DOMAINS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-sender-domains-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-single-sender-emails-api
+  name: SMTP2GO SINGLE SENDER EMAILS API
+  description: Verify individual From addresses
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - SINGLE SENDER EMAILS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-single-sender-emails-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-statistics-api
+  name: SMTP2GO STATISTICS API
+  description: Delivery, bounce, spam, unsubscribe and cycle statistics
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - STATISTICS
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
 common:
   - type: AgenticAccess
     url: agentic-access/smtp2go-agentic-access.yml

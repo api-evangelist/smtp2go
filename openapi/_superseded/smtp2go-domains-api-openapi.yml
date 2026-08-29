@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SMTP2GO Email Activity Domains API
   description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
@@ -142,14 +142,6 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
 components:
   schemas:
-    StandardResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-        data:
-          type: object
-          additionalProperties: true
     ViewDomainsResponse:
       type: object
       properties:
@@ -169,8 +161,9 @@ components:
                       fulldomain:
                         type: string
                       subdomain:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       domain:
                         type: string
                       suffix:
@@ -193,6 +186,14 @@ components:
                       type: object
                   subaccount_access:
                     type: object
+    StandardResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
     ErrorResponse:
       type: object
       properties:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SMTP2GO Activity Email API
   description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
@@ -267,65 +267,6 @@ paths:
                 $ref: '#/components/schemas/StandardResponse'
 components:
   schemas:
-    SendEmailResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-          description: Unique request identifier
-        data:
-          type: object
-          properties:
-            email_id:
-              type: string
-              description: Email identifier generated on successful send
-            schedule_id:
-              type: string
-              description: Schedule identifier (if schedule parameter used)
-            succeeded:
-              type: integer
-              description: Count of successfully sent emails
-            failed:
-              type: integer
-              description: Count of failed sends
-            failures:
-              type: array
-              items:
-                type: string
-              description: Error messages encountered
-    SendEmailBatchResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-        data:
-          type: array
-          description: Array of email_id/schedule_id information in same order as payload
-          items:
-            type: object
-            properties:
-              email_id:
-                type: string
-              schedule_id:
-                type: string
-    Attachment:
-      type: object
-      required:
-      - filename
-      - mimetype
-      properties:
-        filename:
-          type: string
-          description: Attachment filename
-        mimetype:
-          type: string
-          description: MIME type of the attachment
-        fileblob:
-          type: string
-          description: Base64-encoded file content
-        url:
-          type: string
-          description: URL to fetch the attachment from
     SendEmailRequest:
       type: object
       required:
@@ -396,6 +337,34 @@ components:
           type: boolean
           description: Enable background processing (default false)
           default: false
+    Attachment:
+      type: object
+      required:
+      - filename
+      - mimetype
+      properties:
+        filename:
+          type: string
+          description: Attachment filename
+        mimetype:
+          type: string
+          description: MIME type of the attachment
+        fileblob:
+          type: string
+          description: Base64-encoded file content
+        url:
+          type: string
+          description: URL to fetch the attachment from
+    SendEmailBatchRequest:
+      type: object
+      required:
+      - emails
+      properties:
+        emails:
+          type: array
+          description: Array of email objects to send
+          items:
+            $ref: '#/components/schemas/BatchEmailItem'
     SendMimeEmailRequest:
       type: object
       required:
@@ -411,16 +380,46 @@ components:
           type: boolean
           description: When true, accepts email immediately and processes asynchronously
           default: false
-    SendEmailBatchRequest:
+    ErrorResponse:
       type: object
-      required:
-      - emails
       properties:
-        emails:
-          type: array
-          description: Array of email objects to send
-          items:
-            $ref: '#/components/schemas/BatchEmailItem'
+        request_id:
+          type: string
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Human-readable error message
+            error_code:
+              type: string
+              description: Specific error code
+    SendEmailResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: Unique request identifier
+        data:
+          type: object
+          properties:
+            email_id:
+              type: string
+              description: Email identifier generated on successful send
+            schedule_id:
+              type: string
+              description: Schedule identifier (if schedule parameter used)
+            succeeded:
+              type: integer
+              description: Count of successfully sent emails
+            failed:
+              type: integer
+              description: Count of failed sends
+            failures:
+              type: array
+              items:
+                type: string
+              description: Error messages encountered
     StandardResponse:
       type: object
       properties:
@@ -429,6 +428,21 @@ components:
         data:
           type: object
           additionalProperties: true
+    SendEmailBatchResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+        data:
+          type: array
+          description: Array of email_id/schedule_id information in same order as payload
+          items:
+            type: object
+            properties:
+              email_id:
+                type: string
+              schedule_id:
+                type: string
     BatchEmailItem:
       type: object
       required:
@@ -482,20 +496,6 @@ components:
             $ref: '#/components/schemas/Attachment'
         schedule:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-        data:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Human-readable error message
-            error_code:
-              type: string
-              description: Specific error code
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

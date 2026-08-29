@@ -1,0 +1,477 @@
+openapi: 3.2.0
+info:
+  title: SMTP2GO IP Allow List API
+  version: 3.0.4
+  description: The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.
+  contact:
+    name: SMTP2GO Support
+    url: https://support.smtp2go.com/
+  termsOfService: https://www.smtp2go.com/terms/
+  x-harvest:
+    source: https://developers.smtp2go.com/mcp
+    method: MCP tools/call get-endpoint, one call per path+method, assembled verbatim
+    harvested: '2026-08-13'
+    server_info:
+      name: SMTP2GO-API-Docs
+      version: 3.0.4
+    note: SMTP2GO does not publish a single fetchable OpenAPI URL; the ReadMe registry path answers 429 to non-browser clients. The provider's own remote MCP server returns the authoritative OpenAPI 3.1.0 fragment for each endpoint anonymously, and those 73 fragments are merged here without modification.
+servers:
+- url: https://api.smtp2go.com/v3
+  description: Regionless
+- url: https://us-api.smtp2go.com/v3
+  description: US Region
+- url: https://eu-api.smtp2go.com/v3
+  description: EU Region
+- url: https://au-api.smtp2go.com/v3
+  description: AU Region
+security:
+- sec0: []
+tags:
+- name: IP Allow List
+  description: Manage the account IP allow list for SMTP and API access
+paths:
+  /ip_allow_list:
+    post:
+      summary: Enable IP Allow List
+      operationId: ip-allowlist
+      description: Enables/Disables an IP allow list.
+      tags:
+      - IP Allow List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  example: api-700B************************8F4E
+                  type: string
+                enabled:
+                  type: boolean
+                  example: true
+                type:
+                  type: string
+                  example: api
+                  description: Either 'smtp' or 'api' depending on which IP allow list you want to operate on
+                  default: smtp
+              required:
+              - api_key
+      responses:
+        '200':
+          description: Success – IP allow list status returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: c0af7a72-46a8-11ee-9482-6754933d50b9
+                    description: Unique ID for this request
+                  data:
+                    properties:
+                      enabled:
+                        type: boolean
+                        example: true
+        '400':
+          description: Bad Request Response
+          content:
+            application/json:
+              schema:
+                title: 400 Bad Request
+                type: object
+                description: The standard payload for a 400 Bad Request response
+                x-examples:
+                  Example:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      error_code:
+                        type: string
+                        description: An API error code string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error:
+                        type: string
+                        description: An error description
+                        example: You do not have permission to access this API endpoint
+                  request_id:
+                    type: string
+                    example: 40cbb6f2-935f-11e7-b5be-480fcf01a6f2
+                    description: Unique ID for this request
+              examples:
+                Example:
+                  value:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+        '429':
+          description: Rate Limit Exceeded
+  /ip_allow_list/add:
+    post:
+      summary: Add IP Allow List
+      operationId: add-ip-allowlist
+      description: Adds an IP address to an allow list.
+      tags:
+      - IP Allow List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  example: api-700B************************8F4E
+                  type: string
+                description:
+                  type: string
+                  example: servername
+                ip_address:
+                  type: string
+                  example: 123.45.67.89
+                type:
+                  type: string
+                  example: api
+                  description: Either 'smtp' or 'api' depending on which IP allow list you want to operate on
+                  default: smtp
+              required:
+              - api_key
+      responses:
+        '200':
+          description: Success – IP allow list added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: c0af7a72-46a8-11ee-9482-6754933d50b9
+                    description: Unique ID for this request
+                  data:
+                    properties:
+                      description:
+                        type: string
+                        example: servername
+                      ip_address:
+                        type: string
+                        example: 123.45.67.89
+        '400':
+          description: Bad Request Response
+          content:
+            application/json:
+              schema:
+                title: 400 Bad Request
+                type: object
+                description: The standard payload for a 400 Bad Request response
+                x-examples:
+                  Example:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      error_code:
+                        type: string
+                        description: An API error code string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error:
+                        type: string
+                        description: An error description
+                        example: You do not have permission to access this API endpoint
+                  request_id:
+                    type: string
+                    example: 40cbb6f2-935f-11e7-b5be-480fcf01a6f2
+                    description: Unique ID for this request
+              examples:
+                Example:
+                  value:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+        '429':
+          description: Rate Limit Exceeded
+  /ip_allow_list/edit:
+    post:
+      summary: Edit IP Allow List
+      operationId: edit-ip-allowlist
+      description: Edits an existing IP allow list.
+      tags:
+      - IP Allow List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  example: api-700B************************8F4E
+                  type: string
+                description:
+                  type: string
+                  example: servername
+                ip_address:
+                  type: string
+                  example: 123.45.67.89
+                new_ip_address:
+                  type: string
+                  example: 123.45.67.88
+                type:
+                  type: string
+                  example: api
+                  description: Either 'smtp' or 'api' depending on which IP allow list you want to operate on
+                  default: smtp
+              required:
+              - api_key
+      responses:
+        '200':
+          description: Success – IP allow list edited
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: c0af7a72-46a8-11ee-9482-6754933d50b9
+                    description: Unique ID for this request
+                  data:
+                    properties:
+                      description:
+                        type: string
+                        example: servername
+                      ip_address:
+                        type: string
+                        example: 123.45.67.88
+        '400':
+          description: Bad Request Response
+          content:
+            application/json:
+              schema:
+                title: 400 Bad Request
+                type: object
+                description: The standard payload for a 400 Bad Request response
+                x-examples:
+                  Example:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      error_code:
+                        type: string
+                        description: An API error code string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error:
+                        type: string
+                        description: An error description
+                        example: You do not have permission to access this API endpoint
+                  request_id:
+                    type: string
+                    example: 40cbb6f2-935f-11e7-b5be-480fcf01a6f2
+                    description: Unique ID for this request
+              examples:
+                Example:
+                  value:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+        '429':
+          description: Rate Limit Exceeded
+  /ip_allow_list/remove:
+    post:
+      summary: Remove IP Allow List
+      operationId: remove-ip-allowlist
+      description: Removes an IP address from an allow list.
+      tags:
+      - IP Allow List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  example: api-700B************************8F4E
+                  type: string
+                ip_address:
+                  type: string
+                  example: 123.45.67.89
+                type:
+                  type: string
+                  example: api
+                  description: Either 'smtp' or 'api' depending on which IP allow list you want to operate on
+                  default: smtp
+              required:
+              - api_key
+      responses:
+        '200':
+          description: Success – IP allow list removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: c0af7a72-46a8-11ee-9482-6754933d50b9
+                    description: Unique ID for this request
+                  data:
+                    properties:
+                      description:
+                        type: string
+                        example: servername
+                      ip_address:
+                        type: string
+                        example: 123.45.67.89
+        '400':
+          description: Bad Request Response
+          content:
+            application/json:
+              schema:
+                title: 400 Bad Request
+                type: object
+                description: The standard payload for a 400 Bad Request response
+                x-examples:
+                  Example:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      error_code:
+                        type: string
+                        description: An API error code string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error:
+                        type: string
+                        description: An error description
+                        example: You do not have permission to access this API endpoint
+                  request_id:
+                    type: string
+                    example: 40cbb6f2-935f-11e7-b5be-480fcf01a6f2
+                    description: Unique ID for this request
+              examples:
+                Example:
+                  value:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+        '429':
+          description: Rate Limit Exceeded
+  /ip_allow_list/view:
+    post:
+      summary: View IP Allow List
+      operationId: view-ip-allowlist
+      description: Retrieves a list of IP Addresses on the allow list along with the list's enabled status.
+      tags:
+      - IP Allow List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  example: api-700B************************8F4E
+                  type: string
+                type:
+                  type: string
+                  example: api
+                  description: Either 'smtp' or 'api' depending on which IP allow list you want to operate on
+                  default: smtp
+              required:
+              - api_key
+      responses:
+        '200':
+          description: Success – configured webhooks returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: c0af7a72-46a8-11ee-9482-6754933d50b9
+                    description: Unique ID for this request
+                  data:
+                    properties:
+                      enabled:
+                        type: boolean
+                        example: true
+                      ip_addresses:
+                        type: array
+                        description: list of IP addresses
+                        items:
+                          type: object
+                          description: Represents an IP address object
+                          properties:
+                            ip_address:
+                              type: string
+                              example: 123.45.67.89
+                            description:
+                              type: string
+                              example: servername
+        '400':
+          description: Bad Request Response
+          content:
+            application/json:
+              schema:
+                title: 400 Bad Request
+                type: object
+                description: The standard payload for a 400 Bad Request response
+                x-examples:
+                  Example:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      error_code:
+                        type: string
+                        description: An API error code string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error:
+                        type: string
+                        description: An error description
+                        example: You do not have permission to access this API endpoint
+                  request_id:
+                    type: string
+                    example: 40cbb6f2-935f-11e7-b5be-480fcf01a6f2
+                    description: Unique ID for this request
+              examples:
+                Example:
+                  value:
+                    data:
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+                      error: You do not have permission to access this API endpoint
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+        '429':
+          description: Rate Limit Exceeded
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: X-Smtp2go-Api-Key
+      x-default: ${SMTP2GO_API_KEY}

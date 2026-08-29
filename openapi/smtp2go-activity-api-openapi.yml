@@ -1,143 +1,346 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: SMTP2GO Email Activity API
-  description: REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.
+  title: SMTP2GO ACTIVITY API
   version: 3.0.4
+  description: The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.
   contact:
     name: SMTP2GO Support
     url: https://support.smtp2go.com/
-  license:
-    name: Proprietary
-    url: https://www.smtp2go.com/terms/
+  termsOfService: https://www.smtp2go.com/terms/
+  x-harvest:
+    source: https://developers.smtp2go.com/mcp
+    method: MCP tools/call get-endpoint, one call per path+method, assembled verbatim
+    harvested: '2026-08-13'
+    server_info:
+      name: SMTP2GO-API-Docs
+      version: 3.0.4
+    note: SMTP2GO does not publish a single fetchable OpenAPI URL; the ReadMe registry path answers 429 to non-browser clients. The provider's own remote MCP server returns the authoritative OpenAPI 3.1.0 fragment for each endpoint anonymously, and those 73 fragments are merged here without modification.
 servers:
 - url: https://api.smtp2go.com/v3
-  description: Global endpoint (auto-routes to nearest region)
+  description: Regionless
 - url: https://us-api.smtp2go.com/v3
-  description: United States region
+  description: US Region
 - url: https://eu-api.smtp2go.com/v3
-  description: European Union region
+  description: EU Region
 - url: https://au-api.smtp2go.com/v3
-  description: Oceania region
+  description: AU Region
 security:
-- ApiKeyHeader: []
-- ApiKeyBody: []
+- sec0: []
 tags:
-- name: Activity
-  description: Email activity search
+- name: ACTIVITY
+  description: Search account email and SMS activity events
 paths:
   /activity/search:
     post:
-      operationId: searchActivity
-      summary: Search activity
-      description: Returns events (such as opens, unsubscribes) which match the filters passed. Rate-limited to 60 requests per minute.
       tags:
-      - Activity
+      - ACTIVITY
+      summary: Search activity
+      description: Returns events (such as opens, unsubscribes) which match the filters passed. A count of events matching the filter is also included, as this may surpass the maximum of 1,000 items included within the response.<br /><i>This endpoint is rate-limited to 60 requests per minute.</i>
+      operationId: search-activity
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActivitySearchRequest'
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  descriiption: 'ISO-8601 formatted datetime which defaults to current date at midnight. The range will be inclusive of start_date and exclusive of end_date. Timezone is UTC.Defaults to current date at midnight.<br><br>Valid formats are: <code>2006-01-02</code>, <code>2006-01-02 15:04:05</code>, <code>2006-01-02T15:04:05</code>, <code>2006-01-02T15:04:05.0000000</code>, <code>02 Jan 06 15:04 MST</code>, <code>02 Jan 06 15:04 -0700</code>, <code>2006-01-02T15:04:05Z07:00</code>, <code>2006-01-02T15:04:05.999999999Z07:00</code>, <code>Mon, 02 Jan 2006 15:04:05 MST</code>'
+                end_date:
+                  type: string
+                  description: 'ISO-8601 formatted datetime which defaults to now. Timezone is UTC.Defaults to current date at midnight.<br><br>Valid formats are: <code>2006-01-02</code>, <code>2006-01-02 15:04:05</code>, <code>2006-01-02T15:04:05</code>, <code>2006-01-02T15:04:05.0000000</code>, <code>02 Jan 06 15:04 MST</code>, <code>02 Jan 06 15:04 -0700</code>, <code>2006-01-02T15:04:05Z07:00</code>, <code>2006-01-02T15:04:05.999999999Z07:00</code>, <code>Mon, 02 Jan 2006 15:04:05 MST</code>'
+                search:
+                  type: string
+                  description: If passed, will return all events for emails containing this string in any search fields. To return events with one or more text values, separate the text with '|' (e.g. 'text1 | text2')
+                search_email_id:
+                  type: string
+                  description: If passed, will return all events for an email matching this specific id
+                search_subject:
+                  type: string
+                  description: If passed, will return all events for emails containing this string in the email subject
+                search_sender:
+                  type: string
+                  description: If passed, will return all events for emails containing this string in the email sender
+                search_recipient:
+                  type: string
+                  description: If passed, will return all events for emails containing this string in the email recipient
+                search_usernames:
+                  type: array
+                  description: If passed, will return all events for emails sent by this/these username/s
+                  items:
+                    type: string
+                subaccounts:
+                  type: array
+                  description: If passed, will return all events for emails sent by this/these subaccount_id/s (as returned from the <code>/subaccount/search</code> endpoint or as shown in the App)
+                  items:
+                    type: string
+                limit:
+                  type: integer
+                  description: 'The maximum number of events to return (Max: 1000)'
+                  format: int32
+                  default: 100
+                continue_token:
+                  type: string
+                  description: If passed, will continue the search beyond the current page, using the same search parameters
+                only_latest:
+                  type: boolean
+                  description: 'If true, will only return the most recent event for each email returned.  Default: false'
+                only_latest_by_sent:
+                  type: boolean
+                  description: 'If true, will only return the most recent event for each email returned ordered by sent date (overrides only_latest field).  Default: false'
+                event_types:
+                  type: array
+                  description: If passed, will limit the returned events to the provided event types.<br><br><strong>Values:</strong> 'processed', 'soft-bounced', 'hard-bounced', 'rejected', 'spam', 'delivered', 'unsubscribed', 'resubscribed', 'opened', 'clicked'
+                  items:
+                    type: string
+                include_headers:
+                  type: boolean
+                  description: Return the full email headers with the response
+                  default: false
+                custom_headers:
+                  type: array
+                  description: A list of header keys to parse out of the raw headers
+                  items:
+                    type: string
+                    example: X-MyCustomID
+                region:
+                  type: string
+                  description: Optional. By default, activity search queries the region where the master account is located. If the account has subaccounts in other regions, pass this field to force the search to query activity data in that region.
+                  enum:
+                  - us
+                  - eu
+                  - au
+                  example: us
       responses:
         '200':
-          description: Activity events list
+          description: Matching events
           content:
             application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      events:
+                      - from: rob@example.co.uk
+                        recipient: jo@another_example.com
+                        subaccount_name: Master account
+                        email_id: 1u0SwL-B9zBpi9ffUq-JAB2
+                        date: '2022-11-12T07:44:58Z'
+                        event: delivered
+                        subject: My Test Email
+                        username: api-5BFDE1E62529
+                        sender: rob@example.co.uk
+                        to: jo@another_example.com
+                        bcc: audit@example.co.uk
+                        smtp_response: 250 Message received
+                        host: 136.143.191.44
+                        headers: 'Content-Type: text/html
+
+                          To: to@example.com...'
+                        custom_headers:
+                          X-MyCustomID: 01HMSACEHXHDG4X1CZV89SQMP7
+                      total_events: 1
+                      continue_token: null
+                    request_id: 4b661d88-6b2d-11eb-8bb3-f23c92bb31d2
               schema:
-                $ref: '#/components/schemas/ActivitySearchResponse'
+                type: object
+                required:
+                - data
+                - request_id
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - continue_token
+                    - events
+                    - total_events
+                    properties:
+                      continue_token:
+                        type: string
+                        example: '...'
+                        nullable: true
+                      events:
+                        type: array
+                        items:
+                          type: object
+                          required:
+                          - from
+                          - recipient
+                          - subaccount_name
+                          - email_id
+                          - date
+                          - event
+                          - recipients
+                          - subject
+                          - username
+                          - reply_to
+                          - sender
+                          - sender_full
+                          - to
+                          - cc
+                          - bcc
+                          - smtp_response
+                          - reason
+                          - host
+                          - error
+                          - email_client
+                          - metadata
+                          - outbound_ip
+                          - byte_size
+                          - headers
+                          - custom_headers
+                          properties:
+                            from:
+                              type: string
+                              example: no-reply@example.com
+                            recipient:
+                              type: string
+                              example: someone@example.com
+                            subaccount_name:
+                              type: string
+                              example: Master account
+                            email_id:
+                              type: string
+                              example: 1u0SwL-B9zBpi9ffUq-JAB2
+                              description: The unique ID of the email which generated the event
+                            date:
+                              type: string
+                              example: '2021-02-09T12:18:53Z'
+                              description: An RFC3339 encoded timestamp with UTC timezone indicating the timestamp of the event
+                            event:
+                              type: string
+                              example: opened
+                              description: A string indicating the type of the event
+                            recipients:
+                              type: array
+                              example: '[''someone@example.com'', ''someoneelse@example.com'']'
+                              description: The recipients of the email
+                              items:
+                                type: string
+                            subject:
+                              type: string
+                              example: Booking Confirmation
+                              description: The subject of the email
+                            username:
+                              type: string
+                              example: smtpuser
+                              description: The username used to send the email
+                            reply_to:
+                              type: string
+                              example: reply@example.com
+                              description: The value of the Reply-To header if present
+                            sender:
+                              type: string
+                              example: no-reply@example.com
+                              description: The From header of the email
+                            sender_full:
+                              type: string
+                              example: NoReply <no-reply@example.com>
+                              description: The From header of the email including name part if present
+                            to:
+                              type: string
+                              example: otherperson@example.com
+                              description: The value of the TO header
+                            cc:
+                              type: string
+                              example: cc@example.com
+                              description: The value of the CC header
+                            bcc:
+                              type: string
+                              example: bcc@example.com
+                              description: The value of the BCC header
+                            smtp_response:
+                              type: string
+                              example: 250 Message received
+                              description: The SMTP response of the mail server
+                            reason:
+                              type: string
+                              example: This was a spam email
+                              description: The reason for an event occurring if present
+                            host:
+                              type: string
+                              example: 127.0.0.1
+                              description: The IP address of the host associated with the event
+                            originating_host:
+                              type: string
+                              example: 127.0.0.1
+                              description: The originating IP address of the host associated with the processed event
+                            error:
+                              type: string
+                              example: i/o timeout
+                              description: The error message that occurred on certain events
+                            email_client:
+                              type: object
+                              description: Email client information
+                            metadata:
+                              type: object
+                              description: Additional metadata for open/click events
+                            outbound_ip:
+                              type: string
+                              description: The Outbound IP Address if available
+                            byte_size:
+                              type: integer
+                              description: The size of the email in bytes
+                            headers:
+                              type: string
+                              description: The full email headers if requested
+                            custom_headers:
+                              type: object
+                              description: An dictionary of key/value pairs of custom headers
+                            delivery_attempts:
+                              type: array
+                              description: A list of current delivery attempts if available (for processed events only)
+                              items:
+                                type: object
+                                properties:
+                                  smtptime:
+                                    type: string
+                                    description: An RFC3339 encoded timestamp with UTC timezone indicating the timestamp of the delivery attempt
+                                  host:
+                                    type: string
+                                    description: The host that generated the delivery attempt
+                                  smtpresponse:
+                                    type: string
+                                    description: The SMTP response from the target server
+                      total_events:
+                        type: integer
+                        example: 23405
+                        default: 0
+                        description: The total events available to be returned.<br>The actual number of events returned will depend on the number available and the 'limit' passed.
+                  request_id:
+                    type: string
+                    example: 4b661d88-6b2d-11eb-8bb3-f23c92bb31d2
         '400':
-          description: Bad request
+          description: '400'
           content:
             application/json:
+              examples:
+                Result:
+                  value:
+                    request_id: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                    data:
+                      error: You do not have permission to access this API endpoint
+                      error_code: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '429':
-          description: Rate limit exceeded
-components:
-  schemas:
-    ActivitySearchRequest:
-      type: object
-      properties:
-        start_date:
-          type: string
-          description: ISO-8601 start datetime
-        end_date:
-          type: string
-          description: ISO-8601 end datetime
-        event:
-          type: string
-          description: Filter by event type
-          enum:
-          - delivered
-          - bounce
-          - spam
-          - unsubscribe
-          - open
-          - click
-          - reject
-        sender:
-          type: string
-        recipient:
-          type: string
-        subject:
-          type: string
-        continue_token:
-          type: string
-          description: Pagination token
-    ActivitySearchResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-        data:
-          type: object
-          properties:
-            total_count:
-              type: integer
-            continue_token:
-              type: string
-            events:
-              type: array
-              items:
                 type: object
                 properties:
-                  event:
+                  request_id:
                     type: string
-                  email_id:
-                    type: string
-                  sender:
-                    type: string
-                  recipient:
-                    type: string
-                  subject:
-                    type: string
-                  timestamp:
-                    type: string
-    ErrorResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-        data:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Human-readable error message
-            error_code:
-              type: string
-              description: Specific error code
+                    example: 22e5acba-43bf-11e6-ae42-408d5cce2644
+                  data:
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: You do not have permission to access this API endpoint
+                      error_code:
+                        type: string
+                        example: E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED
+      deprecated: false
+components:
   securitySchemes:
-    ApiKeyHeader:
+    sec0:
       type: apiKey
       in: header
       name: X-Smtp2go-Api-Key
-      description: API key passed as an HTTP header
-    ApiKeyBody:
-      type: apiKey
-      in: header
-      name: api_key
-      description: API key can also be included in the JSON request body as the "api_key" field
-externalDocs:
-  description: SMTP2GO Developer Documentation
-  url: https://developers.smtp2go.com/docs/introduction-guide
+      x-default: ${SMTP2GO_API_KEY}
