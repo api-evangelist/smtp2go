@@ -9,6 +9,18 @@ description: >-
   webhooks, suppressions, subaccounts, dedicated IPs and the email archive, plus
   activity search and delivery statistics. It also ships a remote MCP server and a
   published Agent Skill for AI agents.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
