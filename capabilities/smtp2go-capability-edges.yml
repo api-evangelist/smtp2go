@@ -1,0 +1,26 @@
+slug: smtp2go
+provider: SMTP2GO
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: WEBHOOKS
+  spec_file: smtp2go-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.75
+  evidence: POST /webhook/add  add-webhook  Add a new Webhook; POST /webhook/remove  remove-webhook  Remove
+    a specified Webhook
+  reason: Full CRUD over outbound webhook subscriptions maps directly to the named Webhook & Event Subscription
+    Management capability; it is platform plumbing, but the candidate list contains an explicit capability
+    for exactly this.

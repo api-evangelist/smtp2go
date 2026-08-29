@@ -353,6 +353,9 @@ apis:
   - type: APIReference
     url: https://developers.smtp2go.com/reference/general-api-resources
 common:
+  - type: CapabilityMap
+    url: capabilities/smtp2go-capability-edges.yml
+    name: SMTP2GO Business Capability Map
   - type: AgenticAccess
     url: agentic-access/smtp2go-agentic-access.yml
   - type: DomainSecurity
