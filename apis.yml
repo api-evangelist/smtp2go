@@ -238,6 +238,8 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - Emails
+  tags_raw:
   - EMAILS
   properties:
   - type: OpenAPI
@@ -258,6 +260,8 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - IP Allowlist
+  tags_raw:
   - IP Allow List
   properties:
   - type: OpenAPI
@@ -338,6 +342,8 @@ apis:
   humanURL: https://developers.smtp2go.com/docs/introduction-guide
   baseURL: https://api.smtp2go.com/v3
   tags:
+  - Statistics
+  tags_raw:
   - STATISTICS
   properties:
   - type: OpenAPI
