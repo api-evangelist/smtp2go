@@ -257,28 +257,6 @@ apis:
     url: https://developers.smtp2go.com/docs/rate-limiting
   - type: APIReference
     url: https://developers.smtp2go.com/reference/general-api-resources
-- aid: smtp2go:smtp2go-ip-allow-list-api
-  name: SMTP2GO IP Allow List API
-  description: Manage the account IP allow list for SMTP and API access
-  humanURL: https://developers.smtp2go.com/docs/introduction-guide
-  baseURL: https://api.smtp2go.com/v3
-  tags:
-  - IP Allowlist
-  tags_raw:
-  - IP Allow List
-  properties:
-  - type: OpenAPI
-    url: openapi/smtp2go-ip-allow-list-api-openapi.yml
-  - type: Documentation
-    url: https://developers.smtp2go.com/docs/introduction-guide
-  - type: GettingStarted
-    url: https://developers.smtp2go.com/docs/getting-started
-  - type: Endpoints
-    url: https://developers.smtp2go.com/docs/endpoints
-  - type: RateLimits
-    url: https://developers.smtp2go.com/docs/rate-limiting
-  - type: APIReference
-    url: https://developers.smtp2go.com/reference/general-api-resources
 - aid: smtp2go:smtp2go-ip-auth-api
   name: SMTP2GO IP AUTH API
   description: Manage IP-authenticated sending entries
@@ -351,6 +329,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smtp2go-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.smtp2go.com/docs/introduction-guide
+  - type: GettingStarted
+    url: https://developers.smtp2go.com/docs/getting-started
+  - type: Endpoints
+    url: https://developers.smtp2go.com/docs/endpoints
+  - type: RateLimits
+    url: https://developers.smtp2go.com/docs/rate-limiting
+  - type: APIReference
+    url: https://developers.smtp2go.com/reference/general-api-resources
+- aid: smtp2go:smtp2go-ip-allowlist-api
+  name: SMTP2GO IP Allowlist API
+  description: Manage the account IP allow list for SMTP and API access
+  humanURL: https://developers.smtp2go.com/docs/introduction-guide
+  baseURL: https://api.smtp2go.com/v3
+  tags:
+  - IP Allowlist
+  properties:
+  - type: OpenAPI
+    url: openapi/smtp2go-ip-allowlist-api-openapi.yml
   - type: Documentation
     url: https://developers.smtp2go.com/docs/introduction-guide
   - type: GettingStarted
