@@ -27,15 +27,15 @@ servers:
 security:
 - sec0: []
 tags:
-- name: SUBACCOUNTS
+- name: Subaccounts
   description: Create, update, close and reopen subaccounts
 paths:
   /subaccount/add:
     post:
       tags:
-      - SUBACCOUNTS
+      - Subaccounts
       summary: Add a subaccount
-      description: Adds a new subaccount on your master account.<strong> Note:</strong> This end-point is rate limited to 50 calls per hour.
+      description: 'Adds a new subaccount on your master account. Note: This end-point is rate limited to 50 calls per hour.'
       operationId: add-subaccount
       requestBody:
         content:
@@ -184,7 +184,7 @@ paths:
   /subaccount/close:
     post:
       tags:
-      - SUBACCOUNTS
+      - Subaccounts
       summary: Close a subaccount
       description: Changes the status of an Active subaccount to Closed
       operationId: close-a-subaccount
@@ -254,7 +254,7 @@ paths:
   /subaccount/edit:
     post:
       tags:
-      - SUBACCOUNTS
+      - Subaccounts
       summary: Update a subaccount
       description: Changes the details on an existing subaccount
       operationId: update-a-subaccount
@@ -404,7 +404,7 @@ paths:
   /subaccount/reopen:
     post:
       tags:
-      - SUBACCOUNTS
+      - Subaccounts
       summary: Reopen a closed subaccount
       description: Changes the status of a Closed subaccount back to Active
       operationId: reopen-a-closed-subaccount
@@ -485,7 +485,7 @@ paths:
   /subaccounts/search:
     post:
       tags:
-      - SUBACCOUNTS
+      - Subaccounts
       summary: View subaccounts
       description: Returns any subaccounts that match search criteria
       operationId: search-subaccounts

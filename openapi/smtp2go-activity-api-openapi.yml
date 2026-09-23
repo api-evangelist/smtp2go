@@ -27,15 +27,17 @@ servers:
 security:
 - sec0: []
 tags:
-- name: ACTIVITY
+- name: Activity
   description: Search account email and SMS activity events
 paths:
   /activity/search:
     post:
       tags:
-      - ACTIVITY
+      - Activity
       summary: Search activity
-      description: Returns events (such as opens, unsubscribes) which match the filters passed. A count of events matching the filter is also included, as this may surpass the maximum of 1,000 items included within the response.<br /><i>This endpoint is rate-limited to 60 requests per minute.</i>
+      description: 'Returns events (such as opens, unsubscribes) which match the filters passed. A count of events matching the filter is also included, as this may surpass the maximum of 1,000 items included within the response.
+
+        This endpoint is rate-limited to 60 requests per minute.'
       operationId: search-activity
       requestBody:
         content:

@@ -27,7 +27,7 @@ servers:
 security:
 - sec0: []
 tags:
-- name: IP Allow List
+- name: IP Allowlist
   description: Manage the account IP allow list for SMTP and API access
 paths:
   /ip_allow_list:
@@ -36,7 +36,7 @@ paths:
       operationId: ip-allowlist
       description: Enables/Disables an IP allow list.
       tags:
-      - IP Allow List
+      - IP Allowlist
       requestBody:
         content:
           application/json:
@@ -118,7 +118,7 @@ paths:
       operationId: add-ip-allowlist
       description: Adds an IP address to an allow list.
       tags:
-      - IP Allow List
+      - IP Allowlist
       requestBody:
         content:
           application/json:
@@ -206,7 +206,7 @@ paths:
       operationId: edit-ip-allowlist
       description: Edits an existing IP allow list.
       tags:
-      - IP Allow List
+      - IP Allowlist
       requestBody:
         content:
           application/json:
@@ -297,7 +297,7 @@ paths:
       operationId: remove-ip-allowlist
       description: Removes an IP address from an allow list.
       tags:
-      - IP Allow List
+      - IP Allowlist
       requestBody:
         content:
           application/json:
@@ -382,7 +382,7 @@ paths:
       operationId: view-ip-allowlist
       description: Retrieves a list of IP Addresses on the allow list along with the list's enabled status.
       tags:
-      - IP Allow List
+      - IP Allowlist
       requestBody:
         content:
           application/json:

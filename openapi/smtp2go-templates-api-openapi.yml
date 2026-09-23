@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: TEMPLATES
+- name: Templates
   description: Create and manage email templates
 paths:
   /template/add:
     post:
       tags:
-      - TEMPLATES
+      - Templates
       summary: Add an email template
       description: Adds a new email template that you can use to format your emails.
       operationId: add-an-email-template
@@ -160,7 +160,7 @@ paths:
   /template/delete:
     post:
       tags:
-      - TEMPLATES
+      - Templates
       summary: Remove an email template
       description: Deletes the specified email template.
       operationId: remove-an-email-template
@@ -227,7 +227,7 @@ paths:
   /template/edit:
     post:
       tags:
-      - TEMPLATES
+      - Templates
       summary: Update an email template
       description: Changes details of an existing email template.
       operationId: update-an-email-template
@@ -353,7 +353,7 @@ paths:
   /template/search:
     post:
       tags:
-      - TEMPLATES
+      - Templates
       summary: View email templates
       description: Search your collection of email templates. Returns any templates that match your search criteria.
       operationId: search-email-templates
@@ -483,7 +483,7 @@ paths:
   /template/view:
     post:
       tags:
-      - TEMPLATES
+      - Templates
       summary: View template details
       description: Returns details of the email template with the specified ID.
       operationId: view-template-details

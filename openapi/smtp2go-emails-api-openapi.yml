@@ -27,15 +27,14 @@ servers:
 security:
 - sec0: []
 tags:
-- name: EMAILS
+- name: Emails
   description: Send standard, MIME and batch email; manage scheduled sends
 paths:
   /email/batch:
     post:
       tags:
-      - EMAILS
+      - Emails
       summary: Send a batch of emails
-      description: Send a batch of emails
       operationId: send-email-batch
       requestBody:
         content:
@@ -242,7 +241,7 @@ paths:
   /email/mime:
     post:
       tags:
-      - EMAILS
+      - Emails
       summary: Send a MIME email
       description: Send an email by supplying a pre-encoded MIME string
       operationId: send-mime-email
@@ -344,7 +343,7 @@ paths:
   /email/scheduled/remove:
     post:
       tags:
-      - EMAILS
+      - Emails
       summary: Remove a scheduled email
       description: Removes a scheduled email by ID
       operationId: remove-scheduled-email
@@ -394,7 +393,7 @@ paths:
   /email/scheduled/search:
     post:
       tags:
-      - EMAILS
+      - Emails
       summary: Search schedule emails
       description: Allows searching of scheduled emails
       operationId: search-scheduled-emails
@@ -511,7 +510,7 @@ paths:
   /email/send:
     post:
       tags:
-      - EMAILS
+      - Emails
       summary: Send a standard email
       description: Send an email by passing a JSON email object
       operationId: send-standard-email

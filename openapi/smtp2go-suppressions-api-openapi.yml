@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: SUPPRESSIONS
+- name: Suppressions
   description: Add, view and remove suppressed addresses
 paths:
   /suppression/add:
     post:
       tags:
-      - SUPPRESSIONS
+      - Suppressions
       summary: Add a suppression
       description: Suppresses the specified email address or domain
       operationId: add-a-suppression
@@ -123,7 +123,7 @@ paths:
   /suppression/remove:
     post:
       tags:
-      - SUPPRESSIONS
+      - Suppressions
       summary: Remove a suppression
       description: Removes the suppression on the specified email address or domain
       operationId: remove-a-suppression
@@ -231,7 +231,7 @@ paths:
   /suppression/view:
     post:
       tags:
-      - SUPPRESSIONS
+      - Suppressions
       summary: View suppressions
       description: Returns your suppressed email addresses and domains
       operationId: view-suppressions

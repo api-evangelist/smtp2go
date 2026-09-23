@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: STATISTICS
+- name: Statistics
   description: Delivery, bounce, spam, unsubscribe and cycle statistics
 paths:
   /stats/email_bounces:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email bounces
       description: Retrieve a summary of bounces and rejects, for the last 30 days.
       operationId: email-bounces
@@ -129,7 +129,7 @@ paths:
   /stats/email_cycle:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email cycle
       description: Retrieve a summary of your Account activity, including the start and end date of your monthly plan, the number of emails sent this cycle, the number of emails remaining and the number of emails in your monthly allowance.
       operationId: email-cycle
@@ -214,7 +214,7 @@ paths:
   /stats/email_history:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email history
       description: Retrieve a summary of activity from a specified date range (defaults to last 30 days), per sender email address, SMTP username, domain or subaccount.
       operationId: email-history
@@ -430,7 +430,7 @@ paths:
   /stats/email_spam:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email spam
       description: Retrieve a summary of spam complaints and rejects, for the last 30 days.
       operationId: email-spam
@@ -520,7 +520,7 @@ paths:
   /stats/email_summary:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email summary
       description: Retrieve a combination of the email_bounces, email_cycle, email_spam, and email_unsubs calls in one report. Note this call may take longer to complete.
       operationId: email-summary
@@ -691,7 +691,7 @@ paths:
   /stats/email_unsubs:
     post:
       tags:
-      - STATISTICS
+      - Statistics
       summary: Email unsubscribes
       description: Retrieve a summary of unsubscribes and rejects, for the last 30 days.
       operationId: email-unsubscribes

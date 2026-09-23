@@ -428,7 +428,7 @@ paths:
       tags:
       - SENDER DOMAINS
       summary: Edit the return-path subdomain
-      description: A Return Path Subdomain is used to instruct the server where to return emails that are not deliverable (ie. Bounces).  This endpoint allows you to edit a Return Path Subdomain for a particular sender domain. Full details can be found in the Sender Domain Guide.
+      description: A Return Path Subdomain is used to instruct the server where to return emails that are not deliverable (ie. Bounces). This endpoint allows you to edit a Return Path Subdomain for a particular sender domain. Full details can be found in the Sender Domain Guide.
       operationId: edit-return-path-domain
       requestBody:
         content:

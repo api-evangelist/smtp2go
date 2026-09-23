@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: SMTP USERS
+- name: SMTP Users
   description: Manage SMTP relay usernames
 paths:
   /users/smtp/add:
     post:
       tags:
-      - SMTP USERS
+      - SMTP Users
       summary: Add an SMTP user
       description: Add a new SMTP user to your account. Full details of the available options for new user accounts can be found in the SMTP User Guide.
       operationId: add-an-smtp-user
@@ -244,7 +244,7 @@ paths:
   /users/smtp/edit:
     post:
       tags:
-      - SMTP USERS
+      - SMTP Users
       summary: Edit SMTP user details
       description: Update an SMTP user's details with the parameters passed. Full details of the available options for SMTP user accounts is found in the SMTP User Guide.
       operationId: edit-an-smtp-user
@@ -453,7 +453,7 @@ paths:
       deprecated: false
     patch:
       tags:
-      - SMTP USERS
+      - SMTP Users
       summary: Patch an SMTP user
       description: Patch an existing SMTP user ignoring missing properties
       operationId: patch-smtp-user
@@ -666,7 +666,7 @@ paths:
   /users/smtp/remove:
     post:
       tags:
-      - SMTP USERS
+      - SMTP Users
       summary: Remove an SMTP user
       description: Remove an SMTP user from your account
       operationId: remove-an-smtp-user
@@ -825,7 +825,7 @@ paths:
   /users/smtp/view:
     post:
       tags:
-      - SMTP USERS
+      - SMTP Users
       summary: View SMTP users
       description: Returns a list of all SMTP users that are managed by this account, or details of a specific user, when you include the [username] in your request. If no users are available, this will return an empty list.
       operationId: view-smtp-users

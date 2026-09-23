@@ -23,21 +23,32 @@
     "smtp2go-templates-api-openapi.yml",
     "smtp2go-webhooks-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "smtp2go-openapi-original.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "smtp2go-openapi-original.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: smtp2go-ip-allowlist-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 18 total)"
   ],
   "skipped": [
     "smtp2go-activity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-allowed-recipients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-allowed-senders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "smtp2go-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "smtp2go-email-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-dedicated-ips-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-email-archive-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-emails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-ip-allowlist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-ip-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-sender-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-single-sender-emails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-sms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-smtp-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "smtp2go-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "smtp2go-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-subaccounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-suppressions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "smtp2go-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",

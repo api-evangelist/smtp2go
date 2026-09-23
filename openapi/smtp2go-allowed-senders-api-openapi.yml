@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: ALLOWED SENDERS
+- name: Allowed Senders
   description: Manage the allowed/restricted senders list
 paths:
   /allowed_senders/add:
     post:
       tags:
-      - ALLOWED SENDERS
+      - Allowed Senders
       summary: Add allowed senders
       description: Add one or more email addresses and domain names to your Allowed or Restricted Senders List. How this list of email addresses and domain names are used is shown by the current 'mode' value; if the Restrict Senders setting is on, they will form either a whitelist or blacklist. If the setting is off, the list will be disabled. Further details of the associated setting are found in the SMTP2GO Guides. Details of how this mode can be set via the update end-point, are given further in the documentation. A post to this endpoint will return a success, even if the Restrict Senders setting is not in use.
       operationId: add-allowed-senders
@@ -128,9 +128,9 @@ paths:
   /allowed_senders/remove:
     post:
       tags:
-      - ALLOWED SENDERS
+      - Allowed Senders
       summary: Remove allowed senders
-      description: 'Remove one or more emails addresses or domain names stored in your Allowed or Restricted Senders List. <strong>Note: In the event that any of the email addresses or domains do not feature in the list, no error will be raised.</strong>'
+      description: 'Remove one or more emails addresses or domain names stored in your Allowed or Restricted Senders List. Note: In the event that any of the email addresses or domains do not feature in the list, no error will be raised.'
       operationId: remove-allowed-senders
       requestBody:
         content:
@@ -222,7 +222,7 @@ paths:
   /allowed_senders/update:
     post:
       tags:
-      - ALLOWED SENDERS
+      - Allowed Senders
       summary: Update allowed senders
       description: Replace the email addresses and domain names on your Allowed or Restricted Senders List using this endpoint. How the email addresses and domain names are used is defined in the current 'mode' value - further details of these modes are found in the SMPT2GO Guides. Note that a post to this endpoint will return a success, even if the setting is not in use.
       operationId: update-allowed-senders
@@ -327,7 +327,7 @@ paths:
   /allowed_senders/view:
     post:
       tags:
-      - ALLOWED SENDERS
+      - Allowed Senders
       summary: View allowed senders
       description: Returns the email addresses and domain names on your Allowed or Restricted Senders list, as well as the Restrict Senders setting, which dictates how they are interpreted.
       operationId: view-allowed-senders

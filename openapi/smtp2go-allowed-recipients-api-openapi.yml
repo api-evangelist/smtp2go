@@ -130,7 +130,7 @@ paths:
       tags:
       - ALLOWED RECIPIENTS
       summary: Remove allowed recipients
-      description: 'Remove one or more emails addresses or domain names stored in your Allowed Recipients List. <strong>Note: In the event that any of the email addresses or domains do not feature in the list, no error will be raised.</strong>'
+      description: 'Remove one or more emails addresses or domain names stored in your Allowed Recipients List. Note: In the event that any of the email addresses or domains do not feature in the list, no error will be raised.'
       operationId: remove-allowed-recipients
       requestBody:
         content:

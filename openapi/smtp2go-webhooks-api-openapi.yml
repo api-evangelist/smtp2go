@@ -27,13 +27,13 @@ servers:
 security:
 - sec0: []
 tags:
-- name: WEBHOOKS
+- name: Webhooks
   description: Create and manage event webhooks
 paths:
   /webhook/add:
     post:
       tags:
-      - WEBHOOKS
+      - Webhooks
       summary: Add a new Webhook
       description: Add a new webhook with the given configuration. Setup of webhooks can be done on the Settings > Webhooks page in your SMTP2GO control panel.
       operationId: add-webhook
@@ -183,7 +183,7 @@ paths:
   /webhook/edit:
     post:
       tags:
-      - WEBHOOKS
+      - Webhooks
       summary: Edit a specified Webhook
       description: Make changes to a specific webhook using its unique ID.
       operationId: edit-webhook
@@ -337,7 +337,7 @@ paths:
   /webhook/remove:
     post:
       tags:
-      - WEBHOOKS
+      - Webhooks
       summary: Remove a specified Webhook
       description: Remove a specific webhook using its unique ID.
       operationId: remove-webhook
@@ -454,7 +454,7 @@ paths:
   /webhook/view:
     post:
       tags:
-      - WEBHOOKS
+      - Webhooks
       summary: View Webhooks
       description: Returns information for configured webhooks.
       operationId: view-webhook

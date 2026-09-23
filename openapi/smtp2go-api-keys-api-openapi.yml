@@ -27,15 +27,17 @@ servers:
 security:
 - sec0: []
 tags:
-- name: API KEYS
+- name: API Keys
   description: Create, edit and inspect API keys and their endpoint permissions
 paths:
   /api_keys/add:
     post:
       tags:
-      - API KEYS
+      - API Keys
       summary: Add a new API key
-      description: Add a new API key to your account<br /><i>This endpoint is rate-limited to 5 requests per minute.</i>
+      description: 'Add a new API key to your account
+
+        This endpoint is rate-limited to 5 requests per minute.'
       operationId: add-api-key
       requestBody:
         content:
@@ -255,7 +257,7 @@ paths:
   /api_keys/edit:
     post:
       tags:
-      - API KEYS
+      - API Keys
       summary: Edit an API key
       description: Edit an existing API key
       operationId: edit-api-key
@@ -482,7 +484,7 @@ paths:
       deprecated: false
     patch:
       tags:
-      - API KEYS
+      - API Keys
       summary: Patch an API key
       description: Patch an existing API key ignoring missing properties
       operationId: patch-api-key
@@ -709,7 +711,7 @@ paths:
   /api_keys/permissions:
     post:
       tags:
-      - API KEYS
+      - API Keys
       summary: View Permissions
       description: Retrieve a list of endpoints this API Key can use. This endpoint is available to all API Keys.
       operationId: view-api-key-permissions
@@ -788,7 +790,7 @@ paths:
   /api_keys/remove:
     post:
       tags:
-      - API KEYS
+      - API Keys
       summary: Remove an API key
       description: Remove an existing API key
       operationId: remove-api-key
@@ -840,7 +842,7 @@ paths:
   /api_keys/view:
     post:
       tags:
-      - API KEYS
+      - API Keys
       summary: View API Keys
       description: Retrieve a list of API keys on this account
       operationId: view-api-keys
