@@ -122,3 +122,34 @@ plans:
       rate: custom
       unit: per 1000 additional emails
       note: Custom overage rates negotiated with sales team
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Starter
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Professional
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Premier
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
