@@ -1,0 +1,12 @@
+{
+ "url": "https://developers.smtp2go.com/openapi/schema.json",
+ "requested_url": "https://developers.smtp2go.com/openapi/schema.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 276602,
+ "sha256": "5156a40604f0a3593f6d0e8f41542f9b54f60236c7b843f18660db29f6ae4cb5",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.986), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
