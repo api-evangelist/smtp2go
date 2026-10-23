@@ -360,6 +360,8 @@ apis:
   - type: APIReference
     url: https://developers.smtp2go.com/reference/general-api-resources
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/smtp2go/overview
   - type: CapabilityMap
     url: capabilities/smtp2go-capability-edges.yml
     name: SMTP2GO Business Capability Map
