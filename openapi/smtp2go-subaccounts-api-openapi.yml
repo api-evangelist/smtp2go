@@ -629,3 +629,9 @@ components:
       in: header
       name: X-Smtp2go-Api-Key
       x-default: ${SMTP2GO_API_KEY}
+x-provenance:
+  method: harvested
+  publisher: SMTP2GO
+  source: https://developers.smtp2go.com/openapi/schema.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
