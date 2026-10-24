@@ -1,479 +1,699 @@
 {
+  "info": {
+    "_postman_id": "64dd2156-a330-4e2c-8768-b692563542d3",
+    "name": "SMTP2GO SMS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:03.000Z",
+    "updatedAt": "2026-10-22T02:08:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64dd2156-a330-4e2c-8768-b692563542d3"
+  },
   "item": [
     {
-      "id": "6fc716b7-6d49-4cec-b478-4249e885b9dd",
-      "name": "SMS",
-      "description": {
-        "content": "Send and receive SMS messages",
-        "type": "text/plain"
-      },
+      "name": "sms",
       "item": [
         {
-          "id": "98488b43-cb04-42ee-be27-76b3e99b7009",
-          "name": "Send SMS",
-          "request": {
-            "name": "Send SMS",
-            "description": {
-              "content": "Send an SMS message to one or more numbers, up to a maximum of 100 numbers",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sms",
-                "send"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"destination\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "send",
+          "item": [
             {
-              "id": "5383bd39-303e-4a07-a91e-633467b4ae77",
-              "name": "SMS sent successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sms",
-                    "send"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Send SMS",
+              "id": "52ee9a32-843d-4af0-a3f3-c1427ecae20f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"destination\": [\n    \"+12025550959\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
+                  "raw": "{\n  \"destination\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"total_sent\": 2065,\n    \"statuses\": {\n      \"queued\": 7257\n    },\n    \"messages\": [\n      {\n        \"destination\": \"string\",\n        \"message_id\": \"string\",\n        \"status\": \"queued\"\n      },\n      {\n        \"destination\": \"string\",\n        \"message_id\": \"string\",\n        \"status\": \"delivered\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "255a3c0f-c1fb-4873-9e3c-97ccc871f877",
-              "name": "Bad request",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "sms",
-                    "send"
-                  ],
+                  "raw": "{{baseUrl}}/sms/send",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "sms",
+                    "send"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"destination\": [\n    \"+12025550959\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Send an SMS message to one or more numbers, up to a maximum of 100 numbers."
               },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "66a8bb41-592f-41e5-90d7-14f6b2ca89d4",
+                  "name": "SMS Sent",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/send",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "send"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"statuses\": {\n      \"queued\": 0\n    },\n    \"total_sent\": 0,\n    \"messages\": [\n      {\n        \"destination\": \"<string>\",\n        \"message_id\": \"<string>\",\n        \"status\": \"queued\"\n      },\n      {\n        \"destination\": \"<string>\",\n        \"message_id\": \"<string>\",\n        \"status\": \"enroute\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-66a8bb41-592f-41e5-90d7-14f6b2ca89d4"
+                },
+                {
+                  "id": "482ed495-73dd-4677-b052-b1401d656be0",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"content\": \"<string>\",\n  \"sender\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/send",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "send"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-482ed495-73dd-4677-b052-b1401d656be0"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:03.000Z",
+              "updatedAt": "2026-10-22T02:08:03.000Z",
+              "uid": "35240-52ee9a32-843d-4af0-a3f3-c1427ecae20f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "211577ad-caac-4d6c-903e-3a709f8dc672",
+          "createdAt": "2026-10-22T02:08:03.000Z",
+          "updatedAt": "2026-10-22T02:08:03.000Z",
+          "uid": "35240-211577ad-caac-4d6c-903e-3a709f8dc672"
         },
         {
-          "id": "befcbf7c-ed09-4183-b913-dcf7e407e0a8",
-          "name": "SMS summary",
-          "request": {
-            "name": "SMS summary",
-            "description": {
-              "content": "Retrieve a summary of SMS messages within a certain time range",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sms",
-                "summary"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "summary",
+          "item": [
             {
-              "id": "d670b0bd-f8c3-4c39-ada7-82e635e816f2",
-              "name": "SMS summary",
-              "originalRequest": {
+              "name": "SMS Summary",
+              "id": "49ff80a3-c730-4fee-9d7c-573a5521a5c1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/sms/summary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "sms",
                     "summary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Retrieve a summary of SMS messages within a certain time range."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "771f760c-4207-42f1-9aa4-4c9a2d3f44c4",
+                  "name": "Summary of SMS activity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"total_messages\": \"<integer>\",\n    \"total_units\": \"<integer>\",\n    \"total_cost\": \"<number>\"\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-771f760c-4207-42f1-9aa4-4c9a2d3f44c4"
+                },
+                {
+                  "id": "50caa6f4-1b3a-4614-b3e1-8d83d83ff914",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "summary"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-50caa6f4-1b3a-4614-b3e1-8d83d83ff914"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:03.000Z",
+              "updatedAt": "2026-10-22T02:08:03.000Z",
+              "uid": "35240-49ff80a3-c730-4fee-9d7c-573a5521a5c1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "da5bbcf2-7b95-4bce-af76-43cad2b3c69d",
+          "createdAt": "2026-10-22T02:08:03.000Z",
+          "updatedAt": "2026-10-22T02:08:03.000Z",
+          "uid": "35240-da5bbcf2-7b95-4bce-af76-43cad2b3c69d"
         },
         {
-          "id": "00b5fb06-a690-4dc9-aae7-41696db49a34",
-          "name": "View sent SMS",
-          "request": {
-            "name": "View sent SMS",
-            "description": {
-              "content": "View sent SMS messages",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sms",
-                "view"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "view-received",
+          "item": [
             {
-              "id": "6314470e-a4d2-46d9-b103-8444ebe52c04",
-              "name": "Sent SMS messages",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sms",
-                    "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "View received SMS",
+              "id": "fd0a5d42-0628-40c7-9ddb-6f19a41c97cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
+                  "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"unix_start\": \"<integer>\",\n  \"unix_end\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sms/view-received",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "view-received"
+                  ]
+                },
+                "description": "View received SMS messages."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "08432b98-2bbb-4df1-8b90-23f42c5d211f",
+                  "name": "SMS Messages",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"unix_start\": \"<integer>\",\n  \"unix_end\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/view-received",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "view-received"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"messages\": [\n      {\n        \"source_address\": \"<string>\",\n        \"destination_address\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"content\": \"<string>\",\n        \"message_id\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      {\n        \"source_address\": \"<string>\",\n        \"destination_address\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"content\": \"<string>\",\n        \"message_id\": \"<string>\",\n        \"username\": \"<string>\"\n      }\n    ],\n    \"request_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-08432b98-2bbb-4df1-8b90-23f42c5d211f"
+                },
+                {
+                  "id": "9503bc1d-758b-4976-b6e3-30c2ebfa9ae7",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"unix_start\": \"<integer>\",\n  \"unix_end\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/view-received",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "view-received"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-9503bc1d-758b-4976-b6e3-30c2ebfa9ae7"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:03.000Z",
+              "updatedAt": "2026-10-22T02:08:03.000Z",
+              "uid": "35240-fd0a5d42-0628-40c7-9ddb-6f19a41c97cf"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6d46d780-fc3c-491d-a2e9-0c924af7dad0",
+          "createdAt": "2026-10-22T02:08:03.000Z",
+          "updatedAt": "2026-10-22T02:08:03.000Z",
+          "uid": "35240-6d46d780-fc3c-491d-a2e9-0c924af7dad0"
         },
         {
-          "id": "7634c8a8-4f67-4481-acb4-59c53bf96da8",
-          "name": "View received SMS",
-          "request": {
-            "name": "View received SMS",
-            "description": {
-              "content": "View received SMS messages",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sms",
-                "inbox"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "view-sent",
+          "item": [
             {
-              "id": "5507438b-f5be-42ce-ab68-0f697b3be331",
-              "name": "Received SMS messages",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sms",
-                    "inbox"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "View sent SMS",
+              "id": "fc1b8fdc-863d-4bab-a804-76d925d061a1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
+                  "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sms/view-sent",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "view-sent"
+                  ]
+                },
+                "description": "View sent SMS messages."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "430afc75-9388-40a8-ab5d-483312ed4235",
+                  "name": "SMS Messages",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/view-sent",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "view-sent"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"messages\": [\n      {\n        \"id\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"username\": \"<string>\",\n        \"sender\": \"<string>\",\n        \"sender_email\": \"<string>\",\n        \"destination_address\": \"<string>\",\n        \"destination_address_county\": \"<string>\",\n        \"format\": \"<string>\",\n        \"status\": \"<string>\",\n        \"content\": \"<string>\",\n        \"units\": \"<integer>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"username\": \"<string>\",\n        \"sender\": \"<string>\",\n        \"sender_email\": \"<string>\",\n        \"destination_address\": \"<string>\",\n        \"destination_address_county\": \"<string>\",\n        \"format\": \"<string>\",\n        \"status\": \"<string>\",\n        \"content\": \"<string>\",\n        \"units\": \"<integer>\"\n      }\n    ],\n    \"request_id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-430afc75-9388-40a8-ab5d-483312ed4235"
+                },
+                {
+                  "id": "8854a419-f159-4542-8981-d8ad9570e1e2",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/view-sent",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "view-sent"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:03.000Z",
+                  "updatedAt": "2026-10-22T02:08:03.000Z",
+                  "uid": "35240-8854a419-f159-4542-8981-d8ad9570e1e2"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:03.000Z",
+              "updatedAt": "2026-10-22T02:08:03.000Z",
+              "uid": "35240-fc1b8fdc-863d-4bab-a804-76d925d061a1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "63bba3a0-7815-4d52-bc19-af03e0ad7ff0",
+          "createdAt": "2026-10-22T02:08:03.000Z",
+          "updatedAt": "2026-10-22T02:08:03.000Z",
+          "uid": "35240-63bba3a0-7815-4d52-bc19-af03e0ad7ff0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "e10e4319-f78d-4b0e-b8dc-c5bf078ad084",
+      "createdAt": "2026-10-22T02:08:03.000Z",
+      "updatedAt": "2026-10-22T02:08:03.000Z",
+      "uid": "35240-e10e4319-f78d-4b0e-b8dc-c5bf078ad084"
     }
   ],
   "auth": {
@@ -481,25 +701,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2f340aa1-66ad-4801-8bcd-2a03bb808faa",
-    "name": "SMTP2GO Email Activity SMS API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

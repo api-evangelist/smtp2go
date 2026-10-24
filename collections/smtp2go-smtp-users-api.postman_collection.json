@@ -1,644 +1,883 @@
 {
+  "info": {
+    "_postman_id": "d1420277-e89b-40ec-96fa-30e6abcc6f56",
+    "name": "SMTP2GO SMTP USERS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:08.000Z",
+    "updatedAt": "2026-10-22T02:08:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d1420277-e89b-40ec-96fa-30e6abcc6f56"
+  },
   "item": [
     {
-      "id": "dee3be3b-f114-4168-bfa0-29fa0b9070aa",
-      "name": "SMTP Users",
-      "description": {
-        "content": "SMTP user account management",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "601c0427-350b-48eb-ae41-e25e82d9dfe5",
-          "name": "Add an SMTP user",
-          "request": {
-            "name": "Add an SMTP user",
-            "description": {
-              "content": "Add a new SMTP user to your account",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "smtp",
-                "add"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "smtp",
+          "item": [
             {
-              "id": "d10024d6-33f1-4094-b0c2-779957a653b0",
-              "name": "SMTP user added",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "add",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Add an SMTP user",
+                  "id": "fb99b9d2-11a4-44b2-968e-e5513cd2496e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"default\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"allowed\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/smtp/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "smtp",
+                        "add"
+                      ]
+                    },
+                    "description": "Add a new SMTP user to your account. Full details of the available options for new user accounts can be found in the SMTP User Guide."
+                  },
+                  "response": [
+                    {
+                      "id": "71d5c059-b821-44e5-bc5a-b8d3ce0359bd",
+                      "name": "SMTP User added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"default\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"allowed\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/add",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "add"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      },\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-71d5c059-b821-44e5-bc5a-b8d3ce0359bd"
+                    },
+                    {
+                      "id": "daaa09f8-c5ac-495a-8e19-c92ccd6b716a",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"default\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"allowed\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/add",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "add"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-daaa09f8-c5ac-495a-8e19-c92ccd6b716a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:08:09.000Z",
+                  "updatedAt": "2026-10-22T02:08:09.000Z",
+                  "uid": "35240-fb99b9d2-11a4-44b2-968e-e5513cd2496e"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "1978249b-3ca5-4dfb-b9f9-204bfda15a26",
+              "createdAt": "2026-10-22T02:08:09.000Z",
+              "updatedAt": "2026-10-22T02:08:09.000Z",
+              "uid": "35240-1978249b-3ca5-4dfb-b9f9-204bfda15a26"
             },
             {
-              "id": "50016e79-681e-45a3-ad09-f5494031938a",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "name": "edit",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Edit SMTP user details",
+                  "id": "556a7622-2372-452e-bdf3-e007332f2246",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": false,\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"<string>\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/smtp/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "smtp",
+                        "edit"
+                      ]
+                    },
+                    "description": "Update an SMTP user's details with the parameters passed. Full details of the available options for SMTP user accounts is found in the SMTP User Guide."
+                  },
+                  "response": [
+                    {
+                      "id": "cd59dff7-95f1-4ee6-9230-89d51be100e3",
+                      "name": "SMTP User edited",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": false,\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"<string>\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/edit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "edit"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      },\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-cd59dff7-95f1-4ee6-9230-89d51be100e3"
+                    },
+                    {
+                      "id": "fa1a694d-df12-4420-b20f-09426f08018c",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": false,\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": \"<boolean>\",\n  \"feedback_domain\": \"<string>\",\n  \"feedback_html\": \"<string>\",\n  \"feedback_text\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"<string>\",\n  \"status\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/edit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "edit"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-fa1a694d-df12-4420-b20f-09426f08018c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:08:09.000Z",
+                  "updatedAt": "2026-10-22T02:08:09.000Z",
+                  "uid": "35240-556a7622-2372-452e-bdf3-e007332f2246"
+                },
+                {
+                  "name": "Patch an SMTP user",
+                  "id": "41dedf64-2672-485b-a47a-d719fab4f5ca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/smtp/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "smtp",
+                        "edit"
+                      ]
+                    },
+                    "description": "Patch an existing SMTP user ignoring missing properties"
+                  },
+                  "response": [
+                    {
+                      "id": "f93b1492-79ab-47df-bb9c-f165456f837a",
+                      "name": "Successfully patched SMTP user",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/edit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "edit"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\"\n      }\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\"\n      }\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-f93b1492-79ab-47df-bb9c-f165456f837a"
+                    },
+                    {
+                      "id": "d33ada0e-cae7-44d1-bbf4-a6d94c087f5e",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/edit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "edit"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-d33ada0e-cae7-44d1-bbf4-a6d94c087f5e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:08:09.000Z",
+                  "updatedAt": "2026-10-22T02:08:09.000Z",
+                  "uid": "35240-41dedf64-2672-485b-a47a-d719fab4f5ca"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "5ee16b96-bbf4-4937-9372-b4558eacece4",
+              "createdAt": "2026-10-22T02:08:09.000Z",
+              "updatedAt": "2026-10-22T02:08:09.000Z",
+              "uid": "35240-5ee16b96-bbf4-4937-9372-b4558eacece4"
+            },
+            {
+              "name": "remove",
+              "item": [
+                {
+                  "name": "Remove an SMTP user",
+                  "id": "68d47061-5812-4063-86bc-6d3f3fa89ef8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/smtp/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "smtp",
+                        "remove"
+                      ]
+                    },
+                    "description": "Remove an SMTP user from your account"
+                  },
+                  "response": [
+                    {
+                      "id": "0db11c8e-a888-4b15-8cf0-49faa9e1ab82",
+                      "name": "SMTP User removed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/remove",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "remove"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      },\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-0db11c8e-a888-4b15-8cf0-49faa9e1ab82"
+                    },
+                    {
+                      "id": "b5ed86c5-3dc8-476a-8fbb-b0533be0c443",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/remove",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "remove"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-b5ed86c5-3dc8-476a-8fbb-b0533be0c443"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:08:09.000Z",
+                  "updatedAt": "2026-10-22T02:08:09.000Z",
+                  "uid": "35240-68d47061-5812-4063-86bc-6d3f3fa89ef8"
+                }
+              ],
+              "id": "6fa78aa0-ed99-4cdd-84a2-d7f64042403f",
+              "createdAt": "2026-10-22T02:08:09.000Z",
+              "updatedAt": "2026-10-22T02:08:09.000Z",
+              "uid": "35240-6fa78aa0-ed99-4cdd-84a2-d7f64042403f"
+            },
+            {
+              "name": "view",
+              "item": [
+                {
+                  "name": "View SMTP users",
+                  "id": "b327bb6e-c29d-46be-8adf-5c11b12e389f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/smtp/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "smtp",
+                        "view"
+                      ]
+                    },
+                    "description": "Returns a list of all SMTP users that are managed by this account, or details of a specific user, when you include the [username] in your request. If no users are available, this will return an empty list."
+                  },
+                  "response": [
+                    {
+                      "id": "19cded13-dfcd-4905-839d-287a708b1559",
+                      "name": "List of SMTP Users",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/view",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "view"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      },\n      {\n        \"username\": \"<string>\",\n        \"sending_allowed\": true,\n        \"custom_ratelimit\": true,\n        \"comments\": \"<string>\",\n        \"email_password\": \"<string>\",\n        \"custom_ratelimit_value\": 0,\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"feedback_enabled\": \"<boolean>\",\n        \"feedback_domain\": \"<string>\",\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"archive_enabled\": \"<boolean>\",\n        \"open_tracking_enabled\": \"<boolean>\",\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-19cded13-dfcd-4905-839d-287a708b1559"
+                    },
+                    {
+                      "id": "48da9890-e7e1-48a9-9d5c-0a8fbf9917db",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Smtp2go-Api-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/smtp/view",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "smtp",
+                            "view"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:08:09.000Z",
+                      "updatedAt": "2026-10-22T02:08:09.000Z",
+                      "uid": "35240-48da9890-e7e1-48a9-9d5c-0a8fbf9917db"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:08:09.000Z",
+                  "updatedAt": "2026-10-22T02:08:09.000Z",
+                  "uid": "35240-b327bb6e-c29d-46be-8adf-5c11b12e389f"
+                }
+              ],
+              "id": "84632ec5-f0b2-478c-a288-284d9da8ecb8",
+              "createdAt": "2026-10-22T02:08:09.000Z",
+              "updatedAt": "2026-10-22T02:08:09.000Z",
+              "uid": "35240-84632ec5-f0b2-478c-a288-284d9da8ecb8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9b310eb1-0b66-489b-bb97-c7d3bda4b084",
-          "name": "Edit SMTP user details",
-          "request": {
-            "name": "Edit SMTP user details",
-            "description": {
-              "content": "Update an SMTP user's details with the parameters passed",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "smtp",
-                "edit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "afb63594-d0d7-46b6-b7ec-95124a19579c",
-              "name": "SMTP user updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "edit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "42883a05-9699-4116-8c65-cedfe66deda1",
-          "name": "Patch an SMTP user",
-          "request": {
-            "name": "Patch an SMTP user",
-            "description": {
-              "content": "Patch an existing SMTP user ignoring missing properties",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "smtp",
-                "patch"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a8d8f75f-ea70-463d-bcc6-5d1bebc11b77",
-              "name": "SMTP user patched",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "patch"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"email_password\": \"<string>\",\n  \"sending_allowed\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"bounce_notifications\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b8750885-a863-4fbc-8801-ad7af5ae06d7",
-          "name": "Remove an SMTP user",
-          "request": {
-            "name": "Remove an SMTP user",
-            "description": {
-              "content": "Remove an SMTP user from your account",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "smtp",
-                "delete"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "81ca217a-dc31-4bad-876a-fcf7e8413ea7",
-              "name": "SMTP user removed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "delete"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dbb8dbf7-5193-4f89-b007-8152cb3b0405",
-          "name": "View SMTP users",
-          "request": {
-            "name": "View SMTP users",
-            "description": {
-              "content": "Returns a list of all SMTP users managed by this account, or details of a specific user when you include the username",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "smtp",
-                "view"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "72dce937-d6af-41fc-8a60-61405d3e250e",
-              "name": "SMTP users list",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"results\": [\n      {\n        \"username\": \"string\",\n        \"email_password\": \"string\",\n        \"sending_allowed\": false,\n        \"custom_ratelimit\": true,\n        \"custom_ratelimit_value\": 8819,\n        \"custom_ratelimit_period\": \"string\",\n        \"description\": \"string\",\n        \"feedback_enabled\": false,\n        \"archive_enabled\": false,\n        \"open_tracking_enabled\": true,\n        \"bounce_notifications\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"username\": \"string\",\n        \"email_password\": \"string\",\n        \"sending_allowed\": false,\n        \"custom_ratelimit\": true,\n        \"custom_ratelimit_value\": 5263,\n        \"custom_ratelimit_period\": \"string\",\n        \"description\": \"string\",\n        \"feedback_enabled\": false,\n        \"archive_enabled\": false,\n        \"open_tracking_enabled\": true,\n        \"bounce_notifications\": \"string\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "aa7ed9f9-fe77-45a9-bdf8-b8adee393a16",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "smtp",
-                    "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "87a6a423-61b2-4700-ad63-5b1964e95978",
+          "createdAt": "2026-10-22T02:08:09.000Z",
+          "updatedAt": "2026-10-22T02:08:09.000Z",
+          "uid": "35240-87a6a423-61b2-4700-ad63-5b1964e95978"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "f9b7c99d-c71c-484c-be00-d654e20a884f",
+      "createdAt": "2026-10-22T02:08:09.000Z",
+      "updatedAt": "2026-10-22T02:08:09.000Z",
+      "uid": "35240-f9b7c99d-c71c-484c-be00-d654e20a884f"
     }
   ],
   "auth": {
@@ -646,25 +885,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2e3d8fe8-bf84-46c8-878a-c5d611c4e4af",
-    "name": "SMTP2GO Email Activity SMTP Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

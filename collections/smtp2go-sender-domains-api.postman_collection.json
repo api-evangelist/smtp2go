@@ -1,0 +1,1232 @@
+{
+  "info": {
+    "_postman_id": "a467c3f3-28d6-4f8f-8ab2-b937d6222e2d",
+    "name": "SMTP2GO SENDER DOMAINS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:20.000Z",
+    "updatedAt": "2026-10-22T02:09:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a467c3f3-28d6-4f8f-8ab2-b937d6222e2d"
+  },
+  "item": [
+    {
+      "name": "domain",
+      "item": [
+        {
+          "name": "add",
+          "item": [
+            {
+              "name": "Add a sender domain",
+              "id": "86daf640-72e7-4806-b412-622c06e03950",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"tracking_subdomain\": \"<string>\",\n  \"returnpath_subdomain\": \"<string>\",\n  \"auto_verify\": true,\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\",\n  \"subaccount_access\": {\n    \"subaccounts\": \"<array>\",\n    \"future_subaccounts\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "add"
+                  ]
+                },
+                "description": "Add a sender domain to your account. Note that you must own any domains you wish to include in this list, as you will be required to verify and authenticate the emails sent via that domain. Find full details in the Sender Domains Guide."
+              },
+              "response": [
+                {
+                  "id": "a6916f1f-1003-475e-bcd9-ba94e26bd4a5",
+                  "name": "Domain added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"tracking_subdomain\": \"<string>\",\n  \"returnpath_subdomain\": \"<string>\",\n  \"auto_verify\": true,\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\",\n  \"subaccount_access\": {\n    \"subaccounts\": \"<array>\",\n    \"future_subaccounts\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"setup_link\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"setup_link\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-a6916f1f-1003-475e-bcd9-ba94e26bd4a5"
+                },
+                {
+                  "id": "d12a4a3d-4118-4400-8f9b-f8627bb6fea8",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"tracking_subdomain\": \"<string>\",\n  \"returnpath_subdomain\": \"<string>\",\n  \"auto_verify\": true,\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\",\n  \"subaccount_access\": {\n    \"subaccounts\": \"<array>\",\n    \"future_subaccounts\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-d12a4a3d-4118-4400-8f9b-f8627bb6fea8"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-86daf640-72e7-4806-b412-622c06e03950"
+            }
+          ],
+          "id": "cd97e41b-8c7b-4871-9c31-3f66384a915d",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-cd97e41b-8c7b-4871-9c31-3f66384a915d"
+        },
+        {
+          "name": "remove",
+          "item": [
+            {
+              "name": "Remove a sender domain",
+              "id": "1d2f767a-8dc5-4f31-a274-27abf2798c3b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/remove",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "remove"
+                  ]
+                },
+                "description": "Remove a sender domain from your account"
+              },
+              "response": [
+                {
+                  "id": "947d352a-528d-4711-b003-c86587aea0f5",
+                  "name": "Sender domain removed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-947d352a-528d-4711-b003-c86587aea0f5"
+                },
+                {
+                  "id": "24f7d220-c6ad-43dd-960a-75a959884ced",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-24f7d220-c6ad-43dd-960a-75a959884ced"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-1d2f767a-8dc5-4f31-a274-27abf2798c3b"
+            }
+          ],
+          "id": "20e06856-29e2-4675-ac43-ecd8c9c16900",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-20e06856-29e2-4675-ac43-ecd8c9c16900"
+        },
+        {
+          "name": "returnpath",
+          "item": [
+            {
+              "name": "Edit the return-path subdomain",
+              "id": "e387114d-f1da-4f57-a9cd-5be682fc6293",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"old_subdomain\": \"returns\",\n  \"new_subdomain\": \"return\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/returnpath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "returnpath"
+                  ]
+                },
+                "description": "A Return Path Subdomain is used to instruct the server where to return emails that are not deliverable (ie. Bounces). This endpoint allows you to edit a Return Path Subdomain for a particular sender domain. Full details can be found in the Sender Domain Guide."
+              },
+              "response": [
+                {
+                  "id": "ab5e24b5-8e85-4946-93f1-02987b25b6cc",
+                  "name": "Return-path subdomain edited",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"old_subdomain\": \"returns\",\n  \"new_subdomain\": \"return\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/returnpath",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "returnpath"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-ab5e24b5-8e85-4946-93f1-02987b25b6cc"
+                },
+                {
+                  "id": "27cdebdf-6cf0-4851-b5b4-a51e5000c50e",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"old_subdomain\": \"returns\",\n  \"new_subdomain\": \"return\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/returnpath",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "returnpath"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-27cdebdf-6cf0-4851-b5b4-a51e5000c50e"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-e387114d-f1da-4f57-a9cd-5be682fc6293"
+            }
+          ],
+          "id": "07fa02cc-3abf-4858-b7ac-fdd55f69c218",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-07fa02cc-3abf-4858-b7ac-fdd55f69c218"
+        },
+        {
+          "name": "subaccount_access",
+          "item": [
+            {
+              "name": "Edit subaccount access",
+              "id": "d2893efe-ef93-4c6c-8756-8a071b49f64f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccounts\": \"<array>\",\n  \"future_subaccounts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/subaccount_access",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "subaccount_access"
+                  ]
+                },
+                "description": "Allow subaccounts to send from verified sender domains on the master account."
+              },
+              "response": [
+                {
+                  "id": "c8a48860-7545-47c1-b260-8e784803bfb1",
+                  "name": "Subaccount access updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccounts\": \"<array>\",\n  \"future_subaccounts\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/subaccount_access",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "subaccount_access"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"domain\": \"<string>\",\n  \"subaccounts\": \"<array>\",\n  \"future_subaccounts\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-c8a48860-7545-47c1-b260-8e784803bfb1"
+                },
+                {
+                  "id": "e636cbde-b121-438e-9386-11f8930124f8",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccounts\": \"<array>\",\n  \"future_subaccounts\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/subaccount_access",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "subaccount_access"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-e636cbde-b121-438e-9386-11f8930124f8"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-d2893efe-ef93-4c6c-8756-8a071b49f64f"
+            }
+          ],
+          "id": "ddc48116-66ce-4dc0-9b31-573dd40fdeba",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-ddc48116-66ce-4dc0-9b31-573dd40fdeba"
+        },
+        {
+          "name": "tracking",
+          "item": [
+            {
+              "name": "Edit the tracking subdomain",
+              "id": "63ae5e99-6ebb-44b7-b0ad-18224acdc1d5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": null,\n  \"old_subdomain\": \"track\",\n  \"new_subdomain\": \"link\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/tracking",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "tracking"
+                  ]
+                },
+                "description": "A Tracking Subdomain is used to monitor your email opens and clicks. This endpoint allows you to edit a tracking subdomain for a particular sender domain. Full details can be found in the Sender Domain Guide."
+              },
+              "response": [
+                {
+                  "id": "0858207b-a7ab-4683-9464-6d46cb2084ae",
+                  "name": "Tracking subdomain edited",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": null,\n  \"old_subdomain\": \"track\",\n  \"new_subdomain\": \"link\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/tracking",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "tracking"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-0858207b-a7ab-4683-9464-6d46cb2084ae"
+                },
+                {
+                  "id": "00e01b2f-b642-47ca-bc7b-578255eed986",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": null,\n  \"old_subdomain\": \"track\",\n  \"new_subdomain\": \"link\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/tracking",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "tracking"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-00e01b2f-b642-47ca-bc7b-578255eed986"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-63ae5e99-6ebb-44b7-b0ad-18224acdc1d5"
+            }
+          ],
+          "id": "4a76b11b-9859-46d8-8ca3-f76bc76e7265",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-4a76b11b-9859-46d8-8ca3-f76bc76e7265"
+        },
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "Verify a sender domain",
+              "id": "e2a9c8a0-4bf9-4362-847c-a3cbd5a5a00d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/verify",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "verify"
+                  ]
+                },
+                "description": "Verify a sender domain on your account removing the need to wait for the periodic verification every 7 minutes."
+              },
+              "response": [
+                {
+                  "id": "9d30ea84-da1f-445c-a436-b73ae8e7dbab",
+                  "name": "Sender domain verification",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"setup_link\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"setup_link\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-9d30ea84-da1f-445c-a436-b73ae8e7dbab"
+                },
+                {
+                  "id": "fc0a196d-b5d6-416e-89b6-81ed3945ea4d",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"requisition_ssl\": true,\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-fc0a196d-b5d6-416e-89b6-81ed3945ea4d"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-e2a9c8a0-4bf9-4362-847c-a3cbd5a5a00d"
+            }
+          ],
+          "id": "bc51a593-29ea-4b1a-8452-47a1c7b58089",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-bc51a593-29ea-4b1a-8452-47a1c7b58089"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View sender domains",
+              "id": "2f7a79e4-0ee5-4ed3-b374-921e4951ca64",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/domain/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domain",
+                    "view"
+                  ]
+                },
+                "description": "Returns a list of sender domains on your account"
+              },
+              "response": [
+                {
+                  "id": "69fc0796-470e-436a-8ba8-407f2ef45bb7",
+                  "name": "List of sender domains",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"domains\": [\n      {\n        \"from_master\": \"<boolean>\",\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true,\n          \"setup_link\": \"<string>\"\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      },\n      {\n        \"from_master\": \"<boolean>\",\n        \"domain\": {\n          \"dkim_value\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"rpath_status\": \"<string>\",\n          \"rpath_value\": \"<string>\",\n          \"dkim_status\": \"<string>\",\n          \"subdomain\": {},\n          \"fulldomain\": \"<string>\",\n          \"dkim_selector\": \"<string>\",\n          \"rpath_selector\": \"<string>\",\n          \"rpath_verified\": true,\n          \"dkim_verified\": true,\n          \"setup_link\": \"<string>\"\n        },\n        \"trackers\": [\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          },\n          {\n            \"cname_value\": \"<string>\",\n            \"cname_status\": \"<string>\",\n            \"cname_verified\": true,\n            \"domain\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"subdomain\": \"<string>\",\n            \"enabled\": true,\n            \"fulldomain\": \"<string>\"\n          }\n        ],\n        \"subaccount_access\": {\n          \"subaccounts\": \"<array>\",\n          \"future_subaccounts\": false\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-69fc0796-470e-436a-8ba8-407f2ef45bb7"
+                },
+                {
+                  "id": "fa8ed29d-8939-47bf-a0f8-bfd9e3398f03",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domain/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domain",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:20.000Z",
+                  "updatedAt": "2026-10-22T02:09:20.000Z",
+                  "uid": "35240-fa8ed29d-8939-47bf-a0f8-bfd9e3398f03"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:20.000Z",
+              "updatedAt": "2026-10-22T02:09:20.000Z",
+              "uid": "35240-2f7a79e4-0ee5-4ed3-b374-921e4951ca64"
+            }
+          ],
+          "id": "bc8e38f7-bc1e-496b-b8d8-7fc6b4b2c8c2",
+          "createdAt": "2026-10-22T02:09:20.000Z",
+          "updatedAt": "2026-10-22T02:09:20.000Z",
+          "uid": "35240-bc8e38f7-bc1e-496b-b8d8-7fc6b4b2c8c2"
+        }
+      ],
+      "id": "0ba0cc10-cb9d-487b-8ae6-79740b3a4905",
+      "createdAt": "2026-10-22T02:09:20.000Z",
+      "updatedAt": "2026-10-22T02:09:20.000Z",
+      "uid": "35240-0ba0cc10-cb9d-487b-8ae6-79740b3a4905"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
+    }
+  ]
+}

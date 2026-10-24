@@ -1,0 +1,387 @@
+{
+  "info": {
+    "_postman_id": "7a90854f-869a-485f-9a5f-ee918d609ac0",
+    "name": "SMTP2GO EMAIL ARCHIVE API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:57.000Z",
+    "updatedAt": "2026-10-22T02:08:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7a90854f-869a-485f-9a5f-ee918d609ac0"
+  },
+  "item": [
+    {
+      "name": "archive",
+      "item": [
+        {
+          "name": "email",
+          "item": [
+            {
+              "name": "View an archived email",
+              "id": "2d457b28-241d-4cb2-92c4-d3366eade6d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/archive/email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "archive",
+                    "email"
+                  ]
+                },
+                "description": "Fetch an archived email using the email_id"
+              },
+              "response": [
+                {
+                  "id": "6cc3b73a-0617-4bf8-b5a5-361ffc0a8d70",
+                  "name": "Archived email",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/archive/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "archive",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"attachment_count\": 0,\n    \"attachments\": \"<array>\",\n    \"byte_count\": 0,\n    \"email_id\": \"<string>\",\n    \"envelope_from\": \"<string>\",\n    \"headers\": \"<string>\",\n    \"recipient\": \"<string>\",\n    \"sender\": \"<string>\",\n    \"sent\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"to\": \"<string>\",\n    \"url\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:57.000Z",
+                  "updatedAt": "2026-10-22T02:08:57.000Z",
+                  "uid": "35240-6cc3b73a-0617-4bf8-b5a5-361ffc0a8d70"
+                },
+                {
+                  "id": "6dd5bc03-ee66-47b7-bbe3-880d198382f5",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/archive/email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "archive",
+                        "email"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:57.000Z",
+                  "updatedAt": "2026-10-22T02:08:57.000Z",
+                  "uid": "35240-6dd5bc03-ee66-47b7-bbe3-880d198382f5"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:57.000Z",
+              "updatedAt": "2026-10-22T02:08:57.000Z",
+              "uid": "35240-2d457b28-241d-4cb2-92c4-d3366eade6d1"
+            }
+          ],
+          "id": "71f397c5-60fd-47c2-a946-2f30ee7ca66b",
+          "createdAt": "2026-10-22T02:08:57.000Z",
+          "updatedAt": "2026-10-22T02:08:57.000Z",
+          "uid": "35240-71f397c5-60fd-47c2-a946-2f30ee7ca66b"
+        },
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Search archived content",
+              "id": "12b41486-227b-43b1-9db7-c4afa3926ecd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"envelope_from\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"headers\": \"<string>\",\n  \"continue_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/archive/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "archive",
+                    "search"
+                  ]
+                },
+                "description": "Retrieve a list of up to 5,000 archived emails matching the supplied parameters."
+              },
+              "response": [
+                {
+                  "id": "16f03050-00d8-4afc-bf00-ac58d80986d7",
+                  "name": "List of archived emails",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"envelope_from\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"headers\": \"<string>\",\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/archive/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "archive",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"email_count\": 0,\n    \"emails\": [\n      {\n        \"attachment_count\": 0,\n        \"attachments\": \"<array>\",\n        \"byte_count\": 0,\n        \"email_id\": \"<string>\",\n        \"envelope_from\": \"<string>\",\n        \"headers\": \"<string>\",\n        \"recipient\": \"<string>\",\n        \"sender\": \"<string>\",\n        \"sent\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"to\": \"<string>\",\n        \"url\": \"<string>\",\n        \"username\": \"<string>\"\n      },\n      {\n        \"attachment_count\": 0,\n        \"attachments\": \"<array>\",\n        \"byte_count\": 0,\n        \"email_id\": \"<string>\",\n        \"envelope_from\": \"<string>\",\n        \"headers\": \"<string>\",\n        \"recipient\": \"<string>\",\n        \"sender\": \"<string>\",\n        \"sent\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"to\": \"<string>\",\n        \"url\": \"<string>\",\n        \"username\": \"<string>\"\n      }\n    ]\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:57.000Z",
+                  "updatedAt": "2026-10-22T02:08:57.000Z",
+                  "uid": "35240-16f03050-00d8-4afc-bf00-ac58d80986d7"
+                },
+                {
+                  "id": "89f1e178-4aaf-4634-8910-4bd9eb8e95c0",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"recipient\": \"<string>\",\n  \"sender\": \"<string>\",\n  \"envelope_from\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"headers\": \"<string>\",\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/archive/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "archive",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:57.000Z",
+                  "updatedAt": "2026-10-22T02:08:57.000Z",
+                  "uid": "35240-89f1e178-4aaf-4634-8910-4bd9eb8e95c0"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:57.000Z",
+              "updatedAt": "2026-10-22T02:08:57.000Z",
+              "uid": "35240-12b41486-227b-43b1-9db7-c4afa3926ecd"
+            }
+          ],
+          "id": "f07adf1c-de2d-443e-91f4-7f7f52f0c592",
+          "createdAt": "2026-10-22T02:08:57.000Z",
+          "updatedAt": "2026-10-22T02:08:57.000Z",
+          "uid": "35240-f07adf1c-de2d-443e-91f4-7f7f52f0c592"
+        }
+      ],
+      "id": "d4d19249-d82a-4fb6-bc7e-068f127f1335",
+      "createdAt": "2026-10-22T02:08:57.000Z",
+      "updatedAt": "2026-10-22T02:08:57.000Z",
+      "uid": "35240-d4d19249-d82a-4fb6-bc7e-068f127f1335"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
+    }
+  ]
+}

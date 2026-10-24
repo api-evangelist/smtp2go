@@ -1,580 +1,868 @@
 {
+  "info": {
+    "_postman_id": "74836fbf-da1a-489e-ac34-5b9bbe23f034",
+    "name": "SMTP2GO TEMPLATES API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:25.000Z",
+    "updatedAt": "2026-10-22T02:08:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-74836fbf-da1a-489e-ac34-5b9bbe23f034"
+  },
   "item": [
     {
-      "id": "b2fd358b-9cd3-4bb4-9cad-6dcee61ff4ec",
-      "name": "Templates",
-      "description": {
-        "content": "Email template management",
-        "type": "text/plain"
-      },
+      "name": "template",
       "item": [
         {
-          "id": "8deff20a-1da0-4e8f-bc2c-0ecf805713f8",
-          "name": "Add an email template",
-          "request": {
-            "name": "Add an email template",
-            "description": {
-              "content": "Adds a new email template that you can use to format your emails",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "template",
-                "add"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "add",
+          "item": [
             {
-              "id": "c15cdeac-af61-462b-99bf-c95d50cad39b",
-              "name": "Email template added",
-              "originalRequest": {
+              "name": "Add an email template",
+              "id": "b4de8a3e-ac25-404c-9ab5-50d496979666",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/template/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "template",
                     "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Adds a new email template that you can use to format your emails."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "40300443-f04d-4dd0-8adb-3c02c177d760",
+                  "name": "Template added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"id\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"template_name\": \"<string>\",\n    \"last_updated\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-40300443-f04d-4dd0-8adb-3c02c177d760"
+                },
+                {
+                  "id": "7c7e2e55-3c0d-4873-a2ef-9db8a6dbfa62",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-7c7e2e55-3c0d-4873-a2ef-9db8a6dbfa62"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"id\": \"string\",\n    \"template_name\": \"string\",\n    \"subject\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"last_updated\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "86c8c19e-405d-4f83-943b-ec029d9ccdba",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "template",
-                    "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:26.000Z",
+              "updatedAt": "2026-10-22T02:08:26.000Z",
+              "uid": "35240-b4de8a3e-ac25-404c-9ab5-50d496979666"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "73e8d17f-ffec-4898-a1b9-f6a31e8f2f4e",
+          "createdAt": "2026-10-22T02:08:26.000Z",
+          "updatedAt": "2026-10-22T02:08:26.000Z",
+          "uid": "35240-73e8d17f-ffec-4898-a1b9-f6a31e8f2f4e"
         },
         {
-          "id": "28a07c68-3575-4225-aa98-57fc72e1cdf1",
-          "name": "Update an email template",
-          "request": {
-            "name": "Update an email template",
-            "description": {
-              "content": "Changes details of an existing email template",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "template",
-                "edit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "delete",
+          "item": [
             {
-              "id": "083b61ab-a51d-4f21-b84f-a63c2426a61b",
-              "name": "Template updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "template",
-                    "edit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Remove an email template",
+              "id": "29bee42a-4efd-4702-a6a1-e629b274d3a7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"template_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "raw": "{\n  \"id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"id\": \"string\",\n    \"template_name\": \"string\",\n    \"subject\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"last_updated\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ee8e2b43-f740-47f8-9dc9-de6ba9776ea1",
-          "name": "Remove an email template",
-          "request": {
-            "name": "Remove an email template",
-            "description": {
-              "content": "Deletes the specified email template",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "template",
-                "delete"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d847aea2-04ab-41f9-9dcc-dfe807d97f81",
-              "name": "Template removed",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/template/delete",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "template",
                     "delete"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Deletes the specified email template."
+              },
+              "response": [
+                {
+                  "id": "78f63156-1d4f-4b33-a22f-b163128f9c80",
+                  "name": "Template removed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/delete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "delete"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-78f63156-1d4f-4b33-a22f-b163128f9c80"
+                },
+                {
+                  "id": "742a343b-5ef9-415e-b582-8f8cc9379cc4",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/delete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "delete"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-742a343b-5ef9-415e-b582-8f8cc9379cc4"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:26.000Z",
+              "updatedAt": "2026-10-22T02:08:26.000Z",
+              "uid": "35240-29bee42a-4efd-4702-a6a1-e629b274d3a7"
+            }
+          ],
+          "id": "c23fe289-78b4-40f7-aa77-0262f64bd43f",
+          "createdAt": "2026-10-22T02:08:26.000Z",
+          "updatedAt": "2026-10-22T02:08:26.000Z",
+          "uid": "35240-c23fe289-78b4-40f7-aa77-0262f64bd43f"
+        },
+        {
+          "name": "edit",
+          "item": [
+            {
+              "name": "Update an email template",
+              "id": "6bf4fc2c-4926-4447-886a-2f7df9adad75",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"template_id\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"new_id\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/template/edit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "template",
+                    "edit"
+                  ]
+                },
+                "description": "Changes details of an existing email template."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9a23ebb4-6604-45c0-9256-40f323f894cf",
+                  "name": "Template updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"new_id\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"id\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"template_name\": \"<string>\",\n    \"last_updated\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-9a23ebb4-6604-45c0-9256-40f323f894cf"
+                },
+                {
+                  "id": "714229e4-bfc9-4ba2-a30f-07d5174cf803",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"new_id\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"html_body\": \"<string>\",\n  \"text_body\": \"<string>\",\n  \"template_variables\": {},\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-714229e4-bfc9-4ba2-a30f-07d5174cf803"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:26.000Z",
+              "updatedAt": "2026-10-22T02:08:26.000Z",
+              "uid": "35240-6bf4fc2c-4926-4447-886a-2f7df9adad75"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "771fcc29-19ce-49c4-a312-70982d26b349",
+          "createdAt": "2026-10-22T02:08:26.000Z",
+          "updatedAt": "2026-10-22T02:08:26.000Z",
+          "uid": "35240-771fcc29-19ce-49c4-a312-70982d26b349"
         },
         {
-          "id": "dcdd4057-b4c8-427f-913d-3eb80df59826",
-          "name": "View email templates",
-          "request": {
-            "name": "View email templates",
-            "description": {
-              "content": "Search your collection of email templates",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "template",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template_name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "search",
+          "item": [
             {
-              "id": "6c8e7969-5022-40da-b538-9f53feda5d10",
-              "name": "Templates list",
-              "originalRequest": {
+              "name": "View email templates",
+              "id": "accbac68-95f2-4d4d-9f35-15625d1c7166",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fuzzy_search\": \"<boolean>\",\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_direction\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"continue_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/template/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "template",
                     "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Search your collection of email templates. Returns any templates that match your search criteria."
+              },
+              "response": [
+                {
+                  "id": "a07ee6d9-dd22-4e21-b374-54a085c0cdb8",
+                  "name": "Matching templates",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fuzzy_search\": \"<boolean>\",\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_direction\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"continue_token\": {},\n    \"templates\": [\n      {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"template_name\": \"<string>\",\n        \"last_updated\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\",\n        \"template_name\": \"<string>\",\n        \"last_updated\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-a07ee6d9-dd22-4e21-b374-54a085c0cdb8"
+                },
+                {
+                  "id": "ab8ca709-0d2c-4ce4-891d-4276c54127f5",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fuzzy_search\": \"<boolean>\",\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_direction\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-ab8ca709-0d2c-4ce4-891d-4276c54127f5"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:26.000Z",
+              "updatedAt": "2026-10-22T02:08:26.000Z",
+              "uid": "35240-accbac68-95f2-4d4d-9f35-15625d1c7166"
+            }
+          ],
+          "id": "df010e46-b44d-436b-bd6a-0e82f4f152b8",
+          "createdAt": "2026-10-22T02:08:26.000Z",
+          "updatedAt": "2026-10-22T02:08:26.000Z",
+          "uid": "35240-df010e46-b44d-436b-bd6a-0e82f4f152b8"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View template details",
+              "id": "0a17cd63-4eb0-4129-9369-abca94605b46",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"template_name\": \"<string>\",\n  \"template_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "raw": "{\n  \"id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "eba02338-688c-4409-8e5d-e8f78fc57bdb",
-          "name": "View template details",
-          "request": {
-            "name": "View template details",
-            "description": {
-              "content": "Returns details of the email template with the specified ID",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "template",
-                "view"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"template_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "049fac8c-2961-4a1d-9a23-d44f1ace27a7",
-              "name": "Template details",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/template/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "template",
                     "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"template_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Returns details of the email template with the specified ID."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "6b010414-ffbe-459e-a7f3-baa67378f106",
+                  "name": "Details of a template",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"html_body\": \"<string>\",\n    \"id\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"template_variables\": {},\n    \"text_body\": \"<string>\",\n    \"last_updated\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-6b010414-ffbe-459e-a7f3-baa67378f106"
+                },
+                {
+                  "id": "635a222e-d968-4d40-9157-b19de2a51e74",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/template/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "template",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:26.000Z",
+                  "updatedAt": "2026-10-22T02:08:26.000Z",
+                  "uid": "35240-635a222e-d968-4d40-9157-b19de2a51e74"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"id\": \"string\",\n    \"template_name\": \"string\",\n    \"subject\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"last_updated\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:26.000Z",
+              "updatedAt": "2026-10-22T02:08:26.000Z",
+              "uid": "35240-0a17cd63-4eb0-4129-9369-abca94605b46"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "7874f7ab-3105-4ce0-915c-dec11b5b5f12",
+          "createdAt": "2026-10-22T02:08:26.000Z",
+          "updatedAt": "2026-10-22T02:08:26.000Z",
+          "uid": "35240-7874f7ab-3105-4ce0-915c-dec11b5b5f12"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "78143c94-e464-4a09-80b3-656c4742a525",
+      "createdAt": "2026-10-22T02:08:26.000Z",
+      "updatedAt": "2026-10-22T02:08:26.000Z",
+      "uid": "35240-78143c94-e464-4a09-80b3-656c4742a525"
     }
   ],
   "auth": {
@@ -582,25 +870,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ab74d305-0fbe-4940-b054-ed0741f82f2f",
-    "name": "SMTP2GO Email Activity Templates API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

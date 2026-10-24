@@ -1,479 +1,699 @@
 {
+  "info": {
+    "_postman_id": "542b4e62-5140-4c47-8b2d-d1e663f8c6d1",
+    "name": "SMTP2GO WEBHOOKS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:31.000Z",
+    "updatedAt": "2026-10-22T02:08:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-542b4e62-5140-4c47-8b2d-d1e663f8c6d1"
+  },
   "item": [
     {
-      "id": "41edcb2d-5a86-4799-ad9b-2781199b570f",
-      "name": "Webhooks",
-      "description": {
-        "content": "Webhook configuration",
-        "type": "text/plain"
-      },
+      "name": "webhook",
       "item": [
         {
-          "id": "716a525b-7a7f-4b63-b88d-49e65161fa72",
-          "name": "Add a new Webhook",
-          "request": {
-            "name": "Add a new Webhook",
-            "description": {
-              "content": "Add a new webhook with the given configuration",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhook",
-                "add"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<integer>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "add",
+          "item": [
             {
-              "id": "5ea04737-dae0-4677-a198-0d06609cc2e6",
-              "name": "Webhook added",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhook",
-                    "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Add a new Webhook",
+              "id": "f50661b1-82cc-4891-8be9-af56abf2bc7d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<integer>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"url\": \"string\",\n    \"id\": 8146,\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sms_events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"usernames\": [\n      \"string\",\n      \"string\"\n    ],\n    \"output_format\": \"string\",\n    \"auth_header_type\": \"string\",\n    \"auth_header_value\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2813c5fa-984c-40e6-ad39-8891584b6722",
-              "name": "Bad request",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "webhook",
-                    "add"
-                  ],
+                  "raw": "{{baseUrl}}/webhook/add",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "webhook",
+                    "add"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<integer>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Add a new webhook with the given configuration. Setup of webhooks can be done on the Settings > Webhooks page in your SMTP2GO control panel."
               },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "8b3b0174-aa65-4fae-af4b-ae800279cdbc",
+                  "name": "Webhook added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"url\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sms_events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output_format\": \"form\",\n    \"auth_header_type\": \"\",\n    \"auth_header_value\": \"\"\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-8b3b0174-aa65-4fae-af4b-ae800279cdbc"
+                },
+                {
+                  "id": "79650a0a-1b4b-423f-b0e9-e1357b151643",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-79650a0a-1b4b-423f-b0e9-e1357b151643"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"error\": \"string\",\n    \"error_code\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:32.000Z",
+              "updatedAt": "2026-10-22T02:08:32.000Z",
+              "uid": "35240-f50661b1-82cc-4891-8be9-af56abf2bc7d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "22541ac8-835e-48d9-86a1-18d61b78a98a",
+          "createdAt": "2026-10-22T02:08:32.000Z",
+          "updatedAt": "2026-10-22T02:08:32.000Z",
+          "uid": "35240-22541ac8-835e-48d9-86a1-18d61b78a98a"
         },
         {
-          "id": "b7f76637-4e11-422b-a6bd-9953cd27a0fb",
-          "name": "Edit a specified Webhook",
-          "request": {
-            "name": "Edit a specified Webhook",
-            "description": {
-              "content": "Make changes to a specific webhook using its unique ID",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhook",
-                "edit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<integer>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "edit",
+          "item": [
             {
-              "id": "85909c1a-75fb-48d2-b5a1-f41c543a1852",
-              "name": "Webhook updated",
-              "originalRequest": {
+              "name": "Edit a specified Webhook",
+              "id": "8efd8193-dc1b-428e-8946-4c536c96d5cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/webhook/edit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "webhook",
                     "edit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Make changes to a specific webhook using its unique ID."
+              },
+              "response": [
+                {
+                  "id": "1fdca02e-bf66-47aa-8f55-340185f670fd",
+                  "name": "Webhook updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"url\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sms_events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output_format\": \"form\",\n    \"auth_header_type\": \"\",\n    \"auth_header_value\": \"\"\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-1fdca02e-bf66-47aa-8f55-340185f670fd"
+                },
+                {
+                  "id": "1ebc48a6-81ab-4627-b04e-85435402ff54",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"url\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"subaccount_id\": \"<string>\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-1ebc48a6-81ab-4627-b04e-85435402ff54"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:32.000Z",
+              "updatedAt": "2026-10-22T02:08:32.000Z",
+              "uid": "35240-8efd8193-dc1b-428e-8946-4c536c96d5cb"
+            }
+          ],
+          "id": "647911ef-6a2d-4e77-8b36-b01bb89e600f",
+          "createdAt": "2026-10-22T02:08:32.000Z",
+          "updatedAt": "2026-10-22T02:08:32.000Z",
+          "uid": "35240-647911ef-6a2d-4e77-8b36-b01bb89e600f"
+        },
+        {
+          "name": "remove",
+          "item": [
+            {
+              "name": "Remove a specified Webhook",
+              "id": "df5a0b04-2048-4465-92e9-f49cde7cca38",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<integer>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sms_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"headers\": [\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"header\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"output_format\": \"form\",\n  \"auth_header_type\": \"\",\n  \"auth_header_value\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"url\": \"string\",\n    \"id\": 254,\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sms_events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"usernames\": [\n      \"string\",\n      \"string\"\n    ],\n    \"output_format\": \"string\",\n    \"auth_header_type\": \"string\",\n    \"auth_header_value\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6c354caa-87e5-4144-9bc8-db94a302108a",
-          "name": "Remove a specified Webhook",
-          "request": {
-            "name": "Remove a specified Webhook",
-            "description": {
-              "content": "Remove a specific webhook using its unique ID",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhook",
-                "delete"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f5df4827-1cf4-4ba9-8814-56557794e6cd",
-              "name": "Webhook removed",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/webhook/remove",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "webhook",
-                    "delete"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                    "remove"
+                  ]
                 },
+                "description": "Remove a specific webhook using its unique ID."
+              },
+              "response": [
+                {
+                  "id": "1634bfcc-124a-4368-af54-9d2db87382f1",
+                  "name": "Webhook removed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"url\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sms_events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output_format\": \"form\",\n    \"auth_header_type\": \"\",\n    \"auth_header_value\": \"\"\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-1634bfcc-124a-4368-af54-9d2db87382f1"
+                },
+                {
+                  "id": "1267fd1a-f15b-4278-affa-b6ce7c805b0d",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-1267fd1a-f15b-4278-affa-b6ce7c805b0d"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:32.000Z",
+              "updatedAt": "2026-10-22T02:08:32.000Z",
+              "uid": "35240-df5a0b04-2048-4465-92e9-f49cde7cca38"
+            }
+          ],
+          "id": "9bacc7ac-41b5-4af8-a2da-d04d39a33000",
+          "createdAt": "2026-10-22T02:08:32.000Z",
+          "updatedAt": "2026-10-22T02:08:32.000Z",
+          "uid": "35240-9bacc7ac-41b5-4af8-a2da-d04d39a33000"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View Webhooks",
+              "id": "3d5a8812-ca99-4952-b312-f97c40f1e5d6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"id\": \"<integer>\"\n}",
+                  "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": 6984\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2e924fa8-a16e-4759-9ead-b77ea15cb1cc",
-          "name": "View Webhooks",
-          "request": {
-            "name": "View Webhooks",
-            "description": {
-              "content": "Returns information for configured webhooks",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhook",
-                "view"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "90b2e489-9bcc-4a65-ae92-a74738a14944",
-              "name": "Webhooks list",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/webhook/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "webhook",
                     "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Returns information for configured webhooks."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "4a3c6c83-a5e6-4588-922e-0fd4ffe0194d",
+                  "name": "Returned webhook information",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"url\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sms_events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output_format\": \"form\",\n    \"auth_header_type\": \"\",\n    \"auth_header_value\": \"\"\n  },\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-4a3c6c83-a5e6-4588-922e-0fd4ffe0194d"
+                },
+                {
+                  "id": "778a58e4-9974-46c6-b585-29018893a3ef",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:32.000Z",
+                  "updatedAt": "2026-10-22T02:08:32.000Z",
+                  "uid": "35240-778a58e4-9974-46c6-b585-29018893a3ef"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": 6984\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:32.000Z",
+              "updatedAt": "2026-10-22T02:08:32.000Z",
+              "uid": "35240-3d5a8812-ca99-4952-b312-f97c40f1e5d6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e25b096d-9b19-4df2-9199-5df58f1e151a",
+          "createdAt": "2026-10-22T02:08:32.000Z",
+          "updatedAt": "2026-10-22T02:08:32.000Z",
+          "uid": "35240-e25b096d-9b19-4df2-9199-5df58f1e151a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "bcd5db0d-81dd-4635-90c2-cd46857b1418",
+      "createdAt": "2026-10-22T02:08:32.000Z",
+      "updatedAt": "2026-10-22T02:08:32.000Z",
+      "uid": "35240-bcd5db0d-81dd-4635-90c2-cd46857b1418"
     }
   ],
   "auth": {
@@ -481,25 +701,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "be173773-953d-402b-9d4c-2f49d5794312",
-    "name": "SMTP2GO Email Activity Webhooks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

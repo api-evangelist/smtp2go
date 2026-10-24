@@ -1,0 +1,556 @@
+{
+  "info": {
+    "_postman_id": "a18041df-9e8b-4517-a7c6-c7fea93d4b8c",
+    "name": "SMTP2GO SINGLE SENDER EMAILS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:25.000Z",
+    "updatedAt": "2026-10-22T02:09:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a18041df-9e8b-4517-a7c6-c7fea93d4b8c"
+  },
+  "item": [
+    {
+      "name": "single_sender_emails",
+      "item": [
+        {
+          "name": "add",
+          "item": [
+            {
+              "name": "Add a single sender email",
+              "id": "678c5c61-aeed-49db-ab40-17df85263604",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"message\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/single_sender_emails/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "single_sender_emails",
+                    "add"
+                  ]
+                },
+                "description": "Use the API to add a single sender email address to your account, to use from which to send mail. If the email address has previously been added and not yet verified, this action will simply resend the verification email."
+              },
+              "response": [
+                {
+                  "id": "baf70957-15f4-4a40-b823-d1920952d267",
+                  "name": "Single sender email added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"message\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-baf70957-15f4-4a40-b823-d1920952d267"
+                },
+                {
+                  "id": "e4a62a49-741f-4199-86cc-25c1db7049fb",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"message\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-e4a62a49-741f-4199-86cc-25c1db7049fb"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:26.000Z",
+              "updatedAt": "2026-10-22T02:09:26.000Z",
+              "uid": "35240-678c5c61-aeed-49db-ab40-17df85263604"
+            }
+          ],
+          "id": "28fb4ca7-4efe-48bb-9100-473bbeafab1e",
+          "createdAt": "2026-10-22T02:09:26.000Z",
+          "updatedAt": "2026-10-22T02:09:26.000Z",
+          "uid": "35240-28fb4ca7-4efe-48bb-9100-473bbeafab1e"
+        },
+        {
+          "name": "remove",
+          "item": [
+            {
+              "name": "Remove a single sender email",
+              "id": "455302a5-5adc-47de-b0b6-e293685cecc4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/single_sender_emails/remove",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "single_sender_emails",
+                    "remove"
+                  ]
+                },
+                "description": "Remove a single sender email address from your account. Include the address to remove as the email_address parameter."
+              },
+              "response": [
+                {
+                  "id": "c10e7348-45aa-446f-8540-d4714fb1e4c7",
+                  "name": "Single sender email removed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-c10e7348-45aa-446f-8540-d4714fb1e4c7"
+                },
+                {
+                  "id": "4778f4c0-91e3-40c1-bc96-bd23c37443b1",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"send@example.com\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-4778f4c0-91e3-40c1-bc96-bd23c37443b1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:26.000Z",
+              "updatedAt": "2026-10-22T02:09:26.000Z",
+              "uid": "35240-455302a5-5adc-47de-b0b6-e293685cecc4"
+            }
+          ],
+          "id": "1b3de7fe-3b41-4442-a720-3bb29e6ed7fa",
+          "createdAt": "2026-10-22T02:09:26.000Z",
+          "updatedAt": "2026-10-22T02:09:26.000Z",
+          "uid": "35240-1b3de7fe-3b41-4442-a720-3bb29e6ed7fa"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View single sender emails",
+              "id": "4500496e-0f21-44e5-9ef7-473c3e1b7f73",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/single_sender_emails/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "single_sender_emails",
+                    "view"
+                  ]
+                },
+                "description": "Returns a list of single sender email addresses on your account, along with their verification status. If you include a email_address, the response will only include items matching this search."
+              },
+              "response": [
+                {
+                  "id": "3359b5b0-b1fd-40cc-93eb-c4f0fdc1b411",
+                  "name": "List of single sender emails",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"request_id\": \"<string>\",\n    \"senders\": [\n      {\n        \"email_address\": \"<string>\",\n        \"verified\": true\n      },\n      {\n        \"email_address\": \"<string>\",\n        \"verified\": true\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-3359b5b0-b1fd-40cc-93eb-c4f0fdc1b411"
+                },
+                {
+                  "id": "0ae74cd7-9b05-46ba-b3a6-24eae14716a4",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email_address\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/single_sender_emails/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "single_sender_emails",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:26.000Z",
+                  "updatedAt": "2026-10-22T02:09:26.000Z",
+                  "uid": "35240-0ae74cd7-9b05-46ba-b3a6-24eae14716a4"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:26.000Z",
+              "updatedAt": "2026-10-22T02:09:26.000Z",
+              "uid": "35240-4500496e-0f21-44e5-9ef7-473c3e1b7f73"
+            }
+          ],
+          "id": "cef06d16-cd8f-4dab-97f4-e41c76244ce1",
+          "createdAt": "2026-10-22T02:09:26.000Z",
+          "updatedAt": "2026-10-22T02:09:26.000Z",
+          "uid": "35240-cef06d16-cd8f-4dab-97f4-e41c76244ce1"
+        }
+      ],
+      "id": "0a230aff-aee2-41e7-a79e-6b0fd6f4e543",
+      "createdAt": "2026-10-22T02:09:26.000Z",
+      "updatedAt": "2026-10-22T02:09:26.000Z",
+      "uid": "35240-0a230aff-aee2-41e7-a79e-6b0fd6f4e543"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
+    }
+  ]
+}

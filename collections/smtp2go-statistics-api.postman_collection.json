@@ -1,0 +1,1021 @@
+{
+  "info": {
+    "_postman_id": "0f009fe4-5a5a-4317-81b0-097f09f0984e",
+    "name": "SMTP2GO STATISTICS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:09:33.000Z",
+    "updatedAt": "2026-10-22T02:09:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f009fe4-5a5a-4317-81b0-097f09f0984e"
+  },
+  "item": [
+    {
+      "name": "stats",
+      "item": [
+        {
+          "name": "email_bounces",
+          "item": [
+            {
+              "name": "Email bounces",
+              "id": "1b359342-8bdb-4b61-9bdb-fadac991826a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_bounces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_bounces"
+                  ]
+                },
+                "description": "Retrieve a summary of bounces and rejects, for the last 30 days."
+              },
+              "response": [
+                {
+                  "id": "71b66564-fe32-4ad7-886f-941afba46180",
+                  "name": "Bounce report",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_bounces",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_bounces"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"emails\": 0,\n    \"hardbounces\": 0,\n    \"bounce_percent\": \"<string>\",\n    \"softbounces\": 0,\n    \"rejects\": 0\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-71b66564-fe32-4ad7-886f-941afba46180"
+                },
+                {
+                  "id": "729c6bbc-e2c1-4c80-86a1-6d908f19a60f",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_bounces",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_bounces"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-729c6bbc-e2c1-4c80-86a1-6d908f19a60f"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-1b359342-8bdb-4b61-9bdb-fadac991826a"
+            }
+          ],
+          "id": "2566f602-81cd-48b2-9b4b-a5830c837bbc",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-2566f602-81cd-48b2-9b4b-a5830c837bbc"
+        },
+        {
+          "name": "email_cycle",
+          "item": [
+            {
+              "name": "Email cycle",
+              "id": "f99a7105-3d93-40ed-88db-6fad8c57f6fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_cycle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_cycle"
+                  ]
+                },
+                "description": "Retrieve a summary of your Account activity, including the start and end date of your monthly plan, the number of emails sent this cycle, the number of emails remaining and the number of emails in your monthly allowance."
+              },
+              "response": [
+                {
+                  "id": "090534ee-6565-438e-8692-798acfe4489e",
+                  "name": "Summary of Account",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_cycle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_cycle"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"cycle_end\": \"<string>\",\n    \"cycle_used\": 0,\n    \"cycle_start\": \"<string>\",\n    \"cycle_max\": 0,\n    \"cycle_remaining\": 0\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-090534ee-6565-438e-8692-798acfe4489e"
+                },
+                {
+                  "id": "e5df0539-504d-418d-9dd1-9278f2a236c1",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_cycle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_cycle"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-e5df0539-504d-418d-9dd1-9278f2a236c1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-f99a7105-3d93-40ed-88db-6fad8c57f6fb"
+            }
+          ],
+          "id": "0d6bc4eb-1882-407f-a467-cb26c9c939ec",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-0d6bc4eb-1882-407f-a467-cb26c9c939ec"
+        },
+        {
+          "name": "email_history",
+          "item": [
+            {
+              "name": "Email history",
+              "id": "f9c20851-6036-4609-8b9f-50e7291ba894",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_by\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"subaccounts\": \"<array>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_history",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_history"
+                  ]
+                },
+                "description": "Retrieve a summary of activity from a specified date range (defaults to last 30 days), per sender email address, SMTP username, domain or subaccount."
+              },
+              "response": [
+                {
+                  "id": "0d19f6bf-f604-4b3a-bba4-302e30e9ecd5",
+                  "name": "Summary of Account",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"group_by\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"subaccounts\": \"<array>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_history"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"count\": 0,\n    \"history\": [\n      {\n        \"lastip\": \"<string>\",\n        \"used\": 0,\n        \"bytecount\": 0,\n        \"avgsize\": 0,\n        \"subaccount\": \"<string>\",\n        \"domain\": \"<string>\",\n        \"domain_verified\": \"<boolean>\",\n        \"email_address\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"bounces\": 0,\n        \"clicks\": 0,\n        \"opens\": 0,\n        \"rejects\": 0,\n        \"spam\": 0,\n        \"unsubscribes\": 0,\n        \"bounce_percent\": 0,\n        \"open_percent\": 0,\n        \"reject_percent\": 0,\n        \"spam_percent\": 0,\n        \"unsubscribe_percent\": 0\n      },\n      {\n        \"lastip\": \"<string>\",\n        \"used\": 0,\n        \"bytecount\": 0,\n        \"avgsize\": 0,\n        \"subaccount\": \"<string>\",\n        \"domain\": \"<string>\",\n        \"domain_verified\": \"<boolean>\",\n        \"email_address\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"bounces\": 0,\n        \"clicks\": 0,\n        \"opens\": 0,\n        \"rejects\": 0,\n        \"spam\": 0,\n        \"unsubscribes\": 0,\n        \"bounce_percent\": 0,\n        \"open_percent\": 0,\n        \"reject_percent\": 0,\n        \"spam_percent\": 0,\n        \"unsubscribe_percent\": 0\n      }\n    ],\n    \"bounce_percent_total\": 0,\n    \"open_percent_total\": 0,\n    \"reject_percent_total\": 0,\n    \"spam_percent_total\": 0,\n    \"unsubscribe_percent_total\": 0\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-0d19f6bf-f604-4b3a-bba4-302e30e9ecd5"
+                },
+                {
+                  "id": "855ba3fc-bb98-4482-9fc9-0e4f85e63c7d",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"group_by\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"subaccounts\": \"<array>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_history"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-855ba3fc-bb98-4482-9fc9-0e4f85e63c7d"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-f9c20851-6036-4609-8b9f-50e7291ba894"
+            }
+          ],
+          "id": "4e91bb43-14d4-40d2-bc43-39d5575943f1",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-4e91bb43-14d4-40d2-bc43-39d5575943f1"
+        },
+        {
+          "name": "email_spam",
+          "item": [
+            {
+              "name": "Email spam",
+              "id": "8f6eb183-8de9-4b92-b81e-129e4ba43f68",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_spam",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_spam"
+                  ]
+                },
+                "description": "Retrieve a summary of spam complaints and rejects, for the last 30 days."
+              },
+              "response": [
+                {
+                  "id": "55f5848b-6cfb-43d5-88f6-0c81c507aa03",
+                  "name": "Spam report",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_spam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_spam"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"spam_percent\": \"<string>\",\n    \"emails\": 0,\n    \"spams\": 0,\n    \"rejects\": 0\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-55f5848b-6cfb-43d5-88f6-0c81c507aa03"
+                },
+                {
+                  "id": "b80dfacc-f0b5-469a-9803-3952ebeda888",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_spam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_spam"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-b80dfacc-f0b5-469a-9803-3952ebeda888"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-8f6eb183-8de9-4b92-b81e-129e4ba43f68"
+            }
+          ],
+          "id": "204d048b-b451-4837-90bf-21d064af942a",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-204d048b-b451-4837-90bf-21d064af942a"
+        },
+        {
+          "name": "email_summary",
+          "item": [
+            {
+              "name": "Email summary",
+              "id": "5e3e1b9f-d7a3-46e2-9de9-ca9852f59f06",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_summary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_summary"
+                  ]
+                },
+                "description": "Retrieve a combination of the email_bounces, email_cycle, email_spam, and email_unsubs calls in one report. Note this call may take longer to complete."
+              },
+              "response": [
+                {
+                  "id": "8c8ad487-a27e-4c58-ab4c-33e7b4ddfc70",
+                  "name": "Account Statistics",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_summary"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"cycle_end\": \"<string>\",\n    \"spam_rejects\": 0,\n    \"bounce_percent\": \"<string>\",\n    \"unsubscribes\": 0,\n    \"bounce_rejects\": 0,\n    \"spam_percent\": \"<string>\",\n    \"softbounces\": 0,\n    \"cycle_max\": 0,\n    \"spam_emails\": 0,\n    \"cycle_remaining\": 0,\n    \"cycle_start\": \"<string>\",\n    \"unsubscribe_percent\": \"<string>\",\n    \"cycle_used\": 0,\n    \"hardbounces\": 0,\n    \"email_count\": 0,\n    \"opens\": 0,\n    \"clicks\": 0,\n    \"rejects\": 0\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-8c8ad487-a27e-4c58-ab4c-33e7b4ddfc70"
+                },
+                {
+                  "id": "46149f09-8831-472f-8a0f-81ca5fd5e723",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_summary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_summary"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-46149f09-8831-472f-8a0f-81ca5fd5e723"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-5e3e1b9f-d7a3-46e2-9de9-ca9852f59f06"
+            }
+          ],
+          "id": "81124699-1d4d-41c7-9ee4-2855e8a3612e",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-81124699-1d4d-41c7-9ee4-2855e8a3612e"
+        },
+        {
+          "name": "email_unsubs",
+          "item": [
+            {
+              "name": "Email unsubscribes",
+              "id": "522ba06a-f9f4-45cf-9aa1-921549659b83",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats/email_unsubs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats",
+                    "email_unsubs"
+                  ]
+                },
+                "description": "Retrieve a summary of unsubscribes and rejects, for the last 30 days."
+              },
+              "response": [
+                {
+                  "id": "563f68e0-3567-4582-bf3f-89cdebdd22a0",
+                  "name": "Unsubscribe report",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_unsubs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_unsubs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"emails\": 0,\n    \"unsubscribes\": 0,\n    \"rejects\": 0,\n    \"unsubscribe_percent\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-563f68e0-3567-4582-bf3f-89cdebdd22a0"
+                },
+                {
+                  "id": "de986b81-b9c3-4030-a7b2-f754890109fa",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/email_unsubs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "email_unsubs"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:09:34.000Z",
+                  "updatedAt": "2026-10-22T02:09:34.000Z",
+                  "uid": "35240-de986b81-b9c3-4030-a7b2-f754890109fa"
+                }
+              ],
+              "createdAt": "2026-10-22T02:09:34.000Z",
+              "updatedAt": "2026-10-22T02:09:34.000Z",
+              "uid": "35240-522ba06a-f9f4-45cf-9aa1-921549659b83"
+            }
+          ],
+          "id": "82d18edd-8876-418b-b0c9-84004080699e",
+          "createdAt": "2026-10-22T02:09:34.000Z",
+          "updatedAt": "2026-10-22T02:09:34.000Z",
+          "uid": "35240-82d18edd-8876-418b-b0c9-84004080699e"
+        }
+      ],
+      "id": "c640780a-8e1c-45ce-8753-f4bd40799a6e",
+      "createdAt": "2026-10-22T02:09:34.000Z",
+      "updatedAt": "2026-10-22T02:09:34.000Z",
+      "uid": "35240-c640780a-8e1c-45ce-8753-f4bd40799a6e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
+    }
+  ]
+}

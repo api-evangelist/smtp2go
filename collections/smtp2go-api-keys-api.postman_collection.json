@@ -1,629 +1,1019 @@
 {
+  "info": {
+    "_postman_id": "f501dc0d-bd53-4dea-a9b2-2ed88dc5504b",
+    "name": "SMTP2GO API KEYS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:07:57.000Z",
+    "updatedAt": "2026-10-22T02:07:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f501dc0d-bd53-4dea-a9b2-2ed88dc5504b"
+  },
   "item": [
     {
-      "id": "70755349-e5a4-4753-9a8f-8d4d7ffe463d",
-      "name": "API Keys",
-      "description": {
-        "content": "API key management",
-        "type": "text/plain"
-      },
+      "name": "api_keys",
       "item": [
         {
-          "id": "49ec16f3-57af-43e9-89c7-1a16234fe794",
-          "name": "Add a new API key",
-          "request": {
-            "name": "Add a new API key",
-            "description": {
-              "content": "Add a new API key to your account. Rate-limited to 5 requests per minute.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "add"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "add",
+          "item": [
             {
-              "id": "8c7b35cb-22f0-4b5f-9775-bb7a5964cafb",
-              "name": "API key added",
-              "originalRequest": {
+              "name": "Add a new API key",
+              "id": "2c54d6eb-46ef-48c0-a78a-4314d7726d03",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/api_keys/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
-                    "apikeys",
+                    "api_keys",
                     "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Add a new API key to your account\nThis endpoint is rate-limited to 5 requests per minute."
+              },
+              "response": [
+                {
+                  "id": "177fe65f-2704-4590-aec5-9e4fb823529a",
+                  "name": "Successfully added API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-177fe65f-2704-4590-aec5-9e4fb823529a"
+                },
+                {
+                  "id": "3a77ec59-5f0e-4dfe-8081-dd97c85f580c",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-3a77ec59-5f0e-4dfe-8081-dd97c85f580c"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-2c54d6eb-46ef-48c0-a78a-4314d7726d03"
+            }
+          ],
+          "id": "22470c67-11e1-48f7-bb86-02e793f6e9fe",
+          "createdAt": "2026-10-22T02:07:57.000Z",
+          "updatedAt": "2026-10-22T02:07:57.000Z",
+          "uid": "35240-22470c67-11e1-48f7-bb86-02e793f6e9fe"
+        },
+        {
+          "name": "edit",
+          "item": [
+            {
+              "name": "Edit an API key",
+              "id": "5858abc5-1a2b-4261-a9eb-5e9a397082a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bee1267b-c944-4471-9700-ac78447ce8a7",
-          "name": "Edit an API key",
-          "request": {
-            "name": "Edit an API key",
-            "description": {
-              "content": "Edit an existing API key",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "edit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "65e860e4-1121-4aff-9150-97b052967801",
-              "name": "API key updated",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/api_keys/edit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
-                    "apikeys",
+                    "api_keys",
                     "edit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Edit an existing API key"
+              },
+              "response": [
+                {
+                  "id": "6d28f356-e82c-459b-afd6-026e72e12ef8",
+                  "name": "Successfully edited API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-6d28f356-e82c-459b-afd6-026e72e12ef8"
+                },
+                {
+                  "id": "505f9d07-451d-4fd0-9b2a-9f791185ea10",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": false,\n  \"feedback_html\": \"\",\n  \"feedback_text\": \"\",\n  \"open_tracking_enabled\": false,\n  \"click_tracking_enabled\": false,\n  \"archive_enabled\": false,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": \"from\",\n  \"status\": \"allowed\",\n  \"endpoints\": [\n    \"/email/send\"\n  ],\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-505f9d07-451d-4fd0-9b2a-9f791185ea10"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-5858abc5-1a2b-4261-a9eb-5e9a397082a4"
+            },
+            {
+              "name": "Patch an API key",
+              "id": "66b123ed-84b7-4944-a2d2-d55dba5ee4b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"endpoints\": null,\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4e2a21ee-d6d1-463b-901c-47105d14f767",
-          "name": "Patch an API key",
-          "request": {
-            "name": "Patch an API key",
-            "description": {
-              "content": "Patch an existing API key ignoring missing properties",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "patch"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b8942fc5-cd25-4533-a2d9-13976217f4f0",
-              "name": "API key patched",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "apikeys",
-                    "patch"
-                  ],
+                  "raw": "{{baseUrl}}/api_keys/edit",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "api_keys",
+                    "edit"
+                  ]
                 },
+                "description": "Patch an existing API key ignoring missing properties"
+              },
+              "response": [
+                {
+                  "id": "aa3ed7dc-1f35-448d-8d1e-8eb14e58a5a2",
+                  "name": "Successfully patched API key",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"endpoints\": null,\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-aa3ed7dc-1f35-448d-8d1e-8eb14e58a5a2"
+                },
+                {
+                  "id": "46141e33-8504-4b6b-aab2-a43401afb71e",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom_ratelimit\": \"<boolean>\",\n  \"custom_ratelimit_value\": \"<integer>\",\n  \"custom_ratelimit_period\": \"<string>\",\n  \"ip_pool\": \"<integer>\",\n  \"feedback_enabled\": null,\n  \"feedback_html\": null,\n  \"feedback_text\": null,\n  \"open_tracking_enabled\": null,\n  \"click_tracking_enabled\": null,\n  \"archive_enabled\": null,\n  \"audit_email\": \"<string>\",\n  \"bounce_notifications\": null,\n  \"status\": null,\n  \"endpoints\": null,\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-46141e33-8504-4b6b-aab2-a43401afb71e"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-66b123ed-84b7-4944-a2d2-d55dba5ee4b6"
+            }
+          ],
+          "id": "8f9f0c2a-9a57-4716-94c9-ed260e00376f",
+          "createdAt": "2026-10-22T02:07:57.000Z",
+          "updatedAt": "2026-10-22T02:07:57.000Z",
+          "uid": "35240-8f9f0c2a-9a57-4716-94c9-ed260e00376f"
+        },
+        {
+          "name": "permissions",
+          "item": [
+            {
+              "name": "View Permissions",
+              "id": "7c050da7-a95a-4fbf-a1c2-8b5745fbf122",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"api_key_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sending_allowed\": \"<boolean>\",\n  \"open_tracking_enabled\": \"<boolean>\",\n  \"click_tracking_enabled\": \"<boolean>\",\n  \"unsubscribe_footer_enabled\": \"<boolean>\",\n  \"archive_enabled\": \"<boolean>\",\n  \"sandbox_mode\": \"<boolean>\"\n}",
+                  "raw": "{}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d4bd3c06-1eed-4330-aee3-9383b0c471e5",
-          "name": "Remove an API key",
-          "request": {
-            "name": "Remove an API key",
-            "description": {
-              "content": "Remove an existing API key",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "delete"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"api_key_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b825cdd1-c6c2-4b89-b236-8878d69deb0d",
-              "name": "API key removed",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "apikeys",
-                    "delete"
-                  ],
+                  "raw": "{{baseUrl}}/api_keys/permissions",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"api_key_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7bce5ce3-2777-4aee-95cf-bc1b1c1cb3da",
-          "name": "View API Keys",
-          "request": {
-            "name": "View API Keys",
-            "description": {
-              "content": "Retrieve a list of API keys on this account",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "view"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "84e06f40-d9fc-4566-990a-408ea2292416",
-              "name": "API keys list",
-              "originalRequest": {
-                "url": {
                   "path": [
-                    "apikeys",
-                    "view"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0152b06b-e025-4d12-9988-e3326009727b",
-          "name": "View Permissions",
-          "request": {
-            "name": "View Permissions",
-            "description": {
-              "content": "Retrieve a list of endpoints this API key can use",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apikeys",
-                "permissions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "721310cd-fb43-4ea7-bb95-ad5192063ad7",
-              "name": "API key permissions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apikeys",
+                    "api_keys",
                     "permissions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Retrieve a list of endpoints this API Key can use. This endpoint is available to all API Keys."
+              },
+              "response": [
+                {
+                  "id": "b72acbd8-774d-475f-806f-967794dc3574",
+                  "name": "Successfully retrieved API key permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "permissions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-b72acbd8-774d-475f-806f-967794dc3574"
+                },
+                {
+                  "id": "210d93ac-84cc-4099-91d6-943fede9ffc3",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "permissions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-210d93ac-84cc-4099-91d6-943fede9ffc3"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-7c050da7-a95a-4fbf-a1c2-8b5745fbf122"
+            }
+          ],
+          "id": "fe69bef1-4cea-483f-a036-371c24a5aaf0",
+          "createdAt": "2026-10-22T02:07:57.000Z",
+          "updatedAt": "2026-10-22T02:07:57.000Z",
+          "uid": "35240-fe69bef1-4cea-483f-a036-371c24a5aaf0"
+        },
+        {
+          "name": "remove",
+          "item": [
+            {
+              "name": "Remove an API key",
+              "id": "36a062f6-be0e-406d-b8c5-56a6eed0a798",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "<object>",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_keys/remove",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_keys",
+                    "remove"
+                  ]
+                },
+                "description": "Remove an existing API key"
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e8339058-1bfc-477a-930a-62287969b5f6",
+                  "name": "Successfully removed API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-e8339058-1bfc-477a-930a-62287969b5f6"
+                },
+                {
+                  "id": "5e43323b-7fc3-4684-bb5a-153e7e83bf80",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-5e43323b-7fc3-4684-bb5a-153e7e83bf80"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-36a062f6-be0e-406d-b8c5-56a6eed0a798"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "383e5f1f-4689-461e-9490-64a1f6a78169",
+          "createdAt": "2026-10-22T02:07:57.000Z",
+          "updatedAt": "2026-10-22T02:07:57.000Z",
+          "uid": "35240-383e5f1f-4689-461e-9490-64a1f6a78169"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View API Keys",
+              "id": "597b97d8-8b57-4e1e-a726-bc72afadb772",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"search\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api_keys/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api_keys",
+                    "view"
+                  ]
+                },
+                "description": "Retrieve a list of API keys on this account"
+              },
+              "response": [
+                {
+                  "id": "855191a5-dac1-4b1f-9ab9-ba52bf810509",
+                  "name": "Successfully retrieved API keys",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"search\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    },\n    {\n      \"request_id\": \"<string>\",\n      \"data\": {\n        \"api_key\": \"<string>\",\n        \"username\": \"<string>\",\n        \"description\": \"<string>\",\n        \"custom_rate_limit\": false,\n        \"custom_ratelimit_value\": \"<integer>\",\n        \"custom_ratelimit_period\": \"<string>\",\n        \"default_ratelimit_value\": \"<string>\",\n        \"default_ratelimit_period\": \"<string>\",\n        \"ippool\": \"<integer>\",\n        \"feedback_enabled\": false,\n        \"feedback_html\": \"<string>\",\n        \"feedback_text\": \"<string>\",\n        \"open_tracking_enabled\": false,\n        \"click_tracking_enabled\": false,\n        \"archive_enabled\": false,\n        \"audit_email\": \"<string>\",\n        \"bounce_notifications\": \"from\",\n        \"status\": \"allowed\",\n        \"endpoints\": [\n          \"/email/send\"\n        ]\n      }\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-855191a5-dac1-4b1f-9ab9-ba52bf810509"
+                },
+                {
+                  "id": "f755c1de-ec76-4b83-83b7-35b0b496c478",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"search\": \"<string>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api_keys/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api_keys",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:07:58.000Z",
+                  "updatedAt": "2026-10-22T02:07:58.000Z",
+                  "uid": "35240-f755c1de-ec76-4b83-83b7-35b0b496c478"
+                }
+              ],
+              "createdAt": "2026-10-22T02:07:57.000Z",
+              "updatedAt": "2026-10-22T02:07:57.000Z",
+              "uid": "35240-597b97d8-8b57-4e1e-a726-bc72afadb772"
+            }
+          ],
+          "id": "4eb15d06-1c84-4922-bbf8-e32f45342ba2",
+          "createdAt": "2026-10-22T02:07:57.000Z",
+          "updatedAt": "2026-10-22T02:07:57.000Z",
+          "uid": "35240-4eb15d06-1c84-4922-bbf8-e32f45342ba2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "60038b94-16fb-446d-a2e5-455ac2427315",
+      "createdAt": "2026-10-22T02:07:57.000Z",
+      "updatedAt": "2026-10-22T02:07:57.000Z",
+      "uid": "35240-60038b94-16fb-446d-a2e5-455ac2427315"
     }
   ],
   "auth": {
@@ -631,25 +1021,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b95a35ce-ae10-4e33-a889-cb59a338779a",
-    "name": "SMTP2GO Email Activity API Keys API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

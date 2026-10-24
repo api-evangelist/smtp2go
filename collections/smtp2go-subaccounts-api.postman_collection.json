@@ -1,629 +1,877 @@
 {
+  "info": {
+    "_postman_id": "6e403dfe-ddef-4a56-a37f-af44638ccc9e",
+    "name": "SMTP2GO SUBACCOUNTS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:13.000Z",
+    "updatedAt": "2026-10-22T02:08:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6e403dfe-ddef-4a56-a37f-af44638ccc9e"
+  },
   "item": [
     {
-      "id": "336c6f3d-83ac-44a8-92e3-6f2267e3db6a",
-      "name": "Subaccounts",
-      "description": {
-        "content": "Subaccount management",
-        "type": "text/plain"
-      },
+      "name": "subaccount",
       "item": [
         {
-          "id": "554f7bba-161f-447f-9c49-edeae420cd57",
-          "name": "Add a subaccount",
-          "request": {
-            "name": "Add a subaccount",
-            "description": {
-              "content": "Adds a new subaccount on your master account. Rate-limited to 10 calls per hour.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "add"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"company_name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "add",
+          "item": [
             {
-              "id": "5518e5f5-34d0-44cd-a56f-76ec2c8b5862",
-              "name": "Subaccount added",
-              "originalRequest": {
+              "name": "Add a subaccount",
+              "id": "2ced14e0-463f-43bc-b239-65f11026ea22",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fullname\": \"<string>\",\n  \"subaccount_email\": \"<string>\",\n  \"limit\": 10000,\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/subaccount/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
-                    "subaccounts",
+                    "subaccount",
                     "add"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Adds a new subaccount on your master account. Note: This end-point is rate limited to 50 calls per hour."
+              },
+              "response": [
+                {
+                  "id": "34af048b-5412-4700-805b-c7a4cec20336",
+                  "name": "Subaccount added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullname\": \"<string>\",\n  \"subaccount_email\": \"<string>\",\n  \"limit\": 10000,\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"plan_size\": \"<integer>\",\n    \"plan_used\": \"<integer>\",\n    \"plan_remaining\": \"<integer>\",\n    \"state\": \"<string>\",\n    \"dedicated_ip\": \"<boolean>\",\n    \"archiving\": \"<boolean>\",\n    \"enforce_2fa\": \"<boolean>\",\n    \"sms_enabled\": \"<boolean>\",\n    \"sms_limit\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-34af048b-5412-4700-805b-c7a4cec20336"
+                },
+                {
+                  "id": "235f1c1b-8614-4865-8843-79a318d98c47",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fullname\": \"<string>\",\n  \"subaccount_email\": \"<string>\",\n  \"limit\": 10000,\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-235f1c1b-8614-4865-8843-79a318d98c47"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-2ced14e0-463f-43bc-b239-65f11026ea22"
+            }
+          ],
+          "id": "07dec6cf-2336-42b5-887a-409711ba3a25",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-07dec6cf-2336-42b5-887a-409711ba3a25"
+        },
+        {
+          "name": "close",
+          "item": [
+            {
+              "name": "Close a subaccount",
+              "id": "41d10614-4163-4e5b-93bf-898802d1e725",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"company_name\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4d2c4e89-55cd-4f23-aa17-937c0b2c376d",
-          "name": "Close a subaccount",
-          "request": {
-            "name": "Close a subaccount",
-            "description": {
-              "content": "Changes the status of an Active subaccount to Closed",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "close"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0cea49ea-4ef3-4b1d-a321-4c2bf548affa",
-              "name": "Subaccount closed",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/subaccount/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
-                    "subaccounts",
+                    "subaccount",
                     "close"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Changes the status of an Active subaccount to Closed"
+              },
+              "response": [
+                {
+                  "id": "f1b9ef90-692a-4363-839b-b15cf846e174",
+                  "name": "Subaccount closed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/close",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "close"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-f1b9ef90-692a-4363-839b-b15cf846e174"
+                },
+                {
+                  "id": "81598326-457f-4716-a9f0-d4e612cd19f1",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/close",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "close"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-81598326-457f-4716-a9f0-d4e612cd19f1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-41d10614-4163-4e5b-93bf-898802d1e725"
+            }
+          ],
+          "id": "3079fb5f-7f5e-4470-8044-a7d0c11b31bb",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-3079fb5f-7f5e-4470-8044-a7d0c11b31bb"
+        },
+        {
+          "name": "edit",
+          "item": [
+            {
+              "name": "Update a subaccount",
+              "id": "d4af7580-fdfb-4858-a310-ff591d7b86e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"fullname\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9d008db1-b62a-4ae2-a6dc-9058e7c7e2b6",
-          "name": "Reopen a closed subaccount",
-          "request": {
-            "name": "Reopen a closed subaccount",
-            "description": {
-              "content": "Changes the status of a Closed subaccount back to Active",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "reopen"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c5beabfd-44cf-4239-b7f8-f9b4400186e0",
-              "name": "Subaccount reopened",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/subaccount/edit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
-                    "subaccounts",
-                    "reopen"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                    "subaccount",
+                    "edit"
+                  ]
                 },
+                "description": "Changes the details on an existing subaccount"
+              },
+              "response": [
+                {
+                  "id": "3b4e8fa1-4634-4de9-8b29-a50536f698ed",
+                  "name": "Subaccount updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"fullname\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"plan_size\": \"<integer>\",\n    \"plan_used\": \"<integer>\",\n    \"plan_remaining\": \"<integer>\",\n    \"state\": \"<string>\",\n    \"dedicated_ip\": \"<boolean>\",\n    \"archiving\": \"<boolean>\",\n    \"enforce_2fa\": \"<boolean>\",\n    \"sms_enabled\": \"<boolean>\",\n    \"sms_limit\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-3b4e8fa1-4634-4de9-8b29-a50536f698ed"
+                },
+                {
+                  "id": "41abd837-6309-40ea-8091-ebe483c2a034",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"fullname\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"dedicated_ip\": false,\n  \"archiving\": false,\n  \"enforce_2fa\": false,\n  \"enable_sms\": false,\n  \"sms_limit\": 1000\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/edit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-41abd837-6309-40ea-8091-ebe483c2a034"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-d4af7580-fdfb-4858-a310-ff591d7b86e4"
+            }
+          ],
+          "id": "aea59af4-ab9e-4ac7-9939-4a7725953c71",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-aea59af4-ab9e-4ac7-9939-4a7725953c71"
+        },
+        {
+          "name": "reopen",
+          "item": [
+            {
+              "name": "Reopen a closed subaccount",
+              "id": "2d60ba25-8569-498e-8b7e-2121f5a0649c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subaccount/reopen",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subaccount",
+                    "reopen"
+                  ]
+                },
+                "description": "Changes the status of a Closed subaccount back to Active"
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "93078b36-ff81-4e78-83cb-037f9551a6e5",
+                  "name": "Subaccount reopened",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/reopen",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "reopen"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-93078b36-ff81-4e78-83cb-037f9551a6e5"
+                },
+                {
+                  "id": "16a1006b-09c7-464d-b334-09f7487e4c90",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccount/reopen",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccount",
+                        "reopen"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-16a1006b-09c7-464d-b334-09f7487e4c90"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-2d60ba25-8569-498e-8b7e-2121f5a0649c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "id": "5877bc63-c2d5-44eb-bdc3-98be8fbb329a",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-5877bc63-c2d5-44eb-bdc3-98be8fbb329a"
+        }
+      ],
+      "id": "6d014e45-27d5-450a-8e4c-462b4314bfc3",
+      "createdAt": "2026-10-22T02:08:14.000Z",
+      "updatedAt": "2026-10-22T02:08:14.000Z",
+      "uid": "35240-6d014e45-27d5-450a-8e4c-462b4314bfc3"
+    },
+    {
+      "name": "subaccounts",
+      "item": [
         {
-          "id": "43d624b7-7dd9-4dee-b9cd-f4bd578fcb11",
-          "name": "View subaccounts",
-          "request": {
-            "name": "View subaccounts",
-            "description": {
-              "content": "Returns any subaccounts that match search criteria",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email_address\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "search",
+          "item": [
             {
-              "id": "3db4ebb7-d8f2-4e36-b053-aff27215e79f",
-              "name": "Subaccounts list",
-              "originalRequest": {
+              "name": "View subaccounts",
+              "id": "c9b3d804-6670-485e-bcc9-e2184e25c5d6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fuzzy_search\": true,\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"states\": \"all\",\n  \"sort_direction\": \"asc\",\n  \"page_size\": 100,\n  \"continue_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/subaccounts/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "subaccounts",
                     "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email_address\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Returns any subaccounts that match search criteria"
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "c79597dd-73bf-43e0-8b6e-fae0c9491c2d",
+                  "name": "List of subaccounts",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fuzzy_search\": true,\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"states\": \"all\",\n  \"sort_direction\": \"asc\",\n  \"page_size\": 100,\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccounts/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccounts",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"continue_token\": {},\n    \"total_count\": 0,\n    \"subaccounts\": [\n      {\n        \"email\": \"<string>\",\n        \"state\": \"<string>\",\n        \"plan_size\": 0,\n        \"plan_remaining\": 0,\n        \"plan_used\": 0,\n        \"name\": \"<string>\"\n      },\n      {\n        \"email\": \"<string>\",\n        \"state\": \"<string>\",\n        \"plan_size\": 0,\n        \"plan_remaining\": 0,\n        \"plan_used\": 0,\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-c79597dd-73bf-43e0-8b6e-fae0c9491c2d"
+                },
+                {
+                  "id": "f7148521-39d7-4ce2-a3b4-09488f3bd6ce",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fuzzy_search\": true,\n  \"search_terms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"states\": \"all\",\n  \"sort_direction\": \"asc\",\n  \"page_size\": 100,\n  \"continue_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/subaccounts/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subaccounts",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error\": \"<string>\",\n    \"error_code\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:14.000Z",
+                  "updatedAt": "2026-10-22T02:08:14.000Z",
+                  "uid": "35240-f7148521-39d7-4ce2-a3b4-09488f3bd6ce"
                 }
               ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:08:14.000Z",
+              "updatedAt": "2026-10-22T02:08:14.000Z",
+              "uid": "35240-c9b3d804-6670-485e-bcc9-e2184e25c5d6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b09389ea-ba36-423f-bd12-13f9412c711c",
-          "name": "Update a subaccount",
-          "request": {
-            "name": "Update a subaccount",
-            "description": {
-              "content": "Changes the details on an existing subaccount",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "update"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"subaccount_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"company_name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ae12f9bd-e00a-4f3e-ba60-f016530adc6c",
-              "name": "Subaccount updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subaccounts",
-                    "update"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"subaccount_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"company_name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a4896ec-9efe-4e94-9eb1-96baf7d3a480",
-          "name": "Resend subaccount invitation",
-          "request": {
-            "name": "Resend subaccount invitation",
-            "description": {
-              "content": "Resend invitation to a subaccount",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subaccounts",
-                "resend_invite"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e575e45f-2237-4f59-8991-98ad956d5b9f",
-              "name": "Invitation resent",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subaccounts",
-                    "resend_invite"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Smtp2go-Api-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"request_id\": \"string\",\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 6293.99463072493\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f47cce8e-7be7-44d8-b7fa-f7592612e962",
+          "createdAt": "2026-10-22T02:08:14.000Z",
+          "updatedAt": "2026-10-22T02:08:14.000Z",
+          "uid": "35240-f47cce8e-7be7-44d8-b7fa-f7592612e962"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.smtp2go.com/v3",
-      "key": "baseUrl"
+      "id": "c04ac8fd-8564-482a-afd1-c4fbca2ee28b",
+      "createdAt": "2026-10-22T02:08:14.000Z",
+      "updatedAt": "2026-10-22T02:08:14.000Z",
+      "uid": "35240-c04ac8fd-8564-482a-afd1-c4fbca2ee28b"
     }
   ],
   "auth": {
@@ -631,25 +879,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Smtp2go-Api-Key"
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "7322c717-7851-48ec-9228-bb6ffd742ec7",
-    "name": "SMTP2GO Email Activity Subaccounts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for sending transactional emails and SMS, managing sender domains, SMTP users, API keys, templates, webhooks, suppressions, and accessing delivery reports and activity statistics. All requests use POST with JSON bodies. Authentication is via API key in request body or X-Smtp2go-Api-Key header.\n\nContact Support:\n Name: SMTP2GO Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
     }
-  }
+  ]
 }

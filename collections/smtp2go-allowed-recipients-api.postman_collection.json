@@ -1,0 +1,725 @@
+{
+  "info": {
+    "_postman_id": "7aabcb7b-75d8-4830-b2fa-c61dce90fcb3",
+    "name": "SMTP2GO ALLOWED RECIPIENTS API",
+    "description": "The SMTP2GO v3 REST API for sending transactional email and SMS, managing sender domains and single sender emails, SMTP users, API keys, IP allow lists and IP auth, templates, webhooks, suppressions, subaccounts, dedicated IPs, email archive, activity search and delivery statistics. Every operation is a POST (with a PATCH variant on two paths) carrying a JSON body; authentication is an API key supplied in the X-Smtp2go-Api-Key header or as an api_key field in the request body.\n\nContact Support:\n Name: SMTP2GO Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:08:38.000Z",
+    "updatedAt": "2026-10-22T02:08:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7aabcb7b-75d8-4830-b2fa-c61dce90fcb3"
+  },
+  "item": [
+    {
+      "name": "allowed_recipients",
+      "item": [
+        {
+          "name": "add",
+          "item": [
+            {
+              "name": "Add allowed recipients",
+              "id": "fa9bba57-f3a4-413a-ad9d-85968b1e7bc3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowed_recipients/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowed_recipients",
+                    "add"
+                  ]
+                },
+                "description": "Add one or more email addresses and domain names to your Allowed Recipients List. Further details of the associated setting are found in the SMTP2GO Guides."
+              },
+              "response": [
+                {
+                  "id": "0d8c7b86-8163-400b-9868-230a2bb55588",
+                  "name": "Allowed Recipients list updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"allowed_recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-0d8c7b86-8163-400b-9868-230a2bb55588"
+                },
+                {
+                  "id": "7c285f54-8168-4cc2-819b-629434c7c5ba",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/add",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "add"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error_code\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-7c285f54-8168-4cc2-819b-629434c7c5ba"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:39.000Z",
+              "updatedAt": "2026-10-22T02:08:39.000Z",
+              "uid": "35240-fa9bba57-f3a4-413a-ad9d-85968b1e7bc3"
+            }
+          ],
+          "id": "ffa03ed5-a503-4f38-a1ad-bf009321a94f",
+          "createdAt": "2026-10-22T02:08:39.000Z",
+          "updatedAt": "2026-10-22T02:08:39.000Z",
+          "uid": "35240-ffa03ed5-a503-4f38-a1ad-bf009321a94f"
+        },
+        {
+          "name": "remove",
+          "item": [
+            {
+              "name": "Remove allowed recipients",
+              "id": "e5014c7d-0736-487b-927a-b62be0b749b0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowed_recipients/remove",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowed_recipients",
+                    "remove"
+                  ]
+                },
+                "description": "Remove one or more emails addresses or domain names stored in your Allowed Recipients List. Note: In the event that any of the email addresses or domains do not feature in the list, no error will be raised."
+              },
+              "response": [
+                {
+                  "id": "f9b82bbd-91a0-4804-9e50-3d5469c24506",
+                  "name": "Allowed Recipients Removed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"allowed_recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-f9b82bbd-91a0-4804-9e50-3d5469c24506"
+                },
+                {
+                  "id": "57dc977a-a9ea-4120-8ccc-bec1d4c349fc",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/remove",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "remove"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error_code\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-57dc977a-a9ea-4120-8ccc-bec1d4c349fc"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:39.000Z",
+              "updatedAt": "2026-10-22T02:08:39.000Z",
+              "uid": "35240-e5014c7d-0736-487b-927a-b62be0b749b0"
+            }
+          ],
+          "id": "6690e603-0901-4335-a14f-d4264e776443",
+          "createdAt": "2026-10-22T02:08:39.000Z",
+          "updatedAt": "2026-10-22T02:08:39.000Z",
+          "uid": "35240-6690e603-0901-4335-a14f-d4264e776443"
+        },
+        {
+          "name": "update",
+          "item": [
+            {
+              "name": "Update allowed recipients",
+              "id": "c00c0381-38b4-4a34-ae25-89e2c8e6689f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowed_recipients/update",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowed_recipients",
+                    "update"
+                  ]
+                },
+                "description": "Replace the email addresses and domain names on your Allowed Recipients List using this endpoint. Further details of these modes are found in the SMPT2GO Guides. Note that a post to this endpoint will return a success, even if the setting is not in use."
+              },
+              "response": [
+                {
+                  "id": "d528bb2e-9b1e-4efe-a43f-5fe000dec397",
+                  "name": "Allowed Recipients list updated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "update"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"allowed_recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-d528bb2e-9b1e-4efe-a43f-5fe000dec397"
+                },
+                {
+                  "id": "45b89064-1197-4565-a4ee-d23feb799448",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allowed_recipients\": [\n    \"test-person@example.com\",\n    \"other@example.com\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "update"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error_code\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-45b89064-1197-4565-a4ee-d23feb799448"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:39.000Z",
+              "updatedAt": "2026-10-22T02:08:39.000Z",
+              "uid": "35240-c00c0381-38b4-4a34-ae25-89e2c8e6689f"
+            }
+          ],
+          "id": "0552c4dc-9d9a-4762-bc65-5eb761020b28",
+          "createdAt": "2026-10-22T02:08:39.000Z",
+          "updatedAt": "2026-10-22T02:08:39.000Z",
+          "uid": "35240-0552c4dc-9d9a-4762-bc65-5eb761020b28"
+        },
+        {
+          "name": "view",
+          "item": [
+            {
+              "name": "View allowed recipients",
+              "id": "36938b32-efb7-4be8-9147-21dcc4ac4991",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowed_recipients/view",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowed_recipients",
+                    "view"
+                  ]
+                },
+                "description": "Returns the email addresses and domain names on your Allowed Recipients list."
+              },
+              "response": [
+                {
+                  "id": "4388a728-06b1-4bcc-8684-40557594972b",
+                  "name": "List of Allowed Recipients",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"allowed_recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-4388a728-06b1-4bcc-8684-40557594972b"
+                },
+                {
+                  "id": "aaa96840-dcc5-44bf-8aa8-22f2ab441e0e",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Smtp2go-Api-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subaccount_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/allowed_recipients/view",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "allowed_recipients",
+                        "view"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"request_id\": \"<string>\",\n  \"data\": {\n    \"error_code\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:08:39.000Z",
+                  "updatedAt": "2026-10-22T02:08:39.000Z",
+                  "uid": "35240-aaa96840-dcc5-44bf-8aa8-22f2ab441e0e"
+                }
+              ],
+              "createdAt": "2026-10-22T02:08:39.000Z",
+              "updatedAt": "2026-10-22T02:08:39.000Z",
+              "uid": "35240-36938b32-efb7-4be8-9147-21dcc4ac4991"
+            }
+          ],
+          "id": "e3480133-2828-4a17-b4ab-ca715e6507b2",
+          "createdAt": "2026-10-22T02:08:39.000Z",
+          "updatedAt": "2026-10-22T02:08:39.000Z",
+          "uid": "35240-e3480133-2828-4a17-b4ab-ca715e6507b2"
+        }
+      ],
+      "id": "f4cd8937-a86b-4be3-8899-c1e66f10363f",
+      "createdAt": "2026-10-22T02:08:39.000Z",
+      "updatedAt": "2026-10-22T02:08:39.000Z",
+      "uid": "35240-f4cd8937-a86b-4be3-8899-c1e66f10363f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Smtp2go-Api-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.smtp2go.com/v3"
+    }
+  ]
+}
