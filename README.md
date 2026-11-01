@@ -64,71 +64,224 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Email delivery platform with a REST API for sending transactional emails, managing SMTP accounts, tracking delivery, viewing email statistics, and suppressing addresses.
+SMTP2GO is a New Zealand-founded email and SMS delivery platform, running since 2006, that sends and tracks transactional and marketing messages over SMTP relay or a JSON REST API from data centres in the United States, the European Union and Australia. The v3 API covers sending standard, MIME, batch and scheduled email, sending and receiving SMS, verifying sender domains and single sender addresses, managing SMTP users, API keys, IP allow lists and IP authentication, templates, webhooks, suppressions, subaccounts, dedicated IPs and the email archive, plus activity search and delivery statistics. It also ships a remote MCP server and a published Agent Skill for AI agents.
 
-- **Website:** https://www.smtp2go.com/
-- **Developer Docs:** https://developers.smtp2go.com/docs/introduction-guide
-- **API Reference:** https://developers.smtp2go.com/reference/general-api-resources
-- **GitHub Org:** https://github.com/smtp2go-oss
-- **Pricing:** https://www.smtp2go.com/pricing/
-- **Status Page:** https://smtp2gostatus.com/
-- **Blog:** https://www.smtp2go.com/blog/
-- **LinkedIn:** https://www.linkedin.com/company/smtp2go
-- **X:** https://x.com/smtp2go
+**Areas:** Email · Email Delivery · Transactional Email · SMTP · SMS · Email API · Deliverability · Webhook · Messaging · Communications · MCP · Agent Skills
 
-## Overview
+## SMTP2GO on APIs.io
 
-SMTP2GO provides reliable email delivery infrastructure through both SMTP relay and a REST API (base URL: `https://api.smtp2go.com/v3`). The platform supports transactional email, SMS messaging, template management, sender domain verification, webhook event delivery, suppression list management, and comprehensive reporting.
+Everything profiled for SMTP2GO is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/smtp2go/](https://apis.io/providers/smtp2go/)** — or go straight to one of the APIs or properties below.
 
-## API Capabilities
+### APIs (18)
 
-- Send individual, MIME-encoded, and batch emails
-- Send SMS to up to 100 recipients per request
-- Manage sender domains and single sender emails
-- Manage API keys and SMTP users
-- Configure webhooks for event notifications
-- Create and manage email templates
-- Manage suppression lists (blocks by address or domain)
-- Access delivery activity, bounce, spam, and unsubscribe reports
-- Manage subaccounts for resellers and agencies
-- Configure dedicated IP addresses
+- [SMTP2GO Activity API](https://apis.io/apis/smtp2go/smtp2go-activity-api/) — Email activity search
+- [SMTP2GO API Keys API](https://apis.io/apis/smtp2go/smtp2go-api-keys-api/) — API key management
+- [SMTP2GO SMS API](https://apis.io/apis/smtp2go/smtp2go-sms-api/) — Send and receive SMS messages
+- [SMTP2GO SMTP Users API](https://apis.io/apis/smtp2go/smtp2go-smtp-users-api/) — SMTP user account management
+- [SMTP2GO Subaccounts API](https://apis.io/apis/smtp2go/smtp2go-subaccounts-api/) — Subaccount management
+- [SMTP2GO Suppressions API](https://apis.io/apis/smtp2go/smtp2go-suppressions-api/) — Suppression list management
+- [SMTP2GO Templates API](https://apis.io/apis/smtp2go/smtp2go-templates-api/) — Email template management
+- [SMTP2GO Webhooks API](https://apis.io/apis/smtp2go/smtp2go-webhooks-api/) — Webhook configuration
+- [SMTP2GO ALLOWED RECIPIENTS API](https://apis.io/apis/smtp2go/smtp2go-allowed-recipients-api/) — Manage the allowed recipients list
+- [SMTP2GO ALLOWED SENDERS API](https://apis.io/apis/smtp2go/smtp2go-allowed-senders-api/) — Manage the allowed/restricted senders list
+- [SMTP2GO DEDICATED IPS API](https://apis.io/apis/smtp2go/smtp2go-dedicated-ips-api/) — View dedicated IP addresses on the account
+- [SMTP2GO EMAIL ARCHIVE API](https://apis.io/apis/smtp2go/smtp2go-email-archive-api/) — Search and retrieve archived email content
+- [SMTP2GO EMAILS API](https://apis.io/apis/smtp2go/smtp2go-emails-api/) — Send standard, MIME and batch email; manage scheduled sends
+- [SMTP2GO IP AUTH API](https://apis.io/apis/smtp2go/smtp2go-ip-auth-api/) — Manage IP-authenticated sending entries
+- [SMTP2GO SENDER DOMAINS API](https://apis.io/apis/smtp2go/smtp2go-sender-domains-api/) — Add, verify and manage sender domains, tracking and return-path subdomains
+- [SMTP2GO SINGLE SENDER EMAILS API](https://apis.io/apis/smtp2go/smtp2go-single-sender-emails-api/) — Verify individual From addresses
+- [SMTP2GO STATISTICS API](https://apis.io/apis/smtp2go/smtp2go-statistics-api/) — Delivery, bounce, spam, unsubscribe and cycle statistics
+- [SMTP2GO IP Allowlist API](https://apis.io/apis/smtp2go/smtp2go-ip-allowlist-api/) — Manage the account IP allow list for SMTP and API access
 
-## Authentication
+### Published properties
 
-Every request requires an API key passed in the request body. Keys are 32 characters with an `api-` prefix. Keys are managed under **Sending > API Keys** in the SMTP2GO dashboard.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## SDKs
+#### AsyncAPI (1)
 
-Official open-source SDKs available from the `smtp2go-oss` GitHub organization:
+Event-driven and webhook contracts.
 
-- Python
-- Node.js
-- Go
-- Ruby
-- PHP
-- Laravel
-- .NET
-- Rust
-- Django
+- [Smtp2Go Webhooks](https://apis.io/asyncapis/smtp2go/smtp2go-webhooks/)
 
-## Pricing Summary
+#### MCP servers (1)
 
-| Plan | Monthly Cost | Included Emails | Overage |
-|------|-------------|-----------------|---------|
-| Free | $0 | 1,000 | None (capped) |
-| Starter | $10 | 10,000 | $1.00/1k |
-| Professional | $75 | 100,000 | $0.85/1k |
-| Premier | Custom | 3,000,000+ | Custom |
+Model Context Protocol servers that expose the API to agents.
 
-Annual billing saves approximately 16.7% on Starter and Professional plans.
+- [SMTP2GO-API-Docs](https://apis.io/servers/smtp2go/smtp2go-api-docs/)
 
-## Repository Contents
+#### Agentic access (1)
 
-- `apis.yml` — APIs.json 0.19 provider index
-- `plans/smtp2go-plans-pricing.yml` — API Commons Plans 0.1 pricing detail
-- `rate-limits/smtp2go-rate-limits.yml` — API Commons Rate Limits 0.1
-- `finops/smtp2go-finops.yml` — FinOps Framework FOCUS 1.0 cost guidance
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Maintainer
+- [Smtp2Go Agentic Access](https://apis.io/agentic-access/smtp2go/smtp2go-agentic-access/)
 
-**Kin Lane** — kin@apievangelist.com
+#### JSON Schema (2)
+
+The data models the API reads and writes.
+
+- [SMTP2GO Send Email Request](https://apis.io/schemas/smtp2go/smtp2go-send-email/)
+- [SMTP2GO Suppression](https://apis.io/schemas/smtp2go/smtp2go-suppression/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Smtp2Go Context](https://apis.io/jsonld/smtp2go/smtp2go-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [SMTP2GO API Vocabulary](https://apis.io/vocabularies/smtp2go/smtp2go-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Add Suppression Example](https://apis.io/examples/smtp2go/add-suppression-example/)
+- [Send Email Example](https://apis.io/examples/smtp2go/send-email-example/)
+- [Send Sms Example](https://apis.io/examples/smtp2go/send-sms-example/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [SMTP2GO Email Activity API](https://apis.io/collections/smtp2go/open-smtp2go-activity-api/)
+- [SMTP2GO Email Activity API Keys API](https://apis.io/collections/smtp2go/open-smtp2go-api-keys-api/)
+- [SMTP2GO Email Activity Domains API](https://apis.io/collections/smtp2go/open-smtp2go-domains-api/)
+- [SMTP2GO Activity Email API](https://apis.io/collections/smtp2go/open-smtp2go-email-api/)
+- [SMTP2GO Email Activity SMS API](https://apis.io/collections/smtp2go/open-smtp2go-sms-api/)
+- [SMTP2GO Email Activity SMTP Users API](https://apis.io/collections/smtp2go/open-smtp2go-smtp-users-api/)
+- [SMTP2GO Email Activity Stats API](https://apis.io/collections/smtp2go/open-smtp2go-stats-api/)
+- [SMTP2GO Email Activity Subaccounts API](https://apis.io/collections/smtp2go/open-smtp2go-subaccounts-api/)
+- [SMTP2GO Email Activity Suppressions API](https://apis.io/collections/smtp2go/open-smtp2go-suppressions-api/)
+- [SMTP2GO Email Activity Templates API](https://apis.io/collections/smtp2go/open-smtp2go-templates-api/)
+- [SMTP2GO Email Activity Webhooks API](https://apis.io/collections/smtp2go/open-smtp2go-webhooks-api/)
+
+#### Overlays (19)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Smtp2Go Activity Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-activity-api-phrasing-overlay/)
+- [Smtp2Go Allowed Recipients Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-allowed-recipients-api-phrasing-overlay/)
+- [Smtp2Go Allowed Senders Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-allowed-senders-api-phrasing-overlay/)
+- [Smtp2Go Api Keys Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-api-keys-api-phrasing-overlay/)
+- [Smtp2Go Api Overlay](https://apis.io/overlays/smtp2go/smtp2go-api-overlay/)
+- [Smtp2Go Dedicated Ips Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-dedicated-ips-api-phrasing-overlay/)
+- [Smtp2Go Email Archive Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-email-archive-api-phrasing-overlay/)
+- [Smtp2Go Emails Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-emails-api-phrasing-overlay/)
+- [Smtp2Go Ip Allowlist Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-ip-allowlist-api-phrasing-overlay/)
+- [Smtp2Go Ip Auth Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-ip-auth-api-phrasing-overlay/)
+- [Smtp2Go Sender Domains Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-sender-domains-api-phrasing-overlay/)
+- [Smtp2Go Single Sender Emails Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-single-sender-emails-api-phrasing-overlay/)
+- [Smtp2Go Sms Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-sms-api-phrasing-overlay/)
+- [Smtp2Go Smtp Users Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-smtp-users-api-phrasing-overlay/)
+- [Smtp2Go Statistics Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-statistics-api-phrasing-overlay/)
+- [Smtp2Go Subaccounts Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-subaccounts-api-phrasing-overlay/)
+- [Smtp2Go Suppressions Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-suppressions-api-phrasing-overlay/)
+- [Smtp2Go Templates Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-templates-api-phrasing-overlay/)
+- [Smtp2Go Webhooks Api Phrasing Overlay](https://apis.io/overlays/smtp2go/smtp2go-webhooks-api-phrasing-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [SMTP2GO — jsonschema rules](https://apis.io/rules/smtp2go/smtp2go-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Smtp2Go Authentication](https://apis.io/security/smtp2go/smtp2go-authentication/)
+- [Smtp2Go Domain Security](https://apis.io/security/smtp2go/smtp2go-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Smtp2Go Plans Pricing](https://apis.io/plans/smtp2go/smtp2go-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Smtp2Go Rate Limits](https://apis.io/rate-limits/smtp2go/smtp2go-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Smtp2Go Finops](https://apis.io/finops/smtp2go/smtp2go-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.smtp2go.com/)
+- [Documentation](https://developers.smtp2go.com/docs/introduction-guide)
+- [Getting started](https://developers.smtp2go.com/docs/getting-started)
+- [API reference](https://developers.smtp2go.com/reference/general-api-resources)
+- [Pricing](https://www.smtp2go.com/pricing/)
+- [Sign up](https://www.smtp2go.com/pricing/signup/)
+- [Support](https://support.smtp2go.com/)
+- [Changelog](https://developers.smtp2go.com/reference/changelog)
+- [Blog](https://www.smtp2go.com/blog/)
+- [Compliance](https://www.smtp2go.com/blog/security-and-privacy-at-smtp2go/)
+- [Terms of service](https://www.smtp2go.com/terms/)
+- [Privacy policy](https://www.smtp2go.com/privacy/)
+- [Status](https://smtp2gostatus.com/)
+
+## API Evangelist rating
+
+**Kin Score 67.4** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 68.6 |
+| Contract governance | 28.0 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 63.1 |
+| Access clarity | 84.2 |
+
+**Agent readiness 39.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 25.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/smtp2go/](https://apis.io/providers/smtp2go/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SMTP2GO: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/smtp2go/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
